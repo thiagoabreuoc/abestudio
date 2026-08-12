@@ -1,0 +1,490 @@
+/*
+Theme Name: AB Estúdio
+Theme URI: https://abestudio.com
+Author: AB Estúdio
+Description: Tema customizado para o site do AB Estúdio — estúdio criativo de design e desenvolvimento digital, com portfólio de projetos e serviços.
+Version: 1.0.0
+Requires at least: 6.4
+Requires PHP: 7.4
+Text Domain: abestudio
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+:root {
+	--abe-ink: #0b0b0f;
+	--abe-ink-2: #17171f;
+	--abe-primary: #7c3aed;
+	--abe-primary-2: #06b6d4;
+	--abe-accent: #d4ff3d;
+	--abe-text: #18181b;
+	--abe-muted: #6b7280;
+	--abe-bg: #ffffff;
+	--abe-bg-alt: #f4f4f6;
+	--abe-border: #e4e4e7;
+	--abe-max-width: 1180px;
+	--abe-radius: 14px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: var(--abe-text);
+	background: var(--abe-bg);
+	line-height: 1.6;
+}
+
+a {
+	color: var(--abe-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+h1, h2, h3 {
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+.container {
+	max-width: var(--abe-max-width);
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.eyebrow {
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: var(--abe-primary);
+	margin-bottom: 12px;
+}
+
+.section-heading {
+	max-width: 640px;
+	margin: 0 0 40px;
+}
+
+.section-heading h2 {
+	font-size: 2rem;
+	margin: 0 0 12px;
+}
+
+.section-heading p {
+	color: var(--abe-muted);
+	margin: 0;
+}
+
+/* Buttons */
+.button {
+	display: inline-block;
+	background: var(--abe-text);
+	color: #fff;
+	font-weight: 700;
+	padding: 13px 26px;
+	border-radius: 999px;
+	border: 1px solid transparent;
+}
+
+.button:hover {
+	opacity: 0.9;
+	text-decoration: none;
+}
+
+.button.button-accent {
+	background: var(--abe-accent);
+	color: var(--abe-ink);
+}
+
+.button.button-ghost {
+	background: transparent;
+	color: #fff;
+	border-color: rgba(255, 255, 255, 0.35);
+}
+
+.button.button-ghost:hover {
+	border-color: #fff;
+}
+
+/* Header */
+.site-header {
+	background: var(--abe-bg);
+	border-bottom: 1px solid var(--abe-border);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.site-header .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	gap: 24px;
+}
+
+.site-branding .site-title {
+	margin: 0;
+	font-size: 1.3rem;
+}
+
+.site-branding .site-title a {
+	color: var(--abe-text);
+	text-decoration: none;
+	font-weight: 800;
+	letter-spacing: -0.01em;
+}
+
+.site-branding .site-description {
+	margin: 2px 0 0;
+	font-size: 0.8rem;
+	color: var(--abe-muted);
+}
+
+.primary-menu {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	margin: 0;
+	padding: 0;
+}
+
+.primary-menu a {
+	color: var(--abe-text);
+	font-weight: 600;
+	font-size: 0.95rem;
+}
+
+.primary-menu a:hover {
+	color: var(--abe-primary);
+	text-decoration: none;
+}
+
+/* Hero */
+.hero {
+	background: radial-gradient(circle at 20% 20%, var(--abe-primary), transparent 55%),
+		radial-gradient(circle at 85% 15%, var(--abe-primary-2), transparent 45%),
+		var(--abe-ink);
+	color: #fff;
+	padding: 110px 0 90px;
+}
+
+.hero .container {
+	max-width: 780px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.hero h1 {
+	font-size: clamp(2.1rem, 5vw, 3.2rem);
+	margin: 0 0 20px;
+}
+
+.hero p {
+	font-size: 1.15rem;
+	max-width: 620px;
+	margin: 0 auto 32px;
+	opacity: 0.85;
+}
+
+.hero-actions {
+	display: flex;
+	gap: 14px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+/* Services */
+.services {
+	padding: 90px 0;
+}
+
+.services-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 24px;
+}
+
+.service-card {
+	padding: 28px;
+	border: 1px solid var(--abe-border);
+	border-radius: var(--abe-radius);
+	background: var(--abe-bg-alt);
+}
+
+.service-card .service-icon {
+	font-size: 1.6rem;
+	margin-bottom: 14px;
+}
+
+.service-card h3 {
+	font-size: 1.1rem;
+	margin: 0 0 10px;
+}
+
+.service-card p {
+	color: var(--abe-muted);
+	margin: 0;
+	font-size: 0.95rem;
+}
+
+/* Portfolio */
+.portfolio {
+	padding: 90px 0;
+	background: var(--abe-bg-alt);
+}
+
+.portfolio-header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+	flex-wrap: wrap;
+}
+
+.portfolio-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 28px;
+	margin-top: 40px;
+}
+
+.portfolio-card {
+	position: relative;
+	border-radius: var(--abe-radius);
+	overflow: hidden;
+	background: var(--abe-ink);
+	aspect-ratio: 4 / 3;
+	display: block;
+	color: #fff;
+}
+
+.portfolio-card img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: absolute;
+	inset: 0;
+	opacity: 0.85;
+	transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.portfolio-card:hover img {
+	transform: scale(1.06);
+	opacity: 1;
+}
+
+.portfolio-card .portfolio-card-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 22px;
+	background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.82));
+}
+
+.portfolio-card .portfolio-card-cat {
+	text-transform: uppercase;
+	font-size: 0.7rem;
+	letter-spacing: 0.1em;
+	color: var(--abe-accent);
+	margin: 0 0 6px;
+}
+
+.portfolio-card h3 {
+	margin: 0;
+	font-size: 1.15rem;
+}
+
+.portfolio-card:hover {
+	text-decoration: none;
+}
+
+.portfolio-empty {
+	color: var(--abe-muted);
+}
+
+/* About teaser / CTA */
+.cta {
+	background: var(--abe-ink);
+	color: #fff;
+	padding: 80px 0;
+	text-align: center;
+}
+
+.cta h2 {
+	font-size: 1.9rem;
+	margin: 0 0 16px;
+}
+
+.cta p {
+	color: rgba(255, 255, 255, 0.75);
+	max-width: 560px;
+	margin: 0 auto 28px;
+}
+
+/* Content / pages */
+.site-main {
+	padding: 60px 0;
+}
+
+.page-title,
+.entry-title {
+	font-size: 1.8rem;
+	margin-bottom: 8px;
+}
+
+.entry-thumbnail {
+	margin: 20px 0;
+	border-radius: var(--abe-radius);
+	overflow: hidden;
+}
+
+.posted-on,
+.byline {
+	color: var(--abe-muted);
+	font-size: 0.9rem;
+}
+
+.portfolio-meta {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin: 10px 0 28px;
+}
+
+.portfolio-meta a {
+	background: var(--abe-bg-alt);
+	border: 1px solid var(--abe-border);
+	border-radius: 999px;
+	padding: 4px 14px;
+	font-size: 0.82rem;
+	color: var(--abe-text);
+}
+
+.portfolio-meta a:hover {
+	border-color: var(--abe-primary);
+	text-decoration: none;
+}
+
+article + article {
+	margin-top: 40px;
+	padding-top: 40px;
+	border-top: 1px solid var(--abe-border);
+}
+
+.back-link {
+	display: inline-block;
+	margin-top: 40px;
+}
+
+/* Footer */
+.site-footer {
+	background: var(--abe-ink);
+	color: rgba(255, 255, 255, 0.7);
+	padding: 56px 0 32px;
+	margin-top: 0;
+}
+
+.site-footer .container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.site-footer a {
+	color: #fff;
+}
+
+.footer-menu {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+}
+
+.site-footer .footer-bottom {
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	padding-top: 24px;
+	font-size: 0.85rem;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.widget-title {
+	font-size: 0.95rem;
+	color: #fff;
+}
+
+/* Search form */
+.search-form {
+	display: flex;
+	gap: 10px;
+	margin: 20px 0 40px;
+}
+
+.search-form input[type="search"] {
+	flex: 1;
+	padding: 10px 14px;
+	border: 1px solid var(--abe-border);
+	border-radius: 8px;
+}
+
+.search-form button {
+	padding: 10px 20px;
+	border-radius: 8px;
+	border: none;
+	background: var(--abe-text);
+	color: #fff;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+@media (max-width: 720px) {
+	.site-header .container {
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.primary-menu {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 16px;
+	}
+
+	.hero {
+		padding: 72px 0;
+	}
+
+	.services,
+	.portfolio,
+	.cta {
+		padding: 60px 0;
+	}
+
+	.portfolio-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

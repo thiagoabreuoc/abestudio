@@ -1,0 +1,18 @@
+# Environment-specific config (contains local URLs/salts — copy wp-config-sample.php instead)
+wp-config.php
+
+# Local SQLite database (generated content, not source)
+wp-content/database/*.sqlite
+wp-content/database/*.sqlite-journal
+
+# Uploaded media (binary, environment-specific)
+wp-content/uploads/*
+!wp-content/uploads/.gitkeep
+
+# Logs
+wp-content/debug.log
+php-server.log
+
+# OS cruft
+Thumbs.db
+.DS_Store
