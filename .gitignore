@@ -12,6 +12,7 @@ wp-content/uploads/*
 # Logs
 wp-content/debug.log
 php-server.log
+php-server-3000.log
 
 # OS cruft
 Thumbs.db

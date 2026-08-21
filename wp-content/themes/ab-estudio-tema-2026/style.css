@@ -1,0 +1,834 @@
+/*
+Theme Name: AB Estúdio Tema 2026
+Theme URI: https://abestudio.com
+Author: AB Estúdio
+Description: Nova direção visual do AB Estúdio — em construção. Nesta etapa: header e banner principal, com layout inspirado no demo "Home Freelancer" do tema Litho (ThemeZaa), recriado do zero em CSS.
+Version: 0.1.0
+Requires at least: 6.4
+Requires PHP: 7.4
+Text Domain: abestudio2026
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+:root {
+	--abe-ink: #232323;
+	--abe-bg: #ffffff;
+	--abe-teal: #2d7868;
+	--abe-green: #64b39a;
+	--abe-yellow: #7cce97;
+	--abe-orange: #a2dca3;
+	--abe-font-heading: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--abe-font-body: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+	--abe-max-width: 1200px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--abe-font-body);
+	color: var(--abe-ink);
+	background: var(--abe-bg);
+	line-height: 1.7;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+h1, h2, h3 {
+	font-family: var(--abe-font-heading);
+	font-weight: 500;
+	margin: 0;
+	line-height: 1.25;
+}
+
+.container {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 32px;
+}
+
+/* Header — transparent, sits directly on top of the hero gradient */
+.site-header {
+	position: relative;
+	z-index: 500;
+}
+
+.site-header .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 28px;
+	padding-bottom: 28px;
+}
+
+.site-logo {
+	display: inline-flex;
+	flex-shrink: 0;
+}
+
+.site-logo img {
+	height: 30px;
+	width: auto;
+}
+
+/* Right-side header actions: email + hamburger */
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: 66px;
+	flex-wrap: nowrap;
+}
+
+.header-whatsapp {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+	color: var(--abe-ink);
+	font-family: var(--abe-font-body);
+	font-weight: 500;
+	font-size: 1.05rem;
+	transition: opacity 0.2s ease;
+	flex-shrink: 0;
+}
+
+.header-whatsapp:hover {
+	opacity: 0.7;
+}
+
+.header-whatsapp-icon {
+	width: 30px;
+	height: 30px;
+	flex: none;
+	color: var(--abe-ink);
+	position: relative;
+	top: -2px;
+}
+
+.hamburger {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	width: 26px;
+	flex-shrink: 0;
+	background: none;
+	border: none;
+	padding: 6px 0;
+	cursor: pointer;
+}
+
+.hamburger span {
+	display: block;
+	height: 3px;
+	background: var(--abe-ink);
+	border-radius: 2px;
+}
+
+.hamburger span:nth-child(1) {
+	width: 100%;
+}
+
+.hamburger span:nth-child(2) {
+	width: 70%;
+}
+
+.hamburger span:nth-child(3) {
+	width: 100%;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+	transform: translateY(7px) rotate(45deg);
+	width: 100%;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+	opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(3) {
+	transform: translateY(-7px) rotate(-45deg);
+	width: 100%;
+}
+
+/* Nav drawer opened by the hamburger — slides in from the right, like Litho's */
+.nav-overlay {
+	position: fixed;
+	inset: 0;
+	background: transparent;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.35s ease;
+	z-index: 190;
+}
+
+.nav-overlay.is-open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.nav-drawer {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 50%;
+	background: rgba(26, 26, 26, 0.95);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+	z-index: 200;
+	display: flex;
+	flex-direction: column;
+	overflow-y: hidden;
+}
+
+.nav-drawer.is-open {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.4s ease;
+}
+
+.nav-drawer-header {
+	width: 100%;
+	max-width: 640px;
+	align-self: flex-start;
+	padding: 64px 56px 0;
+	display: flex;
+	justify-content: center;
+}
+
+.nav-drawer-header .site-logo img {
+	height: 32px;
+}
+
+.nav-drawer-header .site-logo-mark {
+	display: block;
+	width: 104px;
+	height: 37px;
+	background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	-webkit-mask-image: url('assets/images/logo-ab-white.png');
+	mask-image: url('assets/images/logo-ab-white.png');
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+}
+
+.nav-drawer-close {
+	position: absolute;
+	top: 29px;
+	right: calc(max(0px, calc((100vw - 1280px) / 2)) + 32px);
+	width: 26px;
+	height: 26px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: #fff;
+}
+
+.nav-drawer-close::before,
+.nav-drawer-close::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+}
+
+.nav-drawer-close::before {
+	transform: rotate(45deg);
+}
+
+.nav-drawer-close::after {
+	transform: rotate(-45deg);
+}
+
+.nav-drawer nav {
+	width: 100%;
+	max-width: 640px;
+	align-self: flex-start;
+	margin: 100px 0 auto;
+	padding: 0 0 32px;
+}
+
+.nav-drawer .primary-menu {
+	list-style: none;
+	margin: 0 auto;
+	max-width: 380px;
+	width: 100%;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.nav-drawer .primary-menu a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	color: #fff;
+	font-family: var(--abe-font-heading);
+	font-weight: 400;
+	font-size: 1.15rem;
+	padding: 6px 0;
+	text-align: left;
+	transition: color 0.2s ease;
+}
+
+.nav-drawer .primary-menu a::after {
+	content: "+";
+	font-size: 1.4rem;
+	font-weight: 300;
+	color: inherit;
+	transition: color 0.2s ease;
+}
+
+.nav-drawer .primary-menu a:hover,
+.nav-drawer .primary-menu a:focus {
+	color: var(--abe-teal);
+}
+
+/* Current page gets a muted tone instead of full white — it's already where you are */
+.nav-drawer .primary-menu .current-menu-item > a {
+	color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-drawer .primary-menu .current-menu-item > a:hover {
+	color: var(--abe-teal);
+}
+
+/* Social links, pinned to the bottom of the drawer */
+.nav-drawer-social {
+	width: 100%;
+	max-width: 640px;
+	align-self: flex-start;
+	list-style: none;
+	margin: 0;
+	padding: 0 56px 56px;
+	display: flex;
+	justify-content: center;
+	gap: 22px;
+}
+
+.nav-drawer-social a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.nav-drawer-social a:hover {
+	color: var(--abe-teal);
+}
+
+.nav-drawer-social svg {
+	width: 22px;
+	height: 22px;
+}
+
+/* Hero / banner */
+@property --abe-gradient-angle {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 19deg;
+}
+
+@property --abe-green-stop {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 45%;
+}
+
+@property --abe-yellow-stop {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 88%;
+}
+
+@property --abe-blob1-x {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 60%;
+}
+@property --abe-blob1-y {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 40%;
+}
+@property --abe-blob2-x {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 75%;
+}
+@property --abe-blob2-y {
+	syntax: '<percentage>';
+	inherits: false;
+	initial-value: 65%;
+}
+
+.hero-banner {
+	position: relative;
+	overflow: hidden;
+	height: 650px;
+	background-image:
+		radial-gradient(circle at var(--abe-blob1-x) var(--abe-blob1-y), var(--abe-green) 0%, rgba(100, 179, 154, 0) 48%),
+		radial-gradient(circle at var(--abe-blob2-x) var(--abe-blob2-y), var(--abe-yellow) 0%, rgba(124, 206, 151, 0) 48%),
+		linear-gradient(var(--abe-gradient-angle), var(--abe-teal) 0%, var(--abe-green) var(--abe-green-stop), var(--abe-yellow) var(--abe-yellow-stop), var(--abe-orange) 100%);
+	margin-top: -96px;
+	padding-top: 96px;
+	animation: abe-gradient-drift 42s ease-in-out infinite;
+}
+
+/* Irregular, non-evenly-spaced steps so the angle, each color's share of the
+   linear wash, and the two soft "blobs" all drift on their own uncorrelated
+   paths — never settling into an obvious back-and-forth pattern. The blobs
+   overlap the straight-line wash and each other, so the green/yellow
+   boundary reads as an organic, curved blend instead of a straight edge.
+   The gap between --abe-green-stop and --abe-yellow-stop always stays wide
+   (40%+) so the base wash itself stays soft too. */
+@keyframes abe-gradient-drift {
+	0% {
+		--abe-gradient-angle: 0deg;
+		--abe-green-stop: 45%;
+		--abe-yellow-stop: 90%;
+		--abe-blob1-x: 60%;
+		--abe-blob1-y: 40%;
+		--abe-blob2-x: 75%;
+		--abe-blob2-y: 65%;
+	}
+	16% {
+		--abe-gradient-angle: 55deg;
+		--abe-green-stop: 58%;
+		--abe-yellow-stop: 98%;
+		--abe-blob1-x: 38%;
+		--abe-blob1-y: 62%;
+		--abe-blob2-x: 82%;
+		--abe-blob2-y: 30%;
+	}
+	33% {
+		--abe-gradient-angle: 95deg;
+		--abe-green-stop: 32%;
+		--abe-yellow-stop: 78%;
+		--abe-blob1-x: 70%;
+		--abe-blob1-y: 20%;
+		--abe-blob2-x: 45%;
+		--abe-blob2-y: 75%;
+	}
+	50% {
+		--abe-gradient-angle: 165deg;
+		--abe-green-stop: 52%;
+		--abe-yellow-stop: 94%;
+		--abe-blob1-x: 25%;
+		--abe-blob1-y: 50%;
+		--abe-blob2-x: 65%;
+		--abe-blob2-y: 45%;
+	}
+	66% {
+		--abe-gradient-angle: 230deg;
+		--abe-green-stop: 28%;
+		--abe-yellow-stop: 72%;
+		--abe-blob1-x: 55%;
+		--abe-blob1-y: 78%;
+		--abe-blob2-x: 30%;
+		--abe-blob2-y: 25%;
+	}
+	83% {
+		--abe-gradient-angle: 300deg;
+		--abe-green-stop: 48%;
+		--abe-yellow-stop: 96%;
+		--abe-blob1-x: 80%;
+		--abe-blob1-y: 55%;
+		--abe-blob2-x: 50%;
+		--abe-blob2-y: 85%;
+	}
+	100% {
+		--abe-gradient-angle: 360deg;
+		--abe-green-stop: 45%;
+		--abe-yellow-stop: 90%;
+		--abe-blob1-x: 60%;
+		--abe-blob1-y: 40%;
+		--abe-blob2-x: 75%;
+		--abe-blob2-y: 65%;
+	}
+}
+
+.hero-banner::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	width: 58%;
+	background-image: radial-gradient(circle 5.2px, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+	background-size: 28px 28px;
+	-webkit-mask-image: radial-gradient(circle at 8% 22%, #000 0%, transparent 62%);
+	mask-image: radial-gradient(circle at 8% 22%, #000 0%, transparent 62%);
+	pointer-events: none;
+}
+
+.hero-glow-0,
+.hero-glow-1 {
+	position: absolute;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0) 100%);
+	pointer-events: none;
+}
+
+/* Second, larger circle behind the main one — same center, softer/more transparent */
+.hero-glow-0 {
+	width: 52%;
+	aspect-ratio: 1;
+	top: 50%;
+	right: 1%;
+	transform: translateY(-50%);
+	background: linear-gradient(191deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 45%, rgba(100, 179, 154, 0.05) 100%);
+}
+
+/* Big circle behind the photo — vertically centered in the banner */
+.hero-glow-1 {
+	width: 40%;
+	aspect-ratio: 1;
+	top: 50%;
+	right: 7%;
+	transform: translateY(-50%);
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-banner .container {
+	position: relative;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: end;
+	gap: 24px;
+}
+
+.hero-copy {
+	position: relative;
+	padding: 0 0 0 48px;
+	max-width: 640px;
+	align-self: center;
+	justify-self: end;
+	text-align: left;
+	transform: translateY(-74px);
+}
+
+.hero-quote-wrap {
+	position: absolute;
+	top: 100%;
+	left: 48px;
+	right: 100px;
+	margin-top: 50px;
+}
+
+.hero-title {
+	margin: 0;
+	font-size: clamp(3.4rem, 7.9vw, 6.8rem);
+	line-height: 0.95;
+}
+
+.hero-title span {
+	display: block;
+	font-family: var(--abe-font-heading);
+	font-weight: 800;
+}
+
+.hero-title-solid {
+	color: var(--abe-ink);
+}
+
+.hero-title-outline {
+	color: transparent;
+	-webkit-text-stroke: 2px #fff;
+}
+
+.hero-quote {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 14px;
+	font-size: 1.05rem;
+	font-weight: 500;
+	color: var(--abe-ink);
+	margin: 0;
+	max-width: 420px;
+}
+
+.hero-quote .dash {
+	width: 17px;
+	height: 2px;
+	background: var(--abe-ink);
+	flex: none;
+}
+
+.hero-quote-text {
+	display: inline-block;
+}
+
+.hero-quote-word {
+	display: inline-block;
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hero-quote-word.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.hero-quote-word.is-hiding {
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.hero-copy .button {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	background: var(--abe-ink);
+	color: #fff;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	padding: 16px 30px;
+	border-radius: 999px;
+}
+
+.hero-copy .button:hover {
+	opacity: 0.85;
+}
+
+.hero-photo {
+	position: relative;
+	height: 100%;
+	min-height: 560px;
+	align-self: stretch;
+	overflow: hidden;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.hero-photo img {
+	height: auto;
+	min-height: 500px;
+	max-height: 500px;
+	width: auto;
+	margin: 0;
+	object-fit: contain;
+	object-position: bottom left;
+}
+
+.hero-photo-placeholder {
+	width: 100%;
+	max-width: 380px;
+	aspect-ratio: 3 / 4;
+	margin-bottom: -2px;
+	border-radius: 16px 16px 0 0;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.08));
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.hero-photo-placeholder .avatar-head {
+	width: 34%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.55);
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.hero-photo-placeholder .avatar-body {
+	width: 62%;
+	height: 46%;
+	border-radius: 50% 50% 0 0;
+	background: rgba(255, 255, 255, 0.55);
+}
+
+.hero-photo-hint {
+	position: absolute;
+	bottom: 14px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-family: var(--abe-font-heading);
+	font-size: 0.72rem;
+	color: rgba(35, 35, 35, 0.65);
+	background: rgba(255, 255, 255, 0.75);
+	padding: 6px 14px;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+/* Wraps the hero so the scroll button can overlap it without being
+   clipped by the hero's own overflow:hidden (needed for the dot pattern). */
+.hero-wrap {
+	position: relative;
+}
+
+/* Scroll-down indicator — overlaps the banner and the section below it */
+.scroll-down {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%, 50%);
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: #fff;
+	border: none;
+	box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.25);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 20;
+}
+
+.scroll-down:hover {
+	box-shadow: 0 16px 34px -8px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-down svg {
+	width: 18px;
+	height: 28px;
+	transition: transform 0.2s ease;
+}
+
+.scroll-down:hover svg {
+	animation: abe-scroll-bounce 0.9s ease-in-out infinite;
+}
+
+@keyframes abe-scroll-bounce {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(5px);
+	}
+}
+
+@media (max-width: 1440px) {
+	.hero-quote-wrap {
+		margin-top: 170px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+	.hero-quote-wrap {
+		margin-top: 40px;
+	}
+
+	.hero-photo {
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	.hero-photo img {
+		max-width: 100%;
+		width: auto;
+		height: 100%;
+		max-height: 1200px;
+		object-fit: contain;
+		object-position: bottom left;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	.hero-banner .container {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.hero-copy {
+		padding-right: 0;
+	}
+
+	.hero-photo img {
+		min-height: 100%;
+	}
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+	.hero-copy {
+		padding-right: 0;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero-banner .container {
+		grid-template-columns: 1fr;
+		align-items: center;
+		text-align: center;
+	}
+
+	.hero-copy {
+		max-width: 100%;
+		padding-bottom: 20px;
+	}
+
+	.hero-copy .eyebrow {
+		justify-content: center;
+	}
+
+	.hero-copy p {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.hero-photo {
+		display: none;
+	}
+
+	.hero-quote-wrap {
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 640px) {
+	.site-header .container {
+		flex-direction: column;
+		gap: 14px;
+		padding-top: 20px;
+	}
+
+	.primary-menu {
+		gap: 18px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.hero-banner {
+		margin-top: -140px;
+		padding-top: 140px;
+		min-height: auto;
+	}
+
+	.nav-drawer {
+		width: 100%;
+	}
+}

@@ -1,0 +1,83 @@
+<?php
+/**
+ * AB Estúdio Tema 2026 — functions and definitions.
+ *
+ * Work in progress: header + hero banner only for now.
+ *
+ * @package ABEstudio2026
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'ABE2026_THEME_VERSION', '0.1.0' );
+
+/**
+ * Theme setup.
+ */
+function abe2026_setup() {
+	load_theme_textdomain( 'abestudio2026', get_template_directory() . '/languages' );
+
+	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'title-tag' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' ) );
+	add_theme_support( 'responsive-embeds' );
+
+	register_nav_menus(
+		array(
+			'primary' => __( 'Menu Principal', 'abestudio2026' ),
+		)
+	);
+
+	// Lets the user upload their own hero photo via Appearance > Customize > Header Image —
+	// no baked-in stock photo, no licensing question.
+	add_theme_support(
+		'custom-header',
+		array(
+			'width'                 => 1000,
+			'height'                => 1300,
+			'flex-width'            => true,
+			'flex-height'           => true,
+			'header-text'           => false,
+			'uploads'               => true,
+			'default-image'         => '',
+		)
+	);
+}
+add_action( 'after_setup_theme', 'abe2026_setup' );
+
+/**
+ * Enqueue theme styles and scripts.
+ */
+function abe2026_scripts() {
+	wp_enqueue_style( 'abestudio2026-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null );
+	wp_enqueue_style( 'abestudio2026-style', get_stylesheet_uri(), array( 'abestudio2026-fonts' ), filemtime( get_stylesheet_directory() . '/style.css' ) );
+	wp_enqueue_script( 'abestudio2026-main', get_template_directory_uri() . '/assets/js/main.js', array(), filemtime( get_template_directory() . '/assets/js/main.js' ), true );
+}
+add_action( 'wp_enqueue_scripts', 'abe2026_scripts' );
+
+/**
+ * WordPress marks any custom link that resolves to the front page as
+ * "current" — including in-page anchor links like "/#servicos", since the
+ * URL fragment never reaches the server and the path alone matches the
+ * home URL. Clear the current-item flags (which drive both the printed
+ * classes and the aria-current attribute) on anchor links so only the
+ * real current page is highlighted in the nav.
+ */
+function abe2026_fix_anchor_current_item( $items ) {
+	foreach ( $items as $item ) {
+		if ( false !== strpos( $item->url, '#' ) ) {
+			$item->current               = false;
+			$item->current_item_ancestor = false;
+			$item->current_item_parent   = false;
+			$item->classes                = array_diff(
+				(array) $item->classes,
+				array( 'current-menu-item', 'current_page_item', 'current-menu-parent', 'current_page_parent', 'menu-item-home' )
+			);
+		}
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'abe2026_fix_anchor_current_item' );
