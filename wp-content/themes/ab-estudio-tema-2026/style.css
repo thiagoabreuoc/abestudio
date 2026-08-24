@@ -863,6 +863,12 @@ h1, h2, h3 {
 	}
 }
 
+@media (max-width: 500px) {
+	.apps-badge-mobile {
+		display: none;
+	}
+}
+
 /* Seletor de tema de cores — card flutuante, lado direito da tela */
 .theme-switcher {
 	position: fixed;
@@ -1026,7 +1032,6 @@ h1, h2, h3 {
 	line-height: 1.1;
 	color: var(--abe-ink);
 	text-align: right;
-	padding-right: 50px;
 	margin: 0;
 }
 
