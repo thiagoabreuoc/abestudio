@@ -133,7 +133,7 @@ h1, h2, h3 {
 	padding: 8px;
 	box-sizing: border-box;
 	border-radius: 50%;
-	background: var(--abe-ink);
+	background: #25d366;
 	color: #fff;
 	flex: none;
 }
@@ -148,7 +148,7 @@ h1, h2, h3 {
 	position: absolute;
 	inset: 0;
 	border-radius: 50%;
-	background: var(--abe-ink);
+	background: #25d366;
 	z-index: -1;
 	animation: abe-wa-pulse-strong 2.6s ease-out infinite;
 	pointer-events: none;
@@ -825,7 +825,7 @@ h1, h2, h3 {
 	width: 64px;
 	height: 64px;
 	border-radius: 50%;
-	background: var(--abe-ink);
+	background: #25d366;
 	align-items: center;
 	justify-content: center;
 	box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.35);
@@ -838,7 +838,7 @@ h1, h2, h3 {
 	position: absolute;
 	inset: 0;
 	border-radius: 50%;
-	background: var(--abe-ink);
+	background: #25d366;
 	z-index: -1;
 	animation: abe-wa-pulse 2.4s ease-out infinite;
 	pointer-events: none;
