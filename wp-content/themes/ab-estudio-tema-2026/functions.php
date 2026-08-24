@@ -91,18 +91,14 @@ function abe2026_fix_anchor_current_item( $items ) {
 add_filter( 'wp_nav_menu_objects', 'abe2026_fix_anchor_current_item' );
 
 /**
- * Injeta o ícone de grade (apps) e o texto "NOSSOS APPS" no item "Galeria
- * de APPs" do menu — mesmo texto/ícone do botão flutuante .apps-badge.
+ * Remove o item "Galeria de APPs" ("NOSSOS APPS") do menu do drawer.
  */
-function abe2026_gallery_apps_icon( $title, $item ) {
-	if ( in_array( 'nav-menu-gallery-apps', (array) $item->classes, true ) ) {
-		$icon = '<svg class="menu-item-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
-			. '<circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/>'
-			. '<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>'
-			. '<circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>'
-			. '</svg>';
-		return $icon . '<span class="menu-item-label">' . esc_html__( 'NOSSOS APPS', 'abestudio2026' ) . '</span>';
-	}
-	return $title;
+function abe2026_remove_gallery_apps_item( $items ) {
+	return array_filter(
+		$items,
+		function ( $item ) {
+			return ! in_array( 'nav-menu-gallery-apps', (array) $item->classes, true );
+		}
+	);
 }
-add_filter( 'nav_menu_item_title', 'abe2026_gallery_apps_icon', 10, 2 );
+add_filter( 'wp_nav_menu_objects', 'abe2026_remove_gallery_apps_item' );
