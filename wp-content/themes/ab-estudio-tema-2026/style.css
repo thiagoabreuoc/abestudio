@@ -851,6 +851,11 @@ h1, h2, h3 {
 	white-space: nowrap;
 }
 
+@media (min-width: 1025px) {
+	.about-hello-word {
+		text-align: right;
+	}
+}
 
 .about-hello-heading {
 	font-family: var(--abe-font-body);
