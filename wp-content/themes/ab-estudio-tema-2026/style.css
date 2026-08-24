@@ -1366,3 +1366,17 @@ h1, h2, h3 {
 		margin-top: 70px;
 	}
 }
+
+@media (max-width: 321px) {
+	.hero-title {
+		font-size: 2.5rem;
+	}
+
+	.about-hello-word {
+		font-size: 2rem;
+	}
+
+	.about-hello-heading {
+		font-size: 1.3rem;
+	}
+}
