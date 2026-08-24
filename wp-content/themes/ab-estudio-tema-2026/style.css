@@ -1014,34 +1014,6 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
-	.hero-banner {
-		height: 240px;
-	}
-
-	.hero-copy {
-		justify-self: stretch;
-		padding-left: 0;
-		text-align: center;
-		transform: none;
-		margin-top: -64px;
-	}
-
-	.hero-title {
-		font-size: 2.9rem;
-	}
-
-	.hero-title span {
-		display: inline;
-	}
-
-	.scroll-down {
-		display: none;
-	}
-
-	.hero-quote-wrap {
-		display: none;
-	}
-
 	.header-whatsapp {
 		font-size: 0.92rem;
 	}
@@ -1109,7 +1081,35 @@ h1, h2, h3 {
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
+	.hero-banner {
+		height: 240px;
+	}
+
+	.hero-copy {
+		justify-self: stretch;
+		padding-left: 0;
+		text-align: center;
+		transform: none;
+		margin-top: -64px;
+	}
+
+	.hero-title {
+		font-size: 2.9rem;
+	}
+
+	.hero-title span {
+		display: inline;
+	}
+
+	.scroll-down {
+		display: none;
+	}
+
+	.hero-quote-wrap {
+		display: none;
+	}
+
 	/* Flex em vez de grid aqui — só a .hero-copy fica visível nessa faixa
 	   (a foto some), então flex com justify-content:center centraliza de
 	   verdade na vertical, sem depender de align-self herdado do grid. */
@@ -1138,12 +1138,6 @@ h1, h2, h3 {
 		display: none;
 	}
 
-	.hero-quote-wrap {
-		margin-top: 20px;
-	}
-}
-
-@media (max-width: 500px) {
 	.header-whatsapp {
 		display: none;
 	}
