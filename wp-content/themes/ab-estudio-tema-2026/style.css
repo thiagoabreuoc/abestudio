@@ -134,6 +134,7 @@ h1, h2, h3 {
 	box-sizing: border-box;
 	border-radius: 50%;
 	background: #25d366;
+	border: 2px solid #1da851;
 	color: #fff;
 	flex: none;
 }
@@ -826,6 +827,7 @@ h1, h2, h3 {
 	height: 64px;
 	border-radius: 50%;
 	background: #25d366;
+	border: 2px solid #1da851;
 	align-items: center;
 	justify-content: center;
 	box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.35);
