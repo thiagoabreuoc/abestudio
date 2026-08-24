@@ -91,7 +91,8 @@ function abe2026_fix_anchor_current_item( $items ) {
 add_filter( 'wp_nav_menu_objects', 'abe2026_fix_anchor_current_item' );
 
 /**
- * Injeta o ícone de grade (apps) antes do texto do item "Galeria de APPs".
+ * Injeta o ícone de grade (apps) e o texto "NOSSOS APPS" no item "Galeria
+ * de APPs" do menu — mesmo texto/ícone do botão flutuante .apps-badge.
  */
 function abe2026_gallery_apps_icon( $title, $item ) {
 	if ( in_array( 'nav-menu-gallery-apps', (array) $item->classes, true ) ) {
@@ -100,7 +101,7 @@ function abe2026_gallery_apps_icon( $title, $item ) {
 			. '<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>'
 			. '<circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>'
 			. '</svg>';
-		return $icon . '<span class="menu-item-label">' . $title . '</span>';
+		return $icon . '<span class="menu-item-label">' . esc_html__( 'NOSSOS APPS', 'abestudio2026' ) . '</span>';
 	}
 	return $title;
 }

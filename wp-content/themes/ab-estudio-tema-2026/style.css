@@ -372,12 +372,17 @@ h1, h2, h3 {
 
 .nav-drawer .primary-menu .nav-menu-gallery-apps a {
 	justify-content: flex-start;
-	gap: 12px;
-	background: #fff;
-	color: var(--abe-yellow);
+	gap: 8px;
+	background: #d7e26a;
+	color: var(--abe-ink);
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.8rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
 	border-radius: 8px;
 	padding: 12px 16px;
-	transition: background 0.2s ease;
+	transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nav-drawer .primary-menu .nav-menu-gallery-apps a::after {
@@ -387,12 +392,12 @@ h1, h2, h3 {
 .nav-drawer .primary-menu .nav-menu-gallery-apps a:hover,
 .nav-drawer .primary-menu .nav-menu-gallery-apps a:focus {
 	color: var(--abe-ink);
-	background: color-mix(in srgb, var(--abe-green) 65%, white);
+	background: #fff3a0;
 }
 
 .nav-drawer .primary-menu .nav-menu-gallery-apps .menu-item-icon {
-	width: 20px;
-	height: 20px;
+	width: 18px;
+	height: 18px;
 	flex: none;
 }
 
