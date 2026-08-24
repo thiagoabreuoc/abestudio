@@ -873,7 +873,7 @@ h1, h2, h3 {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	background: #fff;
+	background: #d7e26a;
 	color: var(--abe-green);
 	font-family: var(--abe-font-heading);
 	font-weight: 600;
