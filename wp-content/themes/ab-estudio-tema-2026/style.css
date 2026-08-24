@@ -380,8 +380,10 @@ h1, h2, h3 {
 }
 
 .nav-drawer .primary-menu .nav-menu-gallery-apps a {
-	justify-content: flex-start;
+	justify-content: center;
 	gap: 8px;
+	width: fit-content;
+	margin: 0 auto;
 	background: #d7e26a;
 	color: var(--abe-ink);
 	font-family: var(--abe-font-heading);
