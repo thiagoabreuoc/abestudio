@@ -360,7 +360,7 @@ h1, h2, h3 {
 	font-size: 1.15rem;
 	padding: 10px 20px;
 	text-align: center;
-	border: 1px solid rgba(255, 255, 255, 0.3);
+	border: 1px solid #313131;
 	border-radius: 8px;
 	transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -374,7 +374,12 @@ h1, h2, h3 {
 /* Current page is sinalizada na cor verde da paleta — já indica onde você está */
 .nav-drawer .primary-menu .current-menu-item > a {
 	color: #d7e26a;
-	border-color: #d7e26a;
+}
+
+/* Item ativo mantém a borda padrão mesmo no hover — só o texto reage */
+.nav-drawer .primary-menu .current-menu-item > a:hover,
+.nav-drawer .primary-menu .current-menu-item > a:focus {
+	border-color: #313131;
 }
 
 /* Último item do menu ("Galeria de APPs") — caixa própria, verde,
