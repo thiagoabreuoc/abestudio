@@ -126,20 +126,6 @@ h1, h2, h3 {
 	flex-shrink: 0;
 }
 
-@keyframes abe-wa-pulse {
-	0% { transform: scale(1); opacity: 0.35; }
-	100% { transform: scale(1.6); opacity: 0; }
-}
-
-@keyframes abe-wa-pulse-strong {
-	0% { transform: scale(1); opacity: 0.3; }
-	100% { transform: scale(1.55); opacity: 0; }
-}
-
-/* O círculo + pulso vivem num <span> em volta do <svg>, não no <svg> em
-   si — pseudo-elementos (::before) em elementos <svg> têm suporte
-   inconsistente entre navegadores (é por isso que o pulso não aparecia
-   em alguns), então movemos a animação pra um elemento HTML normal. */
 .header-whatsapp-icon-wrap {
 	position: relative;
 	display: inline-flex;
@@ -159,17 +145,6 @@ h1, h2, h3 {
 .header-whatsapp-icon {
 	width: 100%;
 	height: 100%;
-}
-
-.header-whatsapp-icon-wrap::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border-radius: 50%;
-	background: #25d366;
-	z-index: -1;
-	animation: abe-wa-pulse-strong 2.6s ease-out infinite;
-	pointer-events: none;
 }
 
 .hamburger {
@@ -265,7 +240,7 @@ h1, h2, h3 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 20px;
+	gap: 70px;
 }
 
 .nav-drawer-login {
@@ -359,7 +334,7 @@ h1, h2, h3 {
 	width: 100%;
 	max-width: 640px;
 	align-self: flex-start;
-	margin: 100px 0 auto;
+	margin: 50px 0 auto;
 	padding: 0 0 32px;
 }
 
@@ -445,35 +420,6 @@ h1, h2, h3 {
 
 .nav-drawer .primary-menu .current-menu-item > a:hover {
 	color: var(--abe-hover);
-}
-
-/* Social links, pinned to the bottom of the drawer */
-.nav-drawer-social {
-	width: 100%;
-	max-width: 640px;
-	align-self: flex-start;
-	list-style: none;
-	margin: 0;
-	padding: 0 56px 56px;
-	display: flex;
-	justify-content: center;
-	gap: 22px;
-}
-
-.nav-drawer-social a {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: rgba(255, 255, 255, 0.75);
-}
-
-.nav-drawer-social a:hover {
-	color: var(--abe-hover);
-}
-
-.nav-drawer-social svg {
-	width: 22px;
-	height: 22px;
 }
 
 /* Hero / banner */
@@ -880,17 +826,6 @@ h1, h2, h3 {
 	z-index: 15;
 }
 
-.hero-whatsapp-float::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border-radius: 50%;
-	background: #25d366;
-	z-index: -1;
-	animation: abe-wa-pulse 2.4s ease-out infinite;
-	pointer-events: none;
-}
-
 @media (max-width: 435px) {
 	.hero-whatsapp-float {
 		display: flex;
@@ -901,13 +836,6 @@ h1, h2, h3 {
 	width: 34px;
 	height: 34px;
 	color: var(--abe-ink);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.header-whatsapp-icon-wrap::before,
-	.hero-whatsapp-float::before {
-		animation: none;
-	}
 }
 
 /* Botão flutuante "APPS" — link para a Galeria de APPs */
@@ -1443,9 +1371,5 @@ h1, h2, h3 {
 		left: 50vw;
 		transform: translateX(-50%);
 		z-index: 201;
-	}
-
-	.nav-drawer-social {
-		padding-bottom: 108px;
 	}
 }

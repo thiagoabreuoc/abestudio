@@ -128,37 +128,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			);
 			?>
 		</nav>
-
-		<ul class="nav-drawer-social">
-			<li>
-				<a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.8"/>
-						<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.8"/>
-						<circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-					</svg>
-				</a>
-			</li>
-			<li>
-				<a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
-					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.8"/>
-						<circle cx="7.2" cy="7.2" r="1.3" fill="currentColor"/>
-						<path d="M7.2 10.8V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-						<path d="M11.2 17v-3.6c0-1.4 1-2.4 2.3-2.4s2 .9 2 2.3V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</a>
-			</li>
-			<li>
-				<a href="#" target="_blank" rel="noopener" aria-label="Dribbble">
-					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
-						<path d="M3.5 9.5C8 11 16 11 20.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-						<path d="M8 3C11 8 12.5 14 11 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-					</svg>
-				</a>
-			</li>
-		</ul>
 	</div>
 	<div class="nav-overlay" data-nav-overlay></div>
 </header>
