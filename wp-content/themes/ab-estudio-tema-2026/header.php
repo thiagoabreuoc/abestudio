@@ -14,16 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script>
-	( function () {
-		try {
-			var t = localStorage.getItem( 'abeTheme' );
-			if ( t && 'default' !== t ) {
-				document.documentElement.setAttribute( 'data-abe-theme', t );
-			}
-		} catch ( e ) {}
-	} )();
-	</script>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -68,45 +58,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</svg>
 		<span>NOSSOS APPS</span>
 	</a>
-
-	<div class="theme-switcher" data-theme-switcher>
-		<button type="button" class="theme-switcher-toggle" data-theme-switcher-toggle aria-expanded="false" aria-label="<?php esc_attr_e( 'Alterar tema de cores', 'abestudio2026' ); ?>">
-			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-				<path d="M12 3a9 9 0 1 0 3.2 17.4c.6-.22.72-1 .2-1.38-.5-.37-.8-.94-.8-1.57 0-1.1.9-2 2-2H18a3 3 0 0 0 3-3c0-5-4-9.45-9-9.45Z" fill="currentColor"/>
-				<circle cx="7.2" cy="10.5" r="1.3" fill="#fff"/>
-				<circle cx="10.2" cy="7" r="1.3" fill="#fff"/>
-				<circle cx="14.5" cy="7.3" r="1.3" fill="#fff"/>
-				<circle cx="16.8" cy="11.2" r="1.3" fill="#fff"/>
-			</svg>
-		</button>
-		<div class="theme-switcher-panel">
-			<p class="theme-switcher-title"><?php esc_html_e( 'Tema de cores', 'abestudio2026' ); ?></p>
-			<button type="button" class="theme-switcher-option" data-theme-option="default" aria-pressed="true">
-				<span class="theme-switcher-swatches">
-					<span style="background:#2d7868"></span>
-					<span style="background:#64b39a"></span>
-					<span style="background:#7cce97"></span>
-				</span>
-				<?php esc_html_e( 'Atual', 'abestudio2026' ); ?>
-			</button>
-			<button type="button" class="theme-switcher-option" data-theme-option="citrus" aria-pressed="false">
-				<span class="theme-switcher-swatches">
-					<span style="background:#ec8800"></span>
-					<span style="background:#ff9800"></span>
-					<span style="background:#688db9"></span>
-				</span>
-				<?php esc_html_e( 'Laranja & Azul', 'abestudio2026' ); ?>
-			</button>
-			<button type="button" class="theme-switcher-option" data-theme-option="harvest" aria-pressed="false">
-				<span class="theme-switcher-swatches">
-					<span style="background:#ff9800"></span>
-					<span style="background:#aacd40"></span>
-					<span style="background:#548249"></span>
-				</span>
-				<?php esc_html_e( 'Colheita', 'abestudio2026' ); ?>
-			</button>
-		</div>
-	</div>
 
 	<div class="nav-drawer" id="nav-drawer" data-nav-drawer>
 		<div class="nav-drawer-header">
