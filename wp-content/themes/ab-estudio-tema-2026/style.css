@@ -1408,12 +1408,18 @@ h1, h2, h3 {
 	}
 }
 
-@media (min-width: 1025px) {
+/* Mesma regra do desktop (50px abaixo do fim do hero-banner, fixo no
+   scroll) — o valor de "top" muda porque a altura do banner muda entre
+   as faixas: 450px de 501 a 768px, 650px dali pra cima. */
+@media (min-width: 501px) and (max-width: 768px) {
 	.whatsapp-float {
-		/* top (não bottom) trava o botão 50px abaixo do fim do hero-banner
-		   (650px) na posição inicial da página. Por ser position:fixed,
-		   ele some do fluxo do scroll e permanece nesse mesmo lugar na
-		   tela — não "acompanha" o banner, mas fica onde ele terminava. */
+		top: 500px;
+		bottom: auto;
+	}
+}
+
+@media (min-width: 769px) {
+	.whatsapp-float {
 		top: 700px;
 		bottom: auto;
 	}
