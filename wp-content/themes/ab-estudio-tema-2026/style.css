@@ -1249,6 +1249,23 @@ h1, h2, h3 {
 	}
 }
 
+@media (max-width: 768px) {
+	.hamburger {
+		display: none;
+	}
+
+	.site-header .container {
+		position: relative;
+	}
+
+	.site-branding {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
 @media (max-width: 425px) {
 	.site-header .container {
 		flex-direction: row;
