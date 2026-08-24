@@ -825,6 +825,12 @@ h1, h2, h3 {
 	padding: 95px 0 200px;
 }
 
+@media (min-width: 1025px) {
+	.about-hello {
+		padding-top: 145px;
+	}
+}
+
 .about-hello .container {
 	max-width: 1140px;
 }
