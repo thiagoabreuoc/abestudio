@@ -874,7 +874,7 @@ h1, h2, h3 {
 	align-items: center;
 	gap: 8px;
 	background: #d7e26a;
-	color: var(--abe-green);
+	color: var(--abe-ink);
 	font-family: var(--abe-font-heading);
 	font-weight: 600;
 	font-size: 0.8rem;
