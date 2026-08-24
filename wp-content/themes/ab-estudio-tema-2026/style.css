@@ -894,6 +894,12 @@ h1, h2, h3 {
 	color: var(--abe-green);
 }
 
+@media (min-width: 501px) and (max-width: 1024px) {
+	.about-hello-heading {
+		font-size: 2rem;
+	}
+}
+
 @media (max-width: 900px) {
 	.about-hello-row {
 		grid-template-columns: 1fr;
