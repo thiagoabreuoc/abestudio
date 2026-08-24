@@ -93,6 +93,80 @@ h1, h2, h3 {
 	flex-wrap: nowrap;
 }
 
+/* Menu inline no header — só aparece em telas grandes (ver media query
+   min-width:1025px); no restante, as categorias moram no nav-drawer. */
+.header-nav {
+	display: none;
+}
+
+.header-nav-menu {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 32px;
+}
+
+.header-nav-menu a {
+	display: block;
+	color: var(--abe-ink);
+	font-family: var(--abe-font-heading);
+	font-weight: 500;
+	font-size: 0.95rem;
+	transition: color 0.2s ease;
+}
+
+.header-nav-menu a:hover,
+.header-nav-menu a:focus {
+	color: var(--abe-green);
+}
+
+.header-nav-menu .current-menu-item > a {
+	color: var(--abe-green);
+}
+
+/* Botão flutuante do WhatsApp — só em telas grandes (ver media query
+   min-width:1025px); substitui o link com texto do header nessa faixa. */
+.whatsapp-float {
+	display: none;
+}
+
+@media (min-width: 1025px) {
+	.header-nav {
+		display: flex;
+	}
+
+	.hamburger {
+		display: none;
+	}
+
+	.header-whatsapp {
+		display: none;
+	}
+
+	.whatsapp-float {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		right: 32px;
+		bottom: 32px;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background: #fff;
+		color: var(--abe-ink);
+		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+		z-index: 45;
+	}
+
+	.whatsapp-float svg {
+		width: 30px;
+		height: 30px;
+	}
+}
+
 .header-whatsapp {
 	display: inline-flex;
 	align-items: center;
