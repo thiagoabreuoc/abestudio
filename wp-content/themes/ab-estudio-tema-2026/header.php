@@ -54,11 +54,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a class="apps-badge apps-badge-mobile" href="#">
 				<span>APPs</span>
 			</a>
-			<button type="button" class="hamburger" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="<?php esc_attr_e( 'Abrir menu', 'abestudio2026' ); ?>">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
 			<a class="apps-badge apps-badge-desktop" href="#">
 				<svg class="apps-badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 					<circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/>
@@ -67,6 +62,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</svg>
 				<span>NOSSOS APPS</span>
 			</a>
+			<button type="button" class="hamburger" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="<?php esc_attr_e( 'Abrir menu', 'abestudio2026' ); ?>">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
 		</div>
 	</div>
 
