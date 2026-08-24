@@ -49,6 +49,14 @@ function abe2026_setup() {
 add_action( 'after_setup_theme', 'abe2026_setup' );
 
 /**
+ * Desativa o Speculative Loading do core (WP 7.1+): nesta versão,
+ * wp_get_speculative_loading_override() pode retornar null e é repassado
+ * sem checagem para WP_Speculation_Rules::is_valid_mode(), que exige uma
+ * string — TypeError fatal em toda página, com strict_types ativo.
+ */
+add_filter( 'wp_speculation_rules_configuration', '__return_null' );
+
+/**
  * Enqueue theme styles and scripts.
  */
 function abe2026_scripts() {
