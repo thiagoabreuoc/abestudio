@@ -74,7 +74,7 @@ get_header();
 			<div class="about-hello-word"><?php esc_html_e( 'Olá.', 'abestudio2026' ); ?></div>
 			<h2 class="about-hello-heading"><?php esc_html_e( 'Estamos há mais de', 'abestudio2026' ); ?> <strong><?php esc_html_e( '15 anos', 'abestudio2026' ); ?></strong> <?php esc_html_e( 'criando design digital', 'abestudio2026' ); ?></h2>
 			<div class="about-hello-copy">
-				<p><?php esc_html_e( 'Cada projeto é imaginado, focando na melhor experiência para nossos parceiros e clientes.', 'abestudio2026' ); ?></p>
+				<p><?php esc_html_e( 'Cada projeto é idealizado, focando na melhor experiência para nossos parceiros e clientes.', 'abestudio2026' ); ?></p>
 				<a href="#" class="about-info-link"><?php esc_html_e( 'Mais', 'abestudio2026' ); ?></a>
 			</div>
 		</div>
