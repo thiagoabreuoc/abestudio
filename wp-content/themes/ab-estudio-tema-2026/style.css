@@ -1410,7 +1410,10 @@ h1, h2, h3 {
 
 @media (min-width: 1025px) {
 	.whatsapp-float {
-		bottom: calc(32px + 40vh);
+		/* Sobe junto com a altura da tela (40vh), mas nunca a ponto do
+		   botão passar do fim do hero-banner (650px) em telas bem altas —
+		   aí o segundo valor assume e trava o botão dentro do banner. */
+		bottom: max(calc(32px + 40vh), calc(100vh - 590px));
 	}
 }
 
