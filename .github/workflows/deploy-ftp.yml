@@ -19,15 +19,8 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
+          local-dir: wp-content/themes/ab-estudio-tema-2026/
+          server-dir: /public_html/wp-content/themes/ab-estudio-tema-2026/
           exclude: |
             **/.git*
             **/.git*/**
-            **/.github/**
-            wp-config.php
-            wp-content/uploads/**
-            wp-content/database/**
-            wp-content/debug.log
-            php-server.log
-            php-server-3000.log
-            README.md
