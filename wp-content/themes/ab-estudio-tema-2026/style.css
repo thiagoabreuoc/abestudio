@@ -838,7 +838,7 @@ h1, h2, h3 {
 
 .about-hello-word {
 	align-self: end;
-	text-align: right;
+	text-align: center;
 	font-family: var(--abe-font-body);
 	font-weight: 600;
 	font-size: 5.4rem;
@@ -892,12 +892,6 @@ h1, h2, h3 {
 
 .about-info-link:hover {
 	color: var(--abe-green);
-}
-
-@media (min-width: 501px) and (max-width: 1024px) {
-	.about-hello-heading {
-		font-size: 2rem;
-	}
 }
 
 @media (max-width: 900px) {
