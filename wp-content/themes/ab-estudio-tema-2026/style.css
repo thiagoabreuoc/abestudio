@@ -886,8 +886,8 @@ h1, h2, h3 {
 }
 
 .apps-badge:hover {
-	background: var(--abe-teal);
-	color: #fff;
+	background: #fff3a0;
+	color: var(--abe-ink);
 }
 
 .apps-badge-icon {
