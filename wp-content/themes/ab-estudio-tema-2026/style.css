@@ -796,6 +796,16 @@ h1, h2, h3 {
 	}
 }
 
+@media (max-width: 500px) {
+	.hero-whatsapp-float {
+		background: #25d366;
+	}
+
+	.hero-whatsapp-float svg {
+		color: #fff;
+	}
+}
+
 .hero-whatsapp-float svg {
 	width: 34px;
 	height: 34px;
