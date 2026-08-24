@@ -113,6 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<span class="site-logo-mark" role="img" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></span>
 			</a>
+			<a class="nav-drawer-login" href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Entrar', 'abestudio2026' ); ?></a>
 			<button type="button" class="nav-drawer-close" data-nav-close aria-label="<?php esc_attr_e( 'Fechar menu', 'abestudio2026' ); ?>"></button>
 		</div>
 		<nav class="main-navigation" aria-label="<?php esc_attr_e( 'Menu Principal', 'abestudio2026' ); ?>">
