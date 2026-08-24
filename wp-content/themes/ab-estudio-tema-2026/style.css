@@ -138,7 +138,7 @@ h1, h2, h3 {
 	border-radius: 50%;
 	background: #fff;
 	box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.45);
-	color: var(--abe-ink);
+	color: #25d366;
 	flex: none;
 }
 
@@ -831,7 +831,7 @@ h1, h2, h3 {
 .hero-whatsapp-float svg {
 	width: 34px;
 	height: 34px;
-	color: var(--abe-ink);
+	color: #25d366;
 }
 
 /* Botão flutuante "APPS" — link para a Galeria de APPs */
@@ -900,7 +900,7 @@ h1, h2, h3 {
 		display: flex;
 		position: fixed;
 		right: 32px;
-		bottom: 112px;
+		bottom: 136px;
 		width: 56px;
 		height: 56px;
 		margin-right: 0;
@@ -910,7 +910,7 @@ h1, h2, h3 {
 		border-radius: 8px;
 		background: var(--abe-ink);
 		color: #fff;
-		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+		box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.55);
 		z-index: 15;
 	}
 
@@ -1039,8 +1039,7 @@ h1, h2, h3 {
 
 @media (max-width: 768px) {
 	.theme-switcher {
-		top: auto;
-		bottom: 96px;
+		display: none;
 	}
 }
 
