@@ -373,12 +373,12 @@ h1, h2, h3 {
 
 .nav-drawer .primary-menu a:hover,
 .nav-drawer .primary-menu a:focus {
-	color: var(--abe-hover);
+	color: #d7e26a;
 }
 
 /* Current page is sinalizada na cor verde da paleta — já indica onde você está */
 .nav-drawer .primary-menu .current-menu-item > a {
-	color: var(--abe-green);
+	color: #d7e26a;
 }
 
 /* Último item do menu ("Galeria de APPs") — caixa própria, verde,
@@ -409,7 +409,7 @@ h1, h2, h3 {
 .nav-drawer .primary-menu .nav-menu-gallery-apps a:hover,
 .nav-drawer .primary-menu .nav-menu-gallery-apps a:focus {
 	color: var(--abe-ink);
-	background: #fff3a0;
+	background: #fff;
 }
 
 .nav-drawer .primary-menu .nav-menu-gallery-apps .menu-item-icon {
@@ -419,7 +419,7 @@ h1, h2, h3 {
 }
 
 .nav-drawer .primary-menu .current-menu-item > a:hover {
-	color: var(--abe-hover);
+	color: #d7e26a;
 }
 
 /* Hero / banner */
@@ -855,7 +855,7 @@ h1, h2, h3 {
 }
 
 .apps-badge:hover {
-	background: #fff3a0;
+	background: #fff;
 	color: var(--abe-ink);
 }
 
