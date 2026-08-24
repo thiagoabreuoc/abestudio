@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span>Diga olá, no Whatsapp</span>
 			</a>
 			<a class="apps-badge apps-badge-mobile" href="#">
-				<span>NOSSOS APPS</span>
+				<span>APPs</span>
 			</a>
 			<button type="button" class="hamburger" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="<?php esc_attr_e( 'Abrir menu', 'abestudio2026' ); ?>">
 				<span></span>
