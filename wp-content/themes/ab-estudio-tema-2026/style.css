@@ -248,20 +248,22 @@ h1, h2, h3 {
 	align-items: center;
 	justify-content: center;
 	padding: 8px 22px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
 	border-radius: 999px;
 	font-family: var(--abe-font-heading);
 	font-weight: 600;
 	font-size: 0.78rem;
 	letter-spacing: 0.05em;
-	text-transform: lowercase;
+	text-transform: uppercase;
 	color: #fff;
-	transition: background 0.2s ease, color 0.2s ease;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-drawer-login:hover,
 .nav-drawer-login:focus {
 	background: #fff;
 	color: var(--abe-ink);
+	border-color: #fff;
 }
 
 .nav-drawer-header .site-logo img {
