@@ -240,7 +240,7 @@ h1, h2, h3 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 70px;
+	gap: 120px;
 }
 
 .nav-drawer-login {
@@ -1269,6 +1269,10 @@ h1, h2, h3 {
 @media (max-width: 500px) {
 	.header-whatsapp {
 		display: none;
+	}
+
+	.container {
+		padding: 0 40px;
 	}
 }
 
