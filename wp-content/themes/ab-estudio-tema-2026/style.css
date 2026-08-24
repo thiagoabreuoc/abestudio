@@ -126,25 +126,6 @@ h1, h2, h3 {
 	color: var(--abe-green);
 }
 
-@media (min-width: 1025px) {
-	.header-nav {
-		display: flex;
-	}
-
-	.hamburger {
-		display: none;
-	}
-
-	.header-whatsapp {
-		display: none;
-	}
-
-	.apps-badge-desktop {
-		position: static;
-		box-shadow: none;
-	}
-}
-
 .header-whatsapp {
 	display: inline-flex;
 	align-items: center;
@@ -1316,5 +1297,27 @@ h1, h2, h3 {
 
 	.mobile-tabbar-item-soon {
 		opacity: 0.45;
+	}
+}
+
+/* Overrides do header para desktop — no fim do arquivo de propósito,
+   pra garantir que vençam as regras-base de .hamburger, .header-whatsapp
+   e .apps-badge-desktop (mesma especificidade, ordem de código decide). */
+@media (min-width: 1025px) {
+	.header-nav {
+		display: flex;
+	}
+
+	.hamburger {
+		display: none;
+	}
+
+	.header-whatsapp {
+		display: none;
+	}
+
+	.apps-badge-desktop {
+		position: static;
+		box-shadow: none;
 	}
 }
