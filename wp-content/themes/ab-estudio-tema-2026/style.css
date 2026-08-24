@@ -1042,6 +1042,12 @@ h1, h2, h3 {
 	}
 }
 
+@media (min-width: 501px) and (max-width: 768px) {
+	.hero-banner {
+		height: 450px;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
 	.hero-banner .container {
 		grid-template-columns: 1fr 1fr;
