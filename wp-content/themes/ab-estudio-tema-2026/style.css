@@ -1392,6 +1392,7 @@ h1, h2, h3 {
 	.mobile-tabbar-icon {
 		width: 24px;
 		height: 24px;
+		color: var(--abe-green);
 	}
 
 	.mobile-tabbar-item-soon {
