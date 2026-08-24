@@ -903,7 +903,7 @@ h1, h2, h3 {
 .apps-badge-desktop {
 	position: fixed;
 	right: 0;
-	top: 554px;
+	top: 544px;
 	z-index: 40;
 	padding: 14px 18px;
 	border-radius: 4px 0 0 4px;
