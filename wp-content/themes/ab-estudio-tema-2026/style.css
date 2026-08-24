@@ -1358,4 +1358,11 @@ h1, h2, h3 {
 		transform: translateX(-50%);
 		z-index: 201;
 	}
+
+	/* O logo saiu do fluxo (position:fixed), então o Entrar — único item
+	   que sobra no flex column — sobe pro topo do padding e fica atrás
+	   do logo. Empurra pra baixo o suficiente pra limpar a altura dele. */
+	.nav-drawer-header .nav-drawer-login {
+		margin-top: 70px;
+	}
 }
