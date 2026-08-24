@@ -838,7 +838,7 @@ h1, h2, h3 {
 	color: var(--abe-ink);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
 	.apps-badge-desktop {
 		display: none;
 	}
@@ -1304,10 +1304,11 @@ h1, h2, h3 {
 	}
 }
 
-/* Overrides do header para desktop — no fim do arquivo de propósito,
-   pra garantir que vençam as regras-base de .hamburger, .header-whatsapp
-   e .apps-badge-desktop (mesma especificidade, ordem de código decide). */
-@media (min-width: 1025px) {
+/* Overrides do header para desktop/tablet (501px+) — no fim do arquivo
+   de propósito, pra garantir que vençam as regras-base de .hamburger,
+   .header-whatsapp e .apps-badge-desktop (mesma especificidade, ordem
+   de código decide). */
+@media (min-width: 501px) {
 	.header-nav {
 		display: flex;
 	}
