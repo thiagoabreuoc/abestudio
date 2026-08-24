@@ -99,6 +99,10 @@ h1, h2, h3 {
 	display: none;
 }
 
+.whatsapp-float {
+	display: none;
+}
+
 .header-nav-menu {
 	display: flex;
 	align-items: center;
@@ -113,7 +117,7 @@ h1, h2, h3 {
 	color: var(--abe-ink);
 	font-family: var(--abe-font-heading);
 	font-weight: 500;
-	font-size: 0.95rem;
+	font-size: 1.05rem;
 	transition: color 0.2s ease;
 }
 
@@ -123,7 +127,7 @@ h1, h2, h3 {
 }
 
 .header-nav-menu .current-menu-item > a {
-	color: var(--abe-green);
+	color: #fff;
 }
 
 .header-whatsapp {
@@ -1319,5 +1323,29 @@ h1, h2, h3 {
 	.apps-badge-desktop {
 		position: static;
 		box-shadow: none;
+		padding: 8px 18px;
+		font-size: 0.72rem;
+		border-radius: 8px;
+	}
+
+	.whatsapp-float {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		right: 32px;
+		bottom: 32px;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background: #fff;
+		color: var(--abe-ink);
+		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+		z-index: 45;
+	}
+
+	.whatsapp-float svg {
+		width: 30px;
+		height: 30px;
 	}
 }
