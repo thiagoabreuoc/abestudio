@@ -24,6 +24,17 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 	--abe-max-width: 1200px;
 }
 
+/* Tema de cores alternativo (laranja/azul) — aplicado via [data-abe-theme="citrus"]
+   no <html> pelo seletor de tema flutuante (.theme-switcher). */
+:root[data-abe-theme="citrus"] {
+	--abe-ink: #2a2118;
+	--abe-hover: #ffa424;
+	--abe-teal: #688db9;
+	--abe-green: #ff9800;
+	--abe-yellow: #ffa424;
+	--abe-orange: #789dca;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -925,6 +936,130 @@ h1, h2, h3 {
 		margin-right: 40px;
 		padding: 10px 14px;
 		border-radius: 4px;
+	}
+}
+
+/* Seletor de tema de cores — card flutuante, lado direito da tela */
+.theme-switcher {
+	position: fixed;
+	right: 0;
+	top: 340px;
+	z-index: 41;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.theme-switcher-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border: none;
+	border-radius: 4px 0 0 4px;
+	background: var(--abe-ink);
+	color: #fff;
+	box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.35);
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.theme-switcher-toggle svg {
+	width: 20px;
+	height: 20px;
+}
+
+.theme-switcher-toggle:hover {
+	background: var(--abe-teal);
+}
+
+.theme-switcher-panel {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 220px;
+	background: #fff;
+	border-radius: 12px 0 0 12px;
+	box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.35);
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateX(12px);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.theme-switcher.is-open .theme-switcher-panel {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateX(0);
+}
+
+.theme-switcher.is-open .theme-switcher-toggle {
+	background: var(--abe-teal);
+}
+
+.theme-switcher-title {
+	margin: 0 0 2px;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.72rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--abe-ink);
+	opacity: 0.6;
+}
+
+.theme-switcher-option {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	background: rgba(12, 37, 33, 0.04);
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.78rem;
+	color: var(--abe-ink);
+	text-align: left;
+	cursor: pointer;
+	transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.theme-switcher-option:hover {
+	background: rgba(12, 37, 33, 0.08);
+}
+
+.theme-switcher-option[aria-pressed="true"] {
+	border-color: var(--abe-green);
+	background: rgba(12, 37, 33, 0.06);
+}
+
+.theme-switcher-swatches {
+	display: flex;
+	flex: none;
+}
+
+.theme-switcher-swatches span {
+	width: 16px;
+	height: 16px;
+	margin-left: -6px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.theme-switcher-swatches span:first-child {
+	margin-left: 0;
+}
+
+@media (max-width: 768px) {
+	.theme-switcher {
+		top: auto;
+		bottom: 96px;
 	}
 }
 
