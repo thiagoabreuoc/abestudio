@@ -775,65 +775,6 @@ h1, h2, h3 {
 	}
 }
 
-.hero-whatsapp-float {
-	display: none;
-	position: fixed;
-	right: 32px;
-	bottom: 32px;
-	width: 64px;
-	height: 64px;
-	border-radius: 50%;
-	background: #fff;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
-	z-index: 15;
-}
-
-@keyframes abe-wa-pulse {
-	0% { transform: scale(1); opacity: 0.35; }
-	100% { transform: scale(1.6); opacity: 0; }
-}
-
-.hero-whatsapp-float::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	border-radius: 50%;
-	background: #25d366;
-	z-index: -1;
-	animation: abe-wa-pulse 2.4s ease-out infinite;
-	pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.hero-whatsapp-float::before {
-		animation: none;
-	}
-}
-
-@media (max-width: 435px) {
-	.hero-whatsapp-float {
-		display: flex;
-	}
-}
-
-@media (max-width: 500px) {
-	.hero-whatsapp-float {
-		background: #25d366;
-	}
-
-	.hero-whatsapp-float svg {
-		color: #fff;
-	}
-}
-
-.hero-whatsapp-float svg {
-	width: 34px;
-	height: 34px;
-	color: #25d366;
-}
-
 /* Botão flutuante "APPS" — link para a Galeria de APPs */
 .apps-badge {
 	display: flex;
@@ -897,26 +838,7 @@ h1, h2, h3 {
 
 @media (max-width: 500px) {
 	.apps-badge-mobile {
-		display: flex;
-		position: fixed;
-		right: 32px;
-		bottom: 136px;
-		width: 56px;
-		height: 56px;
-		margin-right: 0;
-		padding: 0;
-		align-items: center;
-		justify-content: center;
-		border-radius: 8px;
-		background: var(--abe-ink);
-		color: #fff;
-		box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.55);
-		z-index: 15;
-	}
-
-	.apps-badge-mobile:hover {
-		background: var(--abe-ink);
-		color: #fff;
+		display: none;
 	}
 }
 
@@ -1344,16 +1266,6 @@ h1, h2, h3 {
 		height: 26px;
 	}
 
-	.hero-whatsapp-float {
-		width: 52px;
-		height: 52px;
-	}
-
-	.hero-whatsapp-float svg {
-		width: 27px;
-		height: 27px;
-	}
-
 	.hero-quote {
 		width: 100%;
 		max-width: 100%;
@@ -1429,5 +1341,53 @@ h1, h2, h3 {
 
 	.about-hello-heading {
 		font-size: 1.3rem;
+	}
+}
+
+/* Barra de navegação rápida — fixa no rodapé, só no mobile */
+.mobile-tabbar {
+	display: none;
+}
+
+@media (max-width: 500px) {
+	body {
+		padding-bottom: 84px;
+	}
+
+	.mobile-tabbar {
+		display: flex;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 50;
+		background: #f6f6f4;
+		box-shadow: 0 -8px 24px -6px rgba(0, 0, 0, 0.18);
+		padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+	}
+
+	.mobile-tabbar-item {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		color: var(--abe-ink);
+		font-family: var(--abe-font-heading);
+		font-weight: 600;
+		font-size: 0.65rem;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	.mobile-tabbar-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	.mobile-tabbar-item-soon {
+		opacity: 0.45;
 	}
 }
