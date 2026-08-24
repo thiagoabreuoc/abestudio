@@ -1328,7 +1328,37 @@ h1, h2, h3 {
 		font-size: 0.72rem;
 		border-radius: 8px;
 	}
+}
 
+/* Entre 501 e 1024px a barra do header é mais apertada que no desktop —
+   compacta o menu/badge o suficiente pra caber numa linha só (testado
+   contra a largura real, não é um chute). Força row aqui porque uma
+   regra mais antiga (426–640px) ainda empilha o header em coluna, o
+   que não faz sentido pro menu inline novo. */
+@media (min-width: 501px) and (max-width: 1024px) {
+	.site-header .container {
+		flex-direction: row;
+	}
+
+	.header-actions {
+		gap: 18px;
+	}
+
+	.header-nav-menu {
+		gap: 12px;
+	}
+
+	.header-nav-menu a {
+		font-size: 0.82rem;
+	}
+
+	.apps-badge-desktop {
+		padding: 8px 12px;
+		font-size: 0.62rem;
+	}
+}
+
+@media (min-width: 501px) {
 	.whatsapp-float {
 		display: flex;
 		align-items: center;
