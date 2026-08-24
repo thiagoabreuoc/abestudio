@@ -12,7 +12,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 :root {
-	--abe-ink: #232323;
+	--abe-ink: #0c2521;
+	--abe-hover: #a2dca3;
 	--abe-bg: #ffffff;
 	--abe-teal: #2d7868;
 	--abe-green: #64b39a;
@@ -57,7 +58,7 @@ h1, h2, h3 {
 	width: 100%;
 	max-width: 1280px;
 	margin: 0 auto;
-	padding: 0 32px;
+	padding: 0 30px;
 }
 
 /* Header — transparent, sits directly on top of the hero gradient */
@@ -108,13 +109,49 @@ h1, h2, h3 {
 	opacity: 0.7;
 }
 
-.header-whatsapp-icon {
-	width: 30px;
-	height: 30px;
-	flex: none;
-	color: var(--abe-ink);
+@keyframes abe-wa-pulse {
+	0% { transform: scale(1); opacity: 0.35; }
+	100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes abe-wa-pulse-strong {
+	0% { transform: scale(1); opacity: 0.3; }
+	100% { transform: scale(1.55); opacity: 0; }
+}
+
+/* O círculo + pulso vivem num <span> em volta do <svg>, não no <svg> em
+   si — pseudo-elementos (::before) em elementos <svg> têm suporte
+   inconsistente entre navegadores (é por isso que o pulso não aparecia
+   em alguns), então movemos a animação pra um elemento HTML normal. */
+.header-whatsapp-icon-wrap {
 	position: relative;
-	top: -2px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	padding: 8px;
+	box-sizing: border-box;
+	border-radius: 50%;
+	background: var(--abe-ink);
+	color: #fff;
+	flex: none;
+}
+
+.header-whatsapp-icon {
+	width: 100%;
+	height: 100%;
+}
+
+.header-whatsapp-icon-wrap::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: var(--abe-ink);
+	z-index: -1;
+	animation: abe-wa-pulse-strong 2.6s ease-out infinite;
+	pointer-events: none;
 }
 
 .hamburger {
@@ -215,19 +252,33 @@ h1, h2, h3 {
 	height: 32px;
 }
 
-.nav-drawer-header .site-logo-mark {
+.site-logo-mark {
 	display: block;
-	width: 104px;
-	height: 37px;
-	background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
 	-webkit-mask-image: url('assets/images/logo-ab-white.png');
 	mask-image: url('assets/images/logo-ab-white.png');
 	-webkit-mask-size: contain;
 	mask-size: contain;
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
+	-webkit-mask-position: left center;
+	mask-position: left center;
+}
+
+.nav-drawer-header .site-logo-mark {
+	width: 104px;
+	height: 37px;
+	background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	/* A caixa é mais larga que a proporção real da imagem — mask-position
+	   left (usado no ícone do cabeçalho) deixaria o desenho colado na
+	   borda esquerda mesmo com a caixa centralizada. Aqui, centralizado. */
 	-webkit-mask-position: center;
 	mask-position: center;
+}
+
+.site-logo-header .site-logo-mark {
+	width: 84px;
+	height: 30px;
+	background: var(--abe-ink);
 }
 
 .nav-drawer-close {
@@ -304,16 +355,48 @@ h1, h2, h3 {
 
 .nav-drawer .primary-menu a:hover,
 .nav-drawer .primary-menu a:focus {
-	color: var(--abe-teal);
+	color: var(--abe-hover);
 }
 
-/* Current page gets a muted tone instead of full white — it's already where you are */
+/* Current page is sinalizada na cor verde da paleta — já indica onde você está */
 .nav-drawer .primary-menu .current-menu-item > a {
-	color: rgba(255, 255, 255, 0.4);
+	color: var(--abe-green);
+}
+
+/* Último item do menu ("Galeria de APPs") — caixa própria, verde,
+   texto na cor do "ab" (--abe-ink), com respiro maior do item anterior. */
+.nav-drawer .primary-menu .nav-menu-gallery-apps {
+	margin-top: 50px;
+}
+
+.nav-drawer .primary-menu .nav-menu-gallery-apps a {
+	justify-content: flex-start;
+	gap: 12px;
+	background: #fff;
+	color: var(--abe-yellow);
+	border-radius: 8px;
+	padding: 12px 16px;
+	transition: background 0.2s ease;
+}
+
+.nav-drawer .primary-menu .nav-menu-gallery-apps a::after {
+	content: none;
+}
+
+.nav-drawer .primary-menu .nav-menu-gallery-apps a:hover,
+.nav-drawer .primary-menu .nav-menu-gallery-apps a:focus {
+	color: var(--abe-ink);
+	background: color-mix(in srgb, var(--abe-green) 65%, white);
+}
+
+.nav-drawer .primary-menu .nav-menu-gallery-apps .menu-item-icon {
+	width: 20px;
+	height: 20px;
+	flex: none;
 }
 
 .nav-drawer .primary-menu .current-menu-item > a:hover {
-	color: var(--abe-teal);
+	color: var(--abe-hover);
 }
 
 /* Social links, pinned to the bottom of the drawer */
@@ -337,7 +420,7 @@ h1, h2, h3 {
 }
 
 .nav-drawer-social a:hover {
-	color: var(--abe-teal);
+	color: var(--abe-hover);
 }
 
 .nav-drawer-social svg {
@@ -525,7 +608,7 @@ h1, h2, h3 {
 	padding: 0 0 0 48px;
 	max-width: 640px;
 	align-self: center;
-	justify-self: end;
+	justify-self: start;
 	text-align: left;
 	transform: translateY(-74px);
 }
@@ -534,7 +617,7 @@ h1, h2, h3 {
 	position: absolute;
 	top: 100%;
 	left: 48px;
-	right: 100px;
+	right: 0;
 	margin-top: 50px;
 }
 
@@ -568,7 +651,8 @@ h1, h2, h3 {
 	font-weight: 500;
 	color: var(--abe-ink);
 	margin: 0;
-	max-width: 420px;
+	max-width: 100%;
+	white-space: nowrap;
 }
 
 .hero-quote .dash {
@@ -733,10 +817,223 @@ h1, h2, h3 {
 	}
 }
 
+.hero-whatsapp-float {
+	display: none;
+	position: fixed;
+	right: 32px;
+	bottom: 32px;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	background: var(--abe-ink);
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.35);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	z-index: 15;
+}
+
+.hero-whatsapp-float::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: var(--abe-ink);
+	z-index: -1;
+	animation: abe-wa-pulse 2.4s ease-out infinite;
+	pointer-events: none;
+}
+
+@media (max-width: 435px) {
+	.hero-whatsapp-float {
+		display: flex;
+	}
+}
+
+.hero-whatsapp-float:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 16px 34px -8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-whatsapp-float svg {
+	width: 34px;
+	height: 34px;
+	color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.header-whatsapp-icon-wrap::before,
+	.hero-whatsapp-float::before {
+		animation: none;
+	}
+}
+
+/* Botão flutuante "APPS" — link para a Galeria de APPs */
+.apps-badge {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--abe-green);
+	color: #fff;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.8rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: background 0.2s ease;
+}
+
+.apps-badge:hover {
+	background: var(--abe-teal);
+}
+
+.apps-badge-icon {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+}
+
+.apps-badge-mobile {
+	display: none;
+}
+
+.apps-badge-desktop {
+	position: fixed;
+	right: 0;
+	top: 604px;
+	z-index: 40;
+	padding: 14px 18px;
+	border-radius: 4px 0 0 4px;
+	box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+	.apps-badge-desktop {
+		display: none;
+	}
+
+	.apps-badge-mobile {
+		display: flex;
+		margin-right: 40px;
+		padding: 10px 14px;
+		border-radius: 4px;
+	}
+}
+
+/* Página Sobre — linha de destaques + seção "hello." */
+.about-hello {
+	padding: 190px 0 200px;
+}
+
+.about-hello .container {
+	max-width: 1140px;
+}
+
+.about-hello-row {
+	display: grid;
+	grid-template-columns: 25fr 45fr 30fr;
+	align-items: start;
+	gap: 16px;
+}
+
+.about-hello-word {
+	align-self: end;
+	text-align: right;
+	font-family: var(--abe-font-body);
+	font-weight: 600;
+	font-size: 5.4rem;
+	color: var(--abe-yellow);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+
+.about-hello-heading {
+	font-family: var(--abe-font-body);
+	font-weight: 600;
+	font-size: 2.4rem;
+	line-height: 1.1;
+	color: var(--abe-ink);
+	text-align: left;
+	margin: 0;
+}
+
+.about-hello-copy p {
+	color: rgba(12, 37, 33, 0.6);
+	font-family: var(--abe-font-body);
+	font-size: 0.95rem;
+	line-height: 1.7;
+	margin: 8px 0 20px;
+}
+
+.about-info-link {
+	display: inline-block;
+	position: relative;
+	top: -8px;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.8rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--abe-ink);
+	text-decoration: underline;
+	text-underline-offset: 6px;
+	transition: color 0.2s ease;
+}
+
+.about-info-link:hover {
+	color: var(--abe-green);
+}
+
+@media (max-width: 900px) {
+	.about-hello-row {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+
+	.about-hello-word {
+		font-size: 2.6rem;
+		text-align: center;
+	}
+
+	.about-hello-heading {
+		font-size: 1.7rem;
+		text-align: center;
+	}
+
+	.about-hello-copy {
+		text-align: center;
+	}
+}
+
+@media (max-width: 600px) {
+	.about-hello {
+		padding: 70px 0 56px;
+	}
+}
+
 @media (max-width: 1440px) {
 	.hero-quote-wrap {
-		margin-top: 170px;
+		margin-top: 50px;
 	}
+}
+
+@media (min-width: 1440px) {
+	.hero-quote {
+		font-size: 1.2rem;
+		max-width: 100%;
+		white-space: nowrap;
+	}
+
+	.hero-copy {
+		max-width: 100%;
+		justify-self: end;
+	}
+
+	/* .hero-quote-wrap é posicionado relativo à própria .hero-copy (não à
+	   seção inteira) — com right:0 (padrão, herdado) ele já acompanha a
+	   borda direita da caixa do título automaticamente. */
 }
 
 @media (min-width: 768px) and (max-width: 1439px) {
@@ -759,13 +1056,75 @@ h1, h2, h3 {
 	}
 }
 
+@media (max-width: 768px) {
+	.hero-banner {
+		height: 240px;
+	}
+
+	.hero-copy {
+		justify-self: stretch;
+		padding-left: 0;
+		text-align: center;
+		transform: none;
+		margin-top: -64px;
+	}
+
+	.hero-title span {
+		display: inline;
+	}
+
+	.scroll-down {
+		display: none;
+	}
+
+	.hero-quote-wrap {
+		display: none;
+	}
+
+	.header-whatsapp {
+		font-size: 0.92rem;
+	}
+
+	.header-whatsapp-icon-wrap {
+		width: 32px;
+		height: 32px;
+		padding: 6px;
+	}
+
+	.nav-drawer-header .site-logo-mark {
+		width: 76px;
+		height: 27px;
+	}
+
+	.nav-drawer .primary-menu {
+		padding: 0 48px;
+	}
+
+	.nav-drawer .primary-menu a {
+		font-size: 0.95rem;
+	}
+
+	.nav-drawer .primary-menu a::after {
+		font-size: 1.1rem;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
 	.hero-banner .container {
 		grid-template-columns: 1fr 1fr;
 	}
 
 	.hero-copy {
-		padding-right: 0;
+		padding-right: 30px;
+		justify-self: end;
+	}
+
+	.hero-quote-wrap {
+		right: 30px;
+	}
+
+	.hero-quote {
+		max-width: 100%;
 	}
 
 	.hero-photo img {
@@ -775,20 +1134,34 @@ h1, h2, h3 {
 
 @media (min-width: 1024px) and (max-width: 1280px) {
 	.hero-copy {
-		padding-right: 0;
+		padding-right: 30px;
+		justify-self: end;
+	}
+
+	.hero-quote-wrap {
+		right: 30px;
+	}
+
+	.hero-quote {
+		max-width: 100%;
+		white-space: nowrap;
 	}
 }
 
 @media (max-width: 767px) {
+	/* Flex em vez de grid aqui — só a .hero-copy fica visível nessa faixa
+	   (a foto some), então flex com justify-content:center centraliza de
+	   verdade na vertical, sem depender de align-self herdado do grid. */
 	.hero-banner .container {
-		grid-template-columns: 1fr;
+		display: flex;
 		align-items: center;
+		justify-content: center;
 		text-align: center;
 	}
 
 	.hero-copy {
 		max-width: 100%;
-		padding-bottom: 20px;
+		padding-bottom: 0;
 	}
 
 	.hero-copy .eyebrow {
@@ -809,11 +1182,56 @@ h1, h2, h3 {
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 500px) {
+	.header-whatsapp {
+		display: none;
+	}
+}
+
+@media (max-width: 425px) {
+	.site-header .container {
+		flex-direction: row;
+		align-items: center;
+		gap: 0;
+		padding-top: 28px;
+	}
+
+	.header-actions {
+		width: auto;
+	}
+
+	.site-logo-header .site-logo-mark {
+		width: 72px;
+		height: 26px;
+	}
+
+	.hero-whatsapp-float {
+		width: 52px;
+		height: 52px;
+	}
+
+	.hero-whatsapp-float svg {
+		width: 27px;
+		height: 27px;
+	}
+
+	.hero-quote {
+		width: 100%;
+		max-width: 100%;
+		white-space: normal;
+	}
+}
+
+@media (min-width: 426px) and (max-width: 640px) {
 	.site-header .container {
 		flex-direction: column;
 		gap: 14px;
 		padding-top: 20px;
+	}
+
+	.header-actions {
+		width: 100%;
+		justify-content: flex-end;
 	}
 
 	.primary-menu {
@@ -827,8 +1245,33 @@ h1, h2, h3 {
 		padding-top: 140px;
 		min-height: auto;
 	}
+}
 
+@media (max-width: 767px) {
+	/* Uma regra só cobrindo toda a faixa mobile (em vez de três blocos
+	   fragmentados por sub-faixa) — elimina qualquer chance de lacuna ou
+	   limite mal calculado entre os breakpoints. */
 	.nav-drawer {
 		width: 100%;
+	}
+
+	.nav-drawer-header {
+		position: relative;
+		padding-top: 96px;
+	}
+
+	/* position:fixed + left:50vw centraliza direto na viewport real,
+	   sem depender da largura efetiva do header (flex/padding/align-self
+	   podiam deixar isso impreciso). */
+	.nav-drawer-header .site-logo {
+		position: fixed;
+		top: 96px;
+		left: 50vw;
+		transform: translateX(-50%);
+		z-index: 201;
+	}
+
+	.nav-drawer-social {
+		padding-bottom: 108px;
 	}
 }
