@@ -35,6 +35,17 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 	--abe-orange: #789dca;
 }
 
+/* Tema de cores alternativo (laranja/verde "colheita") — aplicado via
+   [data-abe-theme="harvest"] no <html> pelo seletor de tema flutuante. */
+:root[data-abe-theme="harvest"] {
+	--abe-ink: #22301c;
+	--abe-hover: #ffc644;
+	--abe-teal: #548249;
+	--abe-green: #6ab350;
+	--abe-yellow: #aacd40;
+	--abe-orange: #ffc644;
+}
+
 * {
 	box-sizing: border-box;
 }

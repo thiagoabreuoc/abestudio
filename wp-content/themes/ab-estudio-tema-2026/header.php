@@ -17,8 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<script>
 	( function () {
 		try {
-			if ( 'citrus' === localStorage.getItem( 'abeTheme' ) ) {
-				document.documentElement.setAttribute( 'data-abe-theme', 'citrus' );
+			var t = localStorage.getItem( 'abeTheme' );
+			if ( t && 'default' !== t ) {
+				document.documentElement.setAttribute( 'data-abe-theme', t );
 			}
 		} catch ( e ) {}
 	} )();
@@ -94,7 +95,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<span style="background:#ff9800"></span>
 					<span style="background:#688db9"></span>
 				</span>
-				<?php esc_html_e( 'Novo', 'abestudio2026' ); ?>
+				<?php esc_html_e( 'Laranja & Azul', 'abestudio2026' ); ?>
+			</button>
+			<button type="button" class="theme-switcher-option" data-theme-option="harvest" aria-pressed="false">
+				<span class="theme-switcher-swatches">
+					<span style="background:#ff9800"></span>
+					<span style="background:#aacd40"></span>
+					<span style="background:#548249"></span>
+				</span>
+				<?php esc_html_e( 'Colheita', 'abestudio2026' ); ?>
 			</button>
 		</div>
 	</div>

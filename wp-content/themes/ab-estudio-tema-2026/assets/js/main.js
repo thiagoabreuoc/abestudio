@@ -114,8 +114,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var STORAGE_KEY = 'abeTheme';
 
 	function applyTheme( theme ) {
-		if ( 'citrus' === theme ) {
-			document.documentElement.setAttribute( 'data-abe-theme', 'citrus' );
+		if ( theme && 'default' !== theme ) {
+			document.documentElement.setAttribute( 'data-abe-theme', theme );
 		} else {
 			document.documentElement.removeAttribute( 'data-abe-theme' );
 		}
@@ -158,10 +158,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 	} );
 
+	var validThemes = Array.prototype.map.call( options, function ( option ) {
+		return option.dataset.themeOption;
+	} );
+
 	var stored = null;
 	try {
 		stored = localStorage.getItem( STORAGE_KEY );
 	} catch ( e ) {}
 
-	applyTheme( 'citrus' === stored ? 'citrus' : 'default' );
+	applyTheme( -1 !== validThemes.indexOf( stored ) ? stored : 'default' );
 } );
