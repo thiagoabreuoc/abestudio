@@ -1432,29 +1432,6 @@ h1, h2, h3 {
 		width: 30px;
 		height: 30px;
 	}
-
-	/* Pulso contínuo por fora do botão — anel que nasce do tamanho do
-	   próprio botão, cresce além da borda e esmaece. Sempre ativo,
-	   independente de hover, pra chamar atenção pro botão (padrão comum
-	   de CTA flutuante de WhatsApp). As duas cópias (::before/::after)
-	   ficam meio ciclo defasadas para que sempre haja um anel em
-	   andamento. Sem overflow:hidden no botão, o anel escapa livremente. */
-	.whatsapp-float::before,
-	.whatsapp-float::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		border-radius: 50%;
-		background: #d7e26a;
-		opacity: 0;
-		z-index: -1;
-		pointer-events: none;
-		animation: abe-wa-pulse 2.6s ease-out infinite;
-	}
-
-	.whatsapp-float::after {
-		animation-delay: 1.3s;
-	}
 }
 
 /* Mesma regra do desktop (50px abaixo do fim do hero-banner, fixo no
@@ -1474,20 +1451,3 @@ h1, h2, h3 {
 	}
 }
 
-@keyframes abe-wa-pulse {
-	0% {
-		transform: scale(1);
-		opacity: 0.45;
-	}
-	100% {
-		transform: scale(1.6);
-		opacity: 0;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.whatsapp-float::before,
-	.whatsapp-float::after {
-		animation: none;
-	}
-}
