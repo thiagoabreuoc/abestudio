@@ -1500,7 +1500,7 @@ h1, h2, h3 {
    regra base pra vencer no empate de especificidade. */
 @media (min-width: 769px) and (max-width: 1024px) {
 	.whatsapp-wrap {
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 30px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 70px);
 	}
 }
 
