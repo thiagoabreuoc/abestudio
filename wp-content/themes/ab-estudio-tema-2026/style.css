@@ -806,6 +806,10 @@ h1, h2, h3 {
 	z-index: 20;
 }
 
+.scroll-down-icon-arrow {
+	display: none;
+}
+
 .scroll-down:hover {
 	box-shadow: 0 16px 34px -8px rgba(0, 0, 0, 0.3);
 }
@@ -1044,7 +1048,7 @@ h1, h2, h3 {
 	.about-hello-word {
 		width: fit-content;
 		justify-self: center;
-		background: linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 35%, var(--abe-yellow) 70%, var(--abe-orange) 100%);
+		background: linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 50%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
 		-webkit-background-clip: text;
 		background-clip: text;
 	}
@@ -1092,10 +1096,11 @@ h1, h2, h3 {
 	}
 }
 
-/* 10px a menos que os 50px acima, só até 500px. */
+/* 10px a menos que os 50px acima, depois +30px a mais — 70px líquido,
+   só até 500px. */
 @media (max-width: 500px) {
 	.about-hello {
-		padding-top: 40px;
+		padding-top: 70px;
 	}
 }
 
@@ -1293,6 +1298,16 @@ h1, h2, h3 {
 	   proporcionalmente mais grossos que no desktop — afina um pouco. */
 	.hero-title-outline {
 		-webkit-text-stroke: 1px #fff;
+	}
+
+	/* Seta em vez do ícone de mouse — nessa faixa não dá scroll de mouse
+	   mesmo, então a seta é mais direta. */
+	.scroll-down-icon-mouse {
+		display: none;
+	}
+
+	.scroll-down-icon-arrow {
+		display: block;
 	}
 
 	.hero-quote-wrap {
@@ -1541,18 +1556,17 @@ h1, h2, h3 {
 	   logo/banner (ver #abe-tabbar-icon-gradient em footer.php). fill
 	   cobre os ícones de APPs/Contato (fill="currentColor"); stroke,
 	   separado, cobre só o ícone "Em breve" (contorno, sem fill). */
+	/* Mesma cor do texto "Estamos..." (.about-hello-heading). */
 	.mobile-tabbar-icon {
 		width: 24px;
 		height: 24px;
-		fill: url(#abe-tabbar-icon-gradient);
+		fill: var(--abe-ink);
 	}
 
-	.mobile-tabbar-item-soon .mobile-tabbar-icon {
-		stroke: url(#abe-tabbar-icon-gradient);
-	}
-
-	.mobile-tabbar-item-soon {
-		opacity: 0.45;
+	/* Só o ícone de "Entrar" (porta+seta) é stroke-based (fill="none" no
+	   SVG); os outros dois preenchem via fill. */
+	.mobile-tabbar-icon[fill="none"] {
+		stroke: var(--abe-ink);
 	}
 }
 

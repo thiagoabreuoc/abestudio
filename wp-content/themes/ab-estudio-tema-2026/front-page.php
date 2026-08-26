@@ -52,9 +52,12 @@ get_header();
 	</section>
 
 	<button type="button" class="scroll-down" data-scroll-down aria-label="<?php esc_attr_e( 'Rolar para baixo', 'abestudio2026' ); ?>">
-		<svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg class="scroll-down-icon-mouse" width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect x="1" y="1" width="12" height="20" rx="6" stroke="#232323" stroke-width="1.4"/>
 			<rect x="6" y="5" width="2" height="5" rx="1" fill="#232323"/>
+		</svg>
+		<svg class="scroll-down-icon-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M6 9l6 6 6-6" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
 	</button>
 </div>

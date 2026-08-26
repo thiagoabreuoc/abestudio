@@ -12,16 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $abe2026_wa_message = 'Olá! 😊 Vi o site da AB Estúdio e adorei o que vocês fazem. Gostaria de solicitar um orçamento!';
 $abe2026_wa_url     = 'https://wa.me/5521985845997?text=' . rawurlencode( $abe2026_wa_message );
 ?>
-<svg width="0" height="0" style="position: absolute;" aria-hidden="true" focusable="false">
-	<defs>
-		<linearGradient id="abe-tabbar-icon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-			<stop offset="0%" style="stop-color: var(--abe-teal);" />
-			<stop offset="45%" style="stop-color: var(--abe-green);" />
-			<stop offset="88%" style="stop-color: var(--abe-yellow);" />
-			<stop offset="100%" style="stop-color: var(--abe-orange);" />
-		</linearGradient>
-	</defs>
-</svg>
 <nav class="mobile-tabbar" aria-label="<?php esc_attr_e( 'Navegação rápida', 'abestudio2026' ); ?>">
 	<a class="mobile-tabbar-item" href="#">
 		<svg class="mobile-tabbar-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -37,13 +27,14 @@ $abe2026_wa_url     = 'https://wa.me/5521985845997?text=' . rawurlencode( $abe20
 		</svg>
 		<span><?php esc_html_e( 'Contato', 'abestudio2026' ); ?></span>
 	</a>
-	<span class="mobile-tabbar-item mobile-tabbar-item-soon">
+	<a class="mobile-tabbar-item" href="<?php echo esc_url( wp_login_url() ); ?>">
 		<svg class="mobile-tabbar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-			<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
-			<path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M10 17l5-5-5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M15 12H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
-		<span><?php esc_html_e( 'Em breve', 'abestudio2026' ); ?></span>
-	</span>
+		<span><?php esc_html_e( 'Entrar', 'abestudio2026' ); ?></span>
+	</a>
 </nav>
 
 <?php wp_footer(); ?>
