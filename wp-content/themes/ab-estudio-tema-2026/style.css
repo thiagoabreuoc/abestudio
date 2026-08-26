@@ -1444,29 +1444,23 @@ h1, h2, h3 {
 		width: 60px;
 		height: 60px;
 		border-radius: 50%;
-		background: var(--abe-ink);
+		background: #25d366;
 		color: #fff;
 		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
 		z-index: 45;
 		transition: background 0.35s ease-in-out;
 	}
 
-	/* Verde oficial do WhatsApp no hover — deliberadamente fora da paleta
-	   do site, pra reconhecer a marca. */
+	/* Verde oficial do WhatsApp como cor principal; hover num verde mais
+	   escuro da mesma família — deliberadamente fora da paleta do site,
+	   pra reconhecer a marca. */
 	.whatsapp-float:hover {
-		background: #25d366;
+		background: #1da851;
 	}
 
 	.whatsapp-float svg {
 		width: 30px;
 		height: 30px;
-		transition: fill 0.35s ease-in-out;
-	}
-
-	/* No hover, o ícone assume a cor do fundo normal do botão — contraste
-	   escuro sobre o verde oficial do WhatsApp. */
-	.whatsapp-float:hover svg {
-		fill: var(--abe-ink);
 	}
 }
 
