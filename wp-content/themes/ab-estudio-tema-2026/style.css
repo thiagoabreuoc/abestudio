@@ -1493,9 +1493,9 @@ h1, h2, h3 {
 	.mobile-tabbar {
 		display: flex;
 		position: fixed;
-		left: 40px;
-		right: 40px;
-		bottom: 30px;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
 		z-index: 50;
 		background: #f6f6f4;
 		border-radius: 16px;
