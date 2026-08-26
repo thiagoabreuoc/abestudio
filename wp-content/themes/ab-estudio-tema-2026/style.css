@@ -1232,7 +1232,7 @@ h1, h2, h3 {
 @media (max-width: 500px) {
 	.hero-banner {
 		height: auto;
-		padding-bottom: 32px;
+		padding-bottom: 0;
 	}
 
 	.hero-copy {
@@ -1293,8 +1293,8 @@ h1, h2, h3 {
 	}
 
 	.hero-photo img {
-		min-height: 280px;
-		max-height: 320px;
+		min-height: 262px;
+		max-height: 302px;
 	}
 
 	.header-whatsapp {
