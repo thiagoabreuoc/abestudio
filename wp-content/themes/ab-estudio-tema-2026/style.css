@@ -1073,13 +1073,13 @@ h1, h2, h3 {
    regra de 145px acima. */
 @media (min-width: 501px) and (max-width: 600px) {
 	.about-hello {
-		padding-top: 70px;
+		padding-top: 55px;
 	}
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
 	.about-hello {
-		padding-top: 115px;
+		padding-top: 100px;
 	}
 }
 
