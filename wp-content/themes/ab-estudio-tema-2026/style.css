@@ -837,7 +837,8 @@ h1, h2, h3 {
 /* Círculos crescendo por dentro do botão, esmaecendo ao final — mesma
    animação usada no botão flutuante do WhatsApp (.whatsapp-float). O
    z-index:-1 mantém os círculos acima do fundo do botão mas abaixo do
-   ícone/texto (conteúdo em fluxo normal sempre pinta por cima). */
+   ícone/texto (conteúdo em fluxo normal sempre pinta por cima). Só
+   dispara no hover, uma única vez (sem animation no estado de repouso). */
 .apps-badge-desktop::before,
 .apps-badge-desktop::after {
 	content: "";
@@ -852,11 +853,15 @@ h1, h2, h3 {
 	opacity: 0;
 	z-index: -1;
 	pointer-events: none;
-	animation: abe-btn-glow 3s ease-out infinite;
 }
 
-.apps-badge-desktop::after {
-	animation-delay: 1.5s;
+.apps-badge-desktop:hover::before,
+.apps-badge-desktop:hover::after {
+	animation: abe-btn-glow 0.7s ease-out 1;
+}
+
+.apps-badge-desktop:hover::after {
+	animation-delay: 0.15s;
 }
 
 .apps-badge-desktop:hover {
@@ -1449,11 +1454,15 @@ h1, h2, h3 {
 		opacity: 0;
 		z-index: -1;
 		pointer-events: none;
-		animation: abe-btn-glow 3s ease-out infinite;
 	}
 
-	.whatsapp-float::after {
-		animation-delay: 1.5s;
+	.whatsapp-float:hover::before,
+	.whatsapp-float:hover::after {
+		animation: abe-btn-glow 0.7s ease-out 1;
+	}
+
+	.whatsapp-float:hover::after {
+		animation-delay: 0.15s;
 	}
 
 	.whatsapp-float svg {
@@ -1494,10 +1503,10 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.whatsapp-float::before,
-	.whatsapp-float::after,
-	.apps-badge-desktop::before,
-	.apps-badge-desktop::after {
+	.whatsapp-float:hover::before,
+	.whatsapp-float:hover::after,
+	.apps-badge-desktop:hover::before,
+	.apps-badge-desktop:hover::after {
 		animation: none;
 	}
 }
