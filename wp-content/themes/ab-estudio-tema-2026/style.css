@@ -1018,6 +1018,20 @@ h1, h2, h3 {
 	}
 }
 
+/* Abaixo de 500px: "Estamos..." mais perto de "Olá." (24px → 8px) e sem
+   o padding-right:50px herdado da regra base (pensado pro layout de 3
+   colunas do desktop) — nessa faixa o texto é centralizado, então aquele
+   respiro só de um lado empurrava o bloco pra fora do centro. */
+@media (max-width: 500px) {
+	.about-hello-row {
+		row-gap: 8px;
+	}
+
+	.about-hello-heading {
+		padding-right: 0;
+	}
+}
+
 /* Só entre 501 e 768px: duas colunas em vez de empilhado. Coluna 1
    ("Olá." + heading) alinhada à esquerda, coluna 2 (copy + "Mais")
    alinhada à direita — reaproveita os três filhos existentes de
@@ -1028,7 +1042,6 @@ h1, h2, h3 {
 	.about-hello-row {
 		grid-template-columns: 1fr 1fr;
 		align-items: start;
-		row-gap: 8px;
 	}
 
 	.about-hello-word {
@@ -1044,7 +1057,7 @@ h1, h2, h3 {
 		grid-column: 1;
 		grid-row: 2;
 		text-align: right;
-		padding-right: 0;
+		padding-right: 20px;
 	}
 
 	.about-hello-copy {
