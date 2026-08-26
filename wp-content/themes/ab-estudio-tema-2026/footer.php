@@ -12,6 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 $abe2026_wa_message = 'Olá! 😊 Vi o site da AB Estúdio e adorei o que vocês fazem. Gostaria de solicitar um orçamento!';
 $abe2026_wa_url     = 'https://wa.me/5521985845997?text=' . rawurlencode( $abe2026_wa_message );
 ?>
+<svg width="0" height="0" style="position: absolute;" aria-hidden="true" focusable="false">
+	<defs>
+		<linearGradient id="abe-tabbar-icon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="0%" style="stop-color: var(--abe-teal);" />
+			<stop offset="45%" style="stop-color: var(--abe-green);" />
+			<stop offset="88%" style="stop-color: var(--abe-yellow);" />
+			<stop offset="100%" style="stop-color: var(--abe-orange);" />
+		</linearGradient>
+	</defs>
+</svg>
 <nav class="mobile-tabbar" aria-label="<?php esc_attr_e( 'Navegação rápida', 'abestudio2026' ); ?>">
 	<a class="mobile-tabbar-item" href="#">
 		<svg class="mobile-tabbar-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

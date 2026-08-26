@@ -1030,6 +1030,24 @@ h1, h2, h3 {
 	.about-hello-heading {
 		padding-right: 0;
 	}
+
+	/* Duas correções pro degradê parecer "verde sólido" nesse tamanho:
+	   1) sequência completa teal→verde→amarelo→laranja (igual ao "ab" do
+	      logo), não só teal→amarelo — mais contraste de cor mesmo numa
+	      palavra curta.
+	   2) display:inline-block + width:fit-content encolhe a caixa do
+	      elemento exatamente ao tamanho do texto "Olá." — sem isso, o
+	      background-clip:text usa a largura total da coluna (bem mais
+	      larga que a palavra), então só uma fatia estreita do degradê
+	      (perto do centro, por causa do text-align:center) aparecia atrás
+	      das letras, cortando fora o amarelo/laranja das pontas. */
+	.about-hello-word {
+		width: fit-content;
+		justify-self: center;
+		background: linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 35%, var(--abe-yellow) 70%, var(--abe-orange) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+	}
 }
 
 /* Só entre 501 e 768px: duas colunas em vez de empilhado. Coluna 1
@@ -1277,10 +1295,6 @@ h1, h2, h3 {
 		-webkit-text-stroke: 1px #fff;
 	}
 
-	.scroll-down {
-		display: none;
-	}
-
 	.hero-quote-wrap {
 		display: none;
 	}
@@ -1523,10 +1537,18 @@ h1, h2, h3 {
 		text-align: center;
 	}
 
+	/* Mesmo degradê teal→verde→amarelo→laranja do "ab" mascarado do
+	   logo/banner (ver #abe-tabbar-icon-gradient em footer.php). fill
+	   cobre os ícones de APPs/Contato (fill="currentColor"); stroke,
+	   separado, cobre só o ícone "Em breve" (contorno, sem fill). */
 	.mobile-tabbar-icon {
 		width: 24px;
 		height: 24px;
-		color: var(--abe-green);
+		fill: url(#abe-tabbar-icon-gradient);
+	}
+
+	.mobile-tabbar-item-soon .mobile-tabbar-icon {
+		stroke: url(#abe-tabbar-icon-gradient);
 	}
 
 	.mobile-tabbar-item-soon {
