@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
 					<circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
 				</svg>
-				<span>NOSSOS APPS</span>
+				<span><span class="apps-badge-text-nossos">NOSSOS </span>APPS</span>
 			</a>
 			<button type="button" class="hamburger" data-nav-toggle aria-expanded="false" aria-controls="nav-drawer" aria-label="<?php esc_attr_e( 'Abrir menu', 'abestudio2026' ); ?>">
 				<span></span>
