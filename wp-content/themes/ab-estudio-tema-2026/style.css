@@ -1067,6 +1067,22 @@ h1, h2, h3 {
 	}
 }
 
+/* Sobe a seção 30px só entre 501 e 768px (pedido específico dessa
+   faixa) — subtrai 30 dos dois degraus que já existiam aí (100px até
+   600px, 145px de 601 a 768px), sem mexer em 769-1024px que reusa a
+   regra de 145px acima. */
+@media (min-width: 501px) and (max-width: 600px) {
+	.about-hello {
+		padding-top: 70px;
+	}
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+	.about-hello {
+		padding-top: 115px;
+	}
+}
+
 @media (max-width: 1440px) {
 	.hero-quote-wrap {
 		margin-top: 50px;
