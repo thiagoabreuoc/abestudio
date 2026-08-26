@@ -1497,7 +1497,8 @@ h1, h2, h3 {
 		right: 20px;
 		bottom: 20px;
 		z-index: 50;
-		background: #f6f6f4;
+		/* Mesma cor/transparência do menu aberto (.nav-drawer). */
+		background: rgba(26, 26, 26, 0.95);
 		border-radius: 16px;
 		box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
 		padding: 16px 8px;
@@ -1510,7 +1511,7 @@ h1, h2, h3 {
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
-		color: var(--abe-ink);
+		color: #fff;
 		font-family: var(--abe-font-heading);
 		font-weight: 600;
 		font-size: 0.65rem;
@@ -1522,7 +1523,7 @@ h1, h2, h3 {
 	.mobile-tabbar-icon {
 		width: 24px;
 		height: 24px;
-		color: var(--abe-green);
+		color: #d7e26a;
 	}
 
 	.mobile-tabbar-item-soon {
