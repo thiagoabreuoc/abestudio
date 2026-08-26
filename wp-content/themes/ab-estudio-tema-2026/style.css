@@ -1100,7 +1100,7 @@ h1, h2, h3 {
    só até 500px. */
 @media (max-width: 500px) {
 	.about-hello {
-		padding-top: 60px;
+		padding-top: 50px;
 	}
 }
 
@@ -1351,8 +1351,8 @@ h1, h2, h3 {
 	}
 
 	.hero-photo img {
-		min-height: 252px;
-		max-height: 292px;
+		min-height: 242px;
+		max-height: 282px;
 	}
 
 	.header-whatsapp {
@@ -1524,9 +1524,9 @@ h1, h2, h3 {
 	.mobile-tabbar {
 		display: flex;
 		position: fixed;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		left: 8px;
+		right: 8px;
+		bottom: 8px;
 		z-index: 50;
 		background: #f6f6f4;
 		border-radius: 16px;
