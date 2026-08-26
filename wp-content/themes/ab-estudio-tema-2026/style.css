@@ -99,7 +99,7 @@ h1, h2, h3 {
 	display: none;
 }
 
-.whatsapp-float {
+.whatsapp-wrap {
 	display: none;
 }
 
@@ -1404,20 +1404,26 @@ h1, h2, h3 {
 }
 
 @media (min-width: 501px) {
-	.whatsapp-float {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.whatsapp-wrap {
+		display: block;
 		position: fixed;
 		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 30px);
 		bottom: 32px;
 		width: 60px;
 		height: 60px;
+		z-index: 45;
+	}
+
+	.whatsapp-float {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		border-radius: 50%;
 		background: #25d366;
 		color: #fff;
 		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
-		z-index: 45;
 		transition: background 0.35s ease-in-out;
 	}
 
@@ -1432,20 +1438,43 @@ h1, h2, h3 {
 		width: 30px;
 		height: 30px;
 	}
+
+	/* Legenda arqueada por cima do botão — raio maior que o círculo do
+	   botão (30px) pra sobrar espaço entre os dois. Meia-volta só (não
+	   fecha 360°) porque texto na metade de baixo de um círculo sai de
+	   cabeça para baixo pra quem olha de fora — problema clássico de
+	   textPath circular. */
+	.whatsapp-orbit {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 120px;
+		height: 120px;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+	}
+
+	.whatsapp-orbit text {
+		font-family: var(--abe-font-heading);
+		font-weight: 600;
+		font-size: 7.5px;
+		letter-spacing: 0.06em;
+		fill: var(--abe-ink);
+	}
 }
 
 /* Mesma regra do desktop (50px abaixo do fim do hero-banner, fixo no
    scroll) — o valor de "top" muda porque a altura do banner muda entre
    as faixas: 450px de 501 a 768px, 650px dali pra cima. */
 @media (min-width: 501px) and (max-width: 768px) {
-	.whatsapp-float {
+	.whatsapp-wrap {
 		top: 500px;
 		bottom: auto;
 	}
 }
 
 @media (min-width: 769px) {
-	.whatsapp-float {
+	.whatsapp-wrap {
 		top: 700px;
 		bottom: auto;
 	}
