@@ -1024,7 +1024,7 @@ h1, h2, h3 {
    respiro só de um lado empurrava o bloco pra fora do centro. */
 @media (max-width: 500px) {
 	.about-hello-row {
-		row-gap: 8px;
+		row-gap: 18px;
 	}
 
 	.about-hello-heading {
@@ -1320,8 +1320,8 @@ h1, h2, h3 {
 	}
 
 	.hero-photo img {
-		min-height: 262px;
-		max-height: 302px;
+		min-height: 242px;
+		max-height: 282px;
 	}
 
 	.header-whatsapp {
