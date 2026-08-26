@@ -1395,7 +1395,7 @@ h1, h2, h3 {
 	}
 
 	.header-nav-menu {
-		gap: 20px;
+		gap: 28px;
 	}
 
 	.header-nav-menu a {
@@ -1412,7 +1412,7 @@ h1, h2, h3 {
 	.whatsapp-wrap {
 		display: block;
 		position: fixed;
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 70px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 30px);
 		bottom: 32px;
 		width: 60px;
 		height: 60px;
@@ -1476,6 +1476,16 @@ h1, h2, h3 {
 		transform-box: view-box;
 		transform-origin: 60px 60px;
 		animation: abe-orbit-spin 16s linear infinite;
+	}
+}
+
+/* Só nessa faixa (769–1024px) o botão do WhatsApp fica mais afastado do
+   canto do que o padrão (30px, regra acima) — pedido específico pra essa
+   resolução, sem alterar o desktop mais largo. Precisa vir DEPOIS da
+   regra base pra vencer no empate de especificidade. */
+@media (min-width: 769px) and (max-width: 1024px) {
+	.whatsapp-wrap {
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 100px);
 	}
 }
 
