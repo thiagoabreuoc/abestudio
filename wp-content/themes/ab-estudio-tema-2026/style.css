@@ -803,7 +803,7 @@ h1, h2, h3 {
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	text-decoration: none;
-	transition: background 0.2s ease, color 0.2s ease;
+	transition: background 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
 .apps-badge:hover {
@@ -857,11 +857,11 @@ h1, h2, h3 {
 
 .apps-badge-desktop:hover::before,
 .apps-badge-desktop:hover::after {
-	animation: abe-btn-glow 0.7s ease-out 1;
+	animation: abe-btn-glow 1.3s ease-in-out 1;
 }
 
 .apps-badge-desktop:hover::after {
-	animation-delay: 0.15s;
+	animation-delay: 0.3s;
 }
 
 .apps-badge-desktop:hover {
@@ -1458,11 +1458,11 @@ h1, h2, h3 {
 
 	.whatsapp-float:hover::before,
 	.whatsapp-float:hover::after {
-		animation: abe-btn-glow 0.7s ease-out 1;
+		animation: abe-btn-glow 1.3s ease-in-out 1;
 	}
 
 	.whatsapp-float:hover::after {
-		animation-delay: 0.15s;
+		animation-delay: 0.3s;
 	}
 
 	.whatsapp-float svg {
@@ -1490,14 +1490,17 @@ h1, h2, h3 {
 
 @keyframes abe-btn-glow {
 	0% {
-		transform: scale(0.4);
-		opacity: 0.65;
+		transform: scale(0.3);
+		opacity: 0;
 	}
-	70% {
-		opacity: 0.25;
+	20% {
+		opacity: 0.4;
+	}
+	65% {
+		opacity: 0.15;
 	}
 	100% {
-		transform: scale(9);
+		transform: scale(7);
 		opacity: 0;
 	}
 }
