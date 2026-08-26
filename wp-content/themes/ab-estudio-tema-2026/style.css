@@ -1524,11 +1524,9 @@ h1, h2, h3 {
 		bottom: 8px;
 		z-index: 50;
 		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
-		   página, aquele tom quase não se distinguia. Border reforça a
-		   borda pra não depender só da sombra. */
+		   página, aquele tom quase não se distinguia. */
 		background: #e8e8e6;
-		border: 1px solid rgba(0, 0, 0, 0.08);
-		border-radius: 16px;
+		border-radius: 4px;
 		box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.18);
 		padding: 16px 8px;
 	}
@@ -1653,6 +1651,24 @@ h1, h2, h3 {
 		width: 60px;
 		height: 60px;
 		z-index: 45;
+	}
+
+	/* Fundo branco atrás do botão, cobrindo até onde o texto girando
+	   alcança (raio do texto: 39px + a própria altura da fonte), pra
+	   legenda ficar legível não importa o que houver atrás dela. Pseudo
+	   ::before pinta antes de tudo (fica atrás); o botão .whatsapp-float,
+	   mais tarde no DOM, some por cima naturalmente. */
+	.whatsapp-wrap::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 96px;
+		height: 96px;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background: #fff;
+		pointer-events: none;
 	}
 
 	.whatsapp-float {
