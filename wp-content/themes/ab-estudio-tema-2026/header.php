@@ -73,8 +73,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="whatsapp-wrap">
 		<svg class="whatsapp-orbit" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
 			<defs>
-				<path id="whatsapp-orbit-path-top" d="M 16,60 A 44,44 0 0 1 104,60" />
-				<path id="whatsapp-orbit-path-bottom" d="M 104,60 A 44,44 0 0 1 16,60" />
+				<path id="whatsapp-orbit-path-top" d="M 21,60 A 39,39 0 0 1 99,60" />
+				<path id="whatsapp-orbit-path-bottom" d="M 99,60 A 39,39 0 0 1 21,60" />
 			</defs>
 			<g class="whatsapp-orbit-spin">
 				<text text-anchor="middle">
