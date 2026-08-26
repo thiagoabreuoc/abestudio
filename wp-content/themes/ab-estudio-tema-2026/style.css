@@ -1391,11 +1391,11 @@ h1, h2, h3 {
 	}
 
 	.header-actions {
-		gap: 18px;
+		gap: 30px;
 	}
 
 	.header-nav-menu {
-		gap: 28px;
+		gap: 36px;
 	}
 
 	.header-nav-menu a {
@@ -1485,7 +1485,7 @@ h1, h2, h3 {
    regra base pra vencer no empate de especificidade. */
 @media (min-width: 769px) and (max-width: 1024px) {
 	.whatsapp-wrap {
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 100px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 80px);
 	}
 }
 
