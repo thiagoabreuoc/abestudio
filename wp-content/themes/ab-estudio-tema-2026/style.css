@@ -461,8 +461,13 @@ h1, h2, h3 {
 		radial-gradient(circle at var(--abe-blob1-x) var(--abe-blob1-y), var(--abe-green) 0%, rgba(100, 179, 154, 0) 48%),
 		radial-gradient(circle at var(--abe-blob2-x) var(--abe-blob2-y), var(--abe-yellow) 0%, rgba(124, 206, 151, 0) 48%),
 		linear-gradient(var(--abe-gradient-angle), var(--abe-teal) 0%, var(--abe-green) var(--abe-green-stop), var(--abe-yellow) var(--abe-yellow-stop), var(--abe-orange) 100%);
-	margin-top: -96px;
-	padding-top: 96px;
+	/* -100/100 (não -96/96) porque o header, em telas ≥1025px, ficou mais
+	   alto que 96px depois que o botão "Nossos Apps" passou a viver
+	   inline no header-actions (padding+ícone do botão somam ~99.6px de
+	   altura total pro header) — sem a folga, sobrava uma tira branca
+	   entre o topo da página e o gradiente do banner. */
+	margin-top: -100px;
+	padding-top: 100px;
 	animation: abe-gradient-drift 42s ease-in-out infinite;
 }
 
