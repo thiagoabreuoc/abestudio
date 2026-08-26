@@ -959,15 +959,17 @@ h1, h2, h3 {
 	color: var(--abe-green);
 }
 
-/* Reduz um pouco o "Olá." só entre 901 e 1024px (a faixa em que ainda
-   usa o tamanho cheio de 5.4rem da versão desktop). Precisa vir ANTES da
-   regra @media (max-width:900px) logo abaixo: como as duas batem no
-   mesmo elemento com a mesma especificidade, a que aparece depois no
-   arquivo vence em caso de empate de faixa — colocando esta primeiro,
-   902-1024px usa o valor daqui e ≤900px continua intocado (2.3rem). */
+/* Reduz um pouco o "Olá." e alinha à direita só entre 901 e 1024px (a
+   faixa em que ainda usa o tamanho cheio de 5.4rem da versão desktop).
+   Precisa vir ANTES da regra @media (max-width:900px) logo abaixo: como
+   as duas batem no mesmo elemento com a mesma especificidade, a que
+   aparece depois no arquivo vence em caso de empate de faixa —
+   colocando esta primeiro, 902-1024px usa os valores daqui e ≤900px
+   continua intocado (2.3rem, centralizado). */
 @media (min-width: 769px) and (max-width: 1024px) {
 	.about-hello-word {
 		font-size: 4.6rem;
+		text-align: right;
 	}
 }
 
@@ -1403,7 +1405,7 @@ h1, h2, h3 {
 	}
 
 	.header-actions {
-		gap: 70px;
+		gap: 40px;
 	}
 
 	.header-nav-menu {
@@ -1497,7 +1499,7 @@ h1, h2, h3 {
    regra base pra vencer no empate de especificidade. */
 @media (min-width: 769px) and (max-width: 1024px) {
 	.whatsapp-wrap {
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 40px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 70px);
 	}
 }
 
