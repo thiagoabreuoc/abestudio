@@ -1399,9 +1399,15 @@ h1, h2, h3 {
 
 	/* Fixo na parte de baixo do drawer (que ocupa 100vh), em vez de fluir
 	   depois do último item do menu. */
+	/* position:absolute (não fixed): o .nav-drawer já é position:fixed,
+	   então ele mesmo vira o containing block do "Entrar" — left:50% fica
+	   relativo à largura do drawer (que varia, 50% ou 100% conforme a
+	   sub-faixa), em vez do viewport inteiro. Com fixed, o botão
+	   centralizava na tela toda e saía do drawer quando ele era mais
+	   estreito que 100%. */
 	.nav-drawer-login-end {
 		display: flex;
-		position: fixed;
+		position: absolute;
 		left: 50%;
 		bottom: 40px;
 		transform: translateX(-50%);
