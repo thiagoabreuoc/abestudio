@@ -1491,14 +1491,14 @@ h1, h2, h3 {
    as faixas: 450px de 501 a 768px, 650px dali pra cima. */
 @media (min-width: 501px) and (max-width: 768px) {
 	.whatsapp-wrap {
-		top: 500px;
+		top: 484px;
 		bottom: auto;
 	}
 }
 
 @media (min-width: 769px) {
 	.whatsapp-wrap {
-		top: 700px;
+		top: 684px;
 		bottom: auto;
 	}
 }
