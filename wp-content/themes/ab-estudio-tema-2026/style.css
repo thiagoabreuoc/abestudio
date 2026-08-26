@@ -1231,7 +1231,8 @@ h1, h2, h3 {
 
 @media (max-width: 500px) {
 	.hero-banner {
-		height: 240px;
+		height: auto;
+		padding-bottom: 32px;
 	}
 
 	.hero-copy {
@@ -1239,7 +1240,6 @@ h1, h2, h3 {
 		padding-left: 0;
 		text-align: center;
 		transform: none;
-		margin-top: -64px;
 	}
 
 	.hero-title {
@@ -1258,13 +1258,15 @@ h1, h2, h3 {
 		display: none;
 	}
 
-	/* Flex em vez de grid aqui — só a .hero-copy fica visível nessa faixa
-	   (a foto some), então flex com justify-content:center centraliza de
-	   verdade na vertical, sem depender de align-self herdado do grid. */
+	/* Flex em coluna: empilha .hero-copy e .hero-photo (a foto volta a
+	   aparecer nessa faixa) em vez do grid de 2 colunas lado a lado, que
+	   não cabe numa tela estreita. */
 	.hero-banner .container {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		gap: 16px;
 		text-align: center;
 	}
 
@@ -1283,7 +1285,16 @@ h1, h2, h3 {
 	}
 
 	.hero-photo {
-		display: none;
+		display: flex;
+		height: auto;
+		min-height: 0;
+		padding-left: 0;
+		justify-content: center;
+	}
+
+	.hero-photo img {
+		min-height: 280px;
+		max-height: 320px;
 	}
 
 	.header-whatsapp {
