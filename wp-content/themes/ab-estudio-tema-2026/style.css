@@ -1395,7 +1395,7 @@ h1, h2, h3 {
 	}
 
 	.header-nav-menu {
-		gap: 12px;
+		gap: 20px;
 	}
 
 	.header-nav-menu a {
@@ -1412,7 +1412,7 @@ h1, h2, h3 {
 	.whatsapp-wrap {
 		display: block;
 		position: fixed;
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 30px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 70px);
 		bottom: 32px;
 		width: 60px;
 		height: 60px;
