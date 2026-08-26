@@ -123,7 +123,7 @@ h1, h2, h3 {
 
 .header-nav-menu a:hover,
 .header-nav-menu a:focus {
-	color: #d7e26a;
+	color: #fff;
 }
 
 .header-nav-menu .current-menu-item > a {
@@ -132,14 +132,14 @@ h1, h2, h3 {
 
 /* Só um item por vez com o verde amarelado: assim que outro item do menu
    ganha hover/foco, a categoria ativa volta à cor normal — a menos que o
-   item em hover/foco seja ela mesma, caso em que permanece destacada. */
+   item em hover/foco seja ela mesma, caso em que segue a cor de hover. */
 .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a {
 	color: var(--abe-ink);
 }
 
 .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:hover,
 .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
-	color: #d7e26a;
+	color: #fff;
 }
 
 .header-whatsapp {
