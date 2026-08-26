@@ -1409,7 +1409,7 @@ h1, h2, h3 {
 		align-items: center;
 		justify-content: center;
 		position: fixed;
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 62px);
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 30px);
 		bottom: 32px;
 		width: 60px;
 		height: 60px;
