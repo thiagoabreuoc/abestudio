@@ -1040,6 +1040,17 @@ h1, h2, h3 {
 	   borda direita da caixa do título automaticamente. */
 }
 
+/* Foto um pouco maior em telas bem largas — só acima de 1280px (a
+   largura máxima do .container), onde sobra espaço de sobra na
+   .hero-banner (650px de altura) pra crescer sem esbarrar no rodapé
+   do banner. */
+@media (min-width: 1281px) {
+	.hero-photo img {
+		min-height: 550px;
+		max-height: 550px;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 1439px) {
 	.hero-quote-wrap {
 		margin-top: 40px;
