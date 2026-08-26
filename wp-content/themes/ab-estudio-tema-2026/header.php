@@ -18,16 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<svg width="0" height="0" style="position: absolute;" aria-hidden="true" focusable="false">
-	<defs>
-		<linearGradient id="abe-icon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-			<stop offset="0%" style="stop-color: var(--abe-teal);" />
-			<stop offset="45%" style="stop-color: var(--abe-green);" />
-			<stop offset="88%" style="stop-color: var(--abe-yellow);" />
-			<stop offset="100%" style="stop-color: var(--abe-orange);" />
-		</linearGradient>
-	</defs>
-</svg>
 <header id="masthead" class="site-header">
 	<div class="container">
 		<div class="site-branding">

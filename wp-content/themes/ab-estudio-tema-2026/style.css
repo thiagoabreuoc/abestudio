@@ -1463,10 +1463,10 @@ h1, h2, h3 {
 		transition: fill 0.35s ease-in-out;
 	}
 
-	/* Ícone assume o mesmo degradê do "ab" mascarado do banner/logo no
-	   hover (ver #abe-icon-gradient, definido em header.php). */
+	/* No hover, o ícone assume a cor do fundo normal do botão — contraste
+	   escuro sobre o verde oficial do WhatsApp. */
 	.whatsapp-float:hover svg {
-		fill: url(#abe-icon-gradient);
+		fill: var(--abe-ink);
 	}
 }
 
