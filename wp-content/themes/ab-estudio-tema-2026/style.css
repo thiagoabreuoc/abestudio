@@ -1115,6 +1115,14 @@ h1, h2, h3 {
 	.hero-banner {
 		height: 450px;
 	}
+
+	/* Deixa o travessão + texto quebrar linha se passar da largura da
+	   coluna, em vez de vazar pra fora (nowrap era herdado da regra
+	   base). .hero-quote-wrap já delimita a largura disponível via
+	   left/right, então a quebra respeita a coluna automaticamente. */
+	.hero-quote {
+		white-space: normal;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -1545,6 +1553,7 @@ h1, h2, h3 {
 	.whatsapp-wrap {
 		top: 484px;
 		bottom: auto;
+		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 50px);
 	}
 }
 
