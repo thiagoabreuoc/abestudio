@@ -73,10 +73,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="whatsapp-wrap">
 		<svg class="whatsapp-orbit" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
 			<defs>
-				<path id="whatsapp-orbit-path" d="M 16,60 A 44,44 0 0 1 104,60" />
+				<path id="whatsapp-orbit-path-top" d="M 16,60 A 44,44 0 0 1 104,60" />
+				<path id="whatsapp-orbit-path-bottom" d="M 104,60 A 44,44 0 0 1 16,60" />
 			</defs>
 			<text text-anchor="middle">
-				<textPath href="#whatsapp-orbit-path" startOffset="50%">CHAME NO WHATSAPP</textPath>
+				<textPath href="#whatsapp-orbit-path-top" startOffset="50%">CHAME NO WHATSAPP</textPath>
+			</text>
+			<text text-anchor="middle">
+				<textPath href="#whatsapp-orbit-path-bottom" startOffset="50%">CHAME NO WHATSAPP</textPath>
 			</text>
 		</svg>
 		<a class="whatsapp-float" href="<?php echo esc_url( $abe2026_wa_url ); ?>" target="_blank" rel="noopener" aria-label="WhatsApp">

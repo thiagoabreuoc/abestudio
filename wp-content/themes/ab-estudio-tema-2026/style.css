@@ -1439,11 +1439,11 @@ h1, h2, h3 {
 		height: 30px;
 	}
 
-	/* Legenda arqueada por cima do botão — raio maior que o círculo do
-	   botão (30px) pra sobrar espaço entre os dois. Meia-volta só (não
-	   fecha 360°) porque texto na metade de baixo de um círculo sai de
-	   cabeça para baixo pra quem olha de fora — problema clássico de
-	   textPath circular. */
+	/* Legenda circulando o botão — uma metade em cima, outra embaixo,
+	   raio maior que o círculo do botão (30px) pra sobrar espaço entre os
+	   dois. O arco de baixo percorre o caminho na direção oposta (direita
+	   pra esquerda) pra que o texto fique voltado pra fora do círculo,
+	   como num selo/moeda — estilo clássico de badge circular. */
 	.whatsapp-orbit {
 		position: absolute;
 		top: 50%;
@@ -1458,7 +1458,8 @@ h1, h2, h3 {
 		font-family: var(--abe-font-heading);
 		font-weight: 600;
 		font-size: 7.5px;
-		letter-spacing: 0.06em;
+		letter-spacing: 0.12em;
+		word-spacing: 0.3em;
 		fill: var(--abe-ink);
 	}
 }
