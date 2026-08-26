@@ -1493,12 +1493,11 @@ h1, h2, h3 {
 	.mobile-tabbar {
 		display: flex;
 		position: fixed;
-		left: 20px;
-		right: 20px;
-		bottom: 20px;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		z-index: 50;
-		/* Mesma cor/transparência do menu aberto (.nav-drawer). */
-		background: rgba(26, 26, 26, 0.95);
+		background: #f6f6f4;
 		border-radius: 16px;
 		box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
 		padding: 16px 8px;
@@ -1511,7 +1510,7 @@ h1, h2, h3 {
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
-		color: #fff;
+		color: var(--abe-ink);
 		font-family: var(--abe-font-heading);
 		font-weight: 600;
 		font-size: 0.65rem;
@@ -1523,7 +1522,7 @@ h1, h2, h3 {
 	.mobile-tabbar-icon {
 		width: 24px;
 		height: 24px;
-		color: #d7e26a;
+		color: var(--abe-green);
 	}
 
 	.mobile-tabbar-item-soon {
