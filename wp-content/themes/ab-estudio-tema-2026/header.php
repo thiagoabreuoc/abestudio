@@ -111,6 +111,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				)
 			);
 			?>
+			<a class="nav-drawer-login nav-drawer-login-end" href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Entrar', 'abestudio2026' ); ?></a>
 		</nav>
 	</div>
 	<div class="nav-overlay" data-nav-overlay></div>

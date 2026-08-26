@@ -286,6 +286,14 @@ h1, h2, h3 {
 	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+/* Cópia do botão "Entrar" reaproveitada ao final do menu — some por
+   padrão, só aparece via media query (ver 501-768px mais abaixo). O
+   original em .nav-drawer-header some nessa mesma faixa pra não duplicar
+   visualmente. */
+.nav-drawer-login-end {
+	display: none;
+}
+
 .nav-drawer-login:hover,
 .nav-drawer-login:focus {
 	background: #fff;
@@ -1371,6 +1379,41 @@ h1, h2, h3 {
 	   do logo. Empurra pra baixo o suficiente pra limpar a altura dele. */
 	.nav-drawer-header .nav-drawer-login {
 		margin-top: 70px;
+	}
+}
+
+/* Só entre 501 e 768px: "Entrar" sai do topo do drawer (perto do logo)
+   e passa a aparecer no final da lista de categorias — usa a cópia
+   .nav-drawer-login-end (ver HTML em header.php), escondendo a
+   original. 150px de espaço entre o logo e a primeira categoria: como
+   o "Entrar" não ocupa mais espaço no header do drawer, esse respiro
+   vem só do margin-top do <nav>. */
+@media (min-width: 501px) and (max-width: 768px) {
+	.nav-drawer-header .nav-drawer-login {
+		display: none;
+	}
+
+	.nav-drawer nav {
+		margin-top: 150px;
+	}
+
+	.nav-drawer-login-end {
+		display: flex;
+		width: fit-content;
+		margin: 24px auto 0;
+	}
+}
+
+/* Entre 501 e 767px o logo é position:fixed (ver @media max-width:767px
+   acima), então ele não conta na altura do fluxo de .nav-drawer-header
+   — o margin-top de 150px lá em cima mediria a partir de um ponto 27px
+   ACIMA do rodapé visual do logo (a altura do logo nessa faixa,
+   76×27px). Compensa aqui só nessa sub-faixa pra o espaço visual bater
+   150px de verdade; em 768px o logo já está no fluxo normal, então a
+   regra de cima já é exata sem precisar desse ajuste. */
+@media (min-width: 501px) and (max-width: 767px) {
+	.nav-drawer nav {
+		margin-top: 177px;
 	}
 }
 
