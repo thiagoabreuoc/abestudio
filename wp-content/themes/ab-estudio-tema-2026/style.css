@@ -1438,8 +1438,31 @@ h1, h2, h3 {
 		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
 		z-index: 45;
 		overflow: hidden;
+		transition: background 0.35s ease-in-out;
 	}
 
+	/* Verde oficial do WhatsApp no hover — deliberadamente fora da paleta
+	   do site, pra reconhecer a marca. */
+	.whatsapp-float:hover {
+		background: #25d366;
+	}
+
+	.whatsapp-float svg {
+		width: 30px;
+		height: 30px;
+		transition: fill 0.35s ease-in-out;
+	}
+
+	/* Ícone assume o mesmo degradê do "ab" mascarado do banner/logo no
+	   hover (ver #abe-icon-gradient, definido em header.php). */
+	.whatsapp-float:hover svg {
+		fill: url(#abe-icon-gradient);
+	}
+
+	/* Pulso contínuo — sempre ativo, independente de hover, pra chamar
+	   atenção pro botão (padrão comum de CTA flutuante de WhatsApp). As
+	   duas cópias (::before/::after) ficam meio ciclo defasadas para que
+	   sempre haja um círculo em andamento. */
 	.whatsapp-float::before,
 	.whatsapp-float::after {
 		content: "";
@@ -1454,20 +1477,11 @@ h1, h2, h3 {
 		opacity: 0;
 		z-index: -1;
 		pointer-events: none;
+		animation: abe-btn-glow 2.6s ease-in-out infinite;
 	}
 
-	.whatsapp-float:hover::before,
-	.whatsapp-float:hover::after {
-		animation: abe-btn-glow 1.3s ease-in-out 1;
-	}
-
-	.whatsapp-float:hover::after {
-		animation-delay: 0.3s;
-	}
-
-	.whatsapp-float svg {
-		width: 30px;
-		height: 30px;
+	.whatsapp-float::after {
+		animation-delay: 1.3s;
 	}
 }
 
@@ -1506,8 +1520,8 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.whatsapp-float:hover::before,
-	.whatsapp-float:hover::after,
+	.whatsapp-float::before,
+	.whatsapp-float::after,
 	.apps-badge-desktop:hover::before,
 	.apps-badge-desktop:hover::after {
 		animation: none;
