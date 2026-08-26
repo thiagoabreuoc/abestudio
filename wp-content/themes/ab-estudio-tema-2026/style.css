@@ -634,7 +634,10 @@ h1, h2, h3 {
 
 .hero-quote {
 	display: flex;
-	align-items: center;
+	/* baseline (não center): o dash acompanha a base da primeira linha do
+	   texto em qualquer resolução, em vez de ficar centralizado na altura
+	   total (que muda conforme o texto quebra ou não). */
+	align-items: baseline;
 	justify-content: flex-start;
 	gap: 14px;
 	font-size: 1.05rem;
@@ -1155,14 +1158,11 @@ h1, h2, h3 {
 	/* Deixa o travessão + texto quebrar linha se passar da largura da
 	   coluna, em vez de vazar pra fora (nowrap era herdado da regra
 	   base). .hero-quote-wrap já delimita a largura disponível via
-	   left/right, então a quebra respeita a coluna automaticamente. */
+	   left/right, então a quebra respeita a coluna automaticamente.
+	   align-items:baseline já vem da regra base (.hero-quote), vale pra
+	   qualquer resolução. */
 	.hero-quote {
 		white-space: normal;
-		/* baseline (não flex-start): alinha o travessão exatamente na
-		   base da primeira linha do texto — como o dash não tem texto
-		   próprio, sua "baseline" é a borda inferior da caixa, que cai
-		   junto da baseline da primeira linha do texto ao lado. */
-		align-items: baseline;
 	}
 }
 
