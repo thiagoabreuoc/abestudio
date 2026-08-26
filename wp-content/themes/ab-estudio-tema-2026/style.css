@@ -1074,6 +1074,13 @@ h1, h2, h3 {
 	}
 }
 
+/* 10px a menos que os 50px acima, só até 500px. */
+@media (max-width: 500px) {
+	.about-hello {
+		padding-top: 40px;
+	}
+}
+
 /* +50px de espaçamento entre o hero-banner e a seção Sobre, igual ao
    pedido acima (>=1025px), mantendo o degrau que já existia em 600px
    (a faixa mais estreita partia de uma base menor). */
@@ -1262,6 +1269,12 @@ h1, h2, h3 {
 
 	.hero-title span {
 		display: inline;
+	}
+
+	/* No tamanho reduzido daqui, os 2px de contorno da regra base ficam
+	   proporcionalmente mais grossos que no desktop — afina um pouco. */
+	.hero-title-outline {
+		-webkit-text-stroke: 1px #fff;
 	}
 
 	.scroll-down {
