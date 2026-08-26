@@ -1394,26 +1394,31 @@ h1, h2, h3 {
 	}
 
 	.nav-drawer nav {
-		margin-top: 150px;
+		margin-top: 60px;
 	}
 
+	/* Fixo na parte de baixo do drawer (que ocupa 100vh), em vez de fluir
+	   depois do último item do menu. */
 	.nav-drawer-login-end {
 		display: flex;
-		width: fit-content;
-		margin: 24px auto 0;
+		position: fixed;
+		left: 50%;
+		bottom: 40px;
+		transform: translateX(-50%);
+		z-index: 10;
 	}
 }
 
 /* Entre 501 e 767px o logo é position:fixed (ver @media max-width:767px
    acima), então ele não conta na altura do fluxo de .nav-drawer-header
-   — o margin-top de 150px lá em cima mediria a partir de um ponto 27px
+   — o margin-top de 60px lá em cima mediria a partir de um ponto 27px
    ACIMA do rodapé visual do logo (a altura do logo nessa faixa,
    76×27px). Compensa aqui só nessa sub-faixa pra o espaço visual bater
-   150px de verdade; em 768px o logo já está no fluxo normal, então a
+   60px de verdade; em 768px o logo já está no fluxo normal, então a
    regra de cima já é exata sem precisar desse ajuste. */
 @media (min-width: 501px) and (max-width: 767px) {
 	.nav-drawer nav {
-		margin-top: 177px;
+		margin-top: 87px;
 	}
 }
 
