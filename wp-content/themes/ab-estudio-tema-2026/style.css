@@ -1457,10 +1457,32 @@ h1, h2, h3 {
 	.whatsapp-orbit text {
 		font-family: var(--abe-font-heading);
 		font-weight: 600;
-		font-size: 7.5px;
+		font-size: 8.5px;
 		letter-spacing: 0.12em;
 		word-spacing: 0.3em;
 		fill: var(--abe-ink);
+	}
+
+	/* Gira o anel de texto continuamente ao redor do próprio centro do
+	   botão (60,60 no viewBox). transform-box:view-box permite usar essa
+	   coordenada do SVG como transform-origin em vez do bounding box do
+	   texto (que muda de tamanho conforme o conteúdo). */
+	.whatsapp-orbit-spin {
+		transform-box: view-box;
+		transform-origin: 60px 60px;
+		animation: abe-orbit-spin 16s linear infinite;
+	}
+}
+
+@keyframes abe-orbit-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.whatsapp-orbit-spin {
+		animation: none;
 	}
 }
 
