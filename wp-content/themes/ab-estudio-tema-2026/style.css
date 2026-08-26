@@ -704,6 +704,16 @@ h1, h2, h3 {
 	padding-left: 100px;
 }
 
+/* Entre 501 e 1024px a foto volta a ficar encostada na borda esquerda
+   da coluna (sem o padding de 100px do desktop largo) — nessa faixa a
+   coluna já é bem mais estreita, então o respiro extra sobra menos e
+   empurra a pessoa demais pra dentro. */
+@media (min-width: 501px) and (max-width: 1024px) {
+	.hero-photo {
+		padding-left: 0;
+	}
+}
+
 .hero-photo img {
 	height: auto;
 	min-height: 500px;
