@@ -1495,7 +1495,7 @@ h1, h2, h3 {
 		position: fixed;
 		left: 40px;
 		right: 40px;
-		bottom: 40px;
+		bottom: 30px;
 		z-index: 50;
 		background: #f6f6f4;
 		border-radius: 16px;
