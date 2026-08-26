@@ -843,36 +843,6 @@ h1, h2, h3 {
 	background: var(--abe-ink);
 	color: #fff;
 	box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.35);
-	overflow: hidden;
-}
-
-/* Círculos crescendo por dentro do botão, esmaecendo ao final. O
-   z-index:-1 mantém os círculos acima do fundo do botão mas abaixo do
-   ícone/texto (conteúdo em fluxo normal sempre pinta por cima). Só
-   dispara no hover, uma única vez (sem animation no estado de repouso). */
-.apps-badge-desktop::before,
-.apps-badge-desktop::after {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 14px;
-	height: 14px;
-	margin: -7px 0 0 -7px;
-	border-radius: 50%;
-	background: radial-gradient(circle, #d7e26a 0%, #d7e26a 65%, transparent 100%);
-	opacity: 0;
-	z-index: -1;
-	pointer-events: none;
-}
-
-.apps-badge-desktop:hover::before,
-.apps-badge-desktop:hover::after {
-	animation: abe-btn-glow 1.3s ease-in-out 1;
-}
-
-.apps-badge-desktop:hover::after {
-	animation-delay: 0.3s;
 }
 
 .apps-badge-desktop:hover {
@@ -1448,6 +1418,7 @@ h1, h2, h3 {
 		color: #fff;
 		box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
 		z-index: 45;
+		overflow: hidden;
 		transition: background 0.35s ease-in-out;
 	}
 
@@ -1461,6 +1432,31 @@ h1, h2, h3 {
 	.whatsapp-float svg {
 		width: 30px;
 		height: 30px;
+	}
+
+	/* Pulso contínuo — sempre ativo, independente de hover, pra chamar
+	   atenção pro botão (padrão comum de CTA flutuante de WhatsApp). As
+	   duas cópias (::before/::after) ficam meio ciclo defasadas para que
+	   sempre haja um círculo em andamento. */
+	.whatsapp-float::before,
+	.whatsapp-float::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 14px;
+		height: 14px;
+		margin: -7px 0 0 -7px;
+		border-radius: 50%;
+		background: radial-gradient(circle, #d7e26a 0%, #d7e26a 65%, transparent 100%);
+		opacity: 0;
+		z-index: -1;
+		pointer-events: none;
+		animation: abe-btn-glow 2.6s ease-in-out infinite;
+	}
+
+	.whatsapp-float::after {
+		animation-delay: 1.3s;
 	}
 }
 
@@ -1499,8 +1495,8 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.apps-badge-desktop:hover::before,
-	.apps-badge-desktop:hover::after {
+	.whatsapp-float::before,
+	.whatsapp-float::after {
 		animation: none;
 	}
 }
