@@ -1499,10 +1499,11 @@ h1, h2, h3 {
 		z-index: 50;
 		background: #f6f6f4;
 		border-radius: 16px;
-		/* Sombra pra cima — a barra agora fica colada no rodapé da tela,
-		   então uma sombra tradicional (pra baixo) ficaria escondida além
-		   da borda inferior. */
-		box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+		/* Sombra pra cima, mais forte — reforça a leitura de que a barra
+		   flutua por cima do conteúdo do site, projetando sombra nele por
+		   trás. Pra baixo/lados não faz sentido: a barra fica colada nas
+		   três bordas da tela, sem gap onde a sombra apareceria. */
+		box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.18);
 		padding: 16px 8px;
 	}
 
