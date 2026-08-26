@@ -806,8 +806,15 @@ h1, h2, h3 {
 	z-index: 20;
 }
 
-.scroll-down-icon-arrow {
+/* Seta em todas as resoluções agora, com a mesma animação contínua de
+   "quicar" que era só do mobile — sem depender de :hover. */
+.scroll-down-icon-mouse {
 	display: none;
+}
+
+.scroll-down-icon-arrow {
+	display: block;
+	animation: abe-scroll-bounce 1.4s ease-in-out infinite;
 }
 
 .scroll-down:hover {
@@ -1300,18 +1307,6 @@ h1, h2, h3 {
 		-webkit-text-stroke: 1px #fff;
 	}
 
-	/* Seta em vez do ícone de mouse — nessa faixa não dá scroll de mouse
-	   mesmo, então a seta é mais direta. */
-	.scroll-down-icon-mouse {
-		display: none;
-	}
-
-	.scroll-down-icon-arrow {
-		display: block;
-		/* Sem :hover no touch, então anima direto e continuamente. */
-		animation: abe-scroll-bounce 1.4s ease-in-out infinite;
-	}
-
 	.hero-quote-wrap {
 		display: none;
 	}
@@ -1528,12 +1523,12 @@ h1, h2, h3 {
 		right: 8px;
 		bottom: 8px;
 		z-index: 50;
-		background: #f6f6f4;
+		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
+		   página, aquele tom quase não se distinguia. Border reforça a
+		   borda pra não depender só da sombra. */
+		background: #e8e8e6;
+		border: 1px solid rgba(0, 0, 0, 0.08);
 		border-radius: 16px;
-		/* Sombra pra cima, mais forte — reforça a leitura de que a barra
-		   flutua por cima do conteúdo do site, projetando sombra nele por
-		   trás. Pra baixo/lados não faz sentido: a barra fica colada nas
-		   três bordas da tela, sem gap onde a sombra apareceria. */
 		box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.18);
 		padding: 16px 8px;
 	}
