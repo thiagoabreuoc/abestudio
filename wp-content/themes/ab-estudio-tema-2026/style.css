@@ -1137,6 +1137,7 @@ h1, h2, h3 {
 		grid-row: 2;
 		text-align: left;
 		padding-left: 10px;
+		padding-right: 15px;
 		position: relative;
 		top: -4px;
 	}
