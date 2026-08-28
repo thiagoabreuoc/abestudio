@@ -18,7 +18,7 @@ get_header();
 ?>
 
 <div class="hero-wrap">
-	<section class="hero-banner">
+	<section class="hero-banner" data-section-name="<?php esc_attr_e( 'Início', 'abestudio2026' ); ?>">
 		<span class="hero-glow-0" aria-hidden="true"></span>
 		<span class="hero-glow-1" aria-hidden="true"></span>
 
@@ -62,7 +62,7 @@ get_header();
 	</button>
 </div>
 
-<section class="about-hello">
+<section class="about-hello" data-section-name="<?php esc_attr_e( 'Sobre', 'abestudio2026' ); ?>">
 	<div class="container">
 		<div class="about-hello-row">
 			<div class="about-hello-word"><?php esc_html_e( 'Olá.', 'abestudio2026' ); ?></div>

@@ -188,3 +188,56 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	window.addEventListener( 'resize', update );
 	update();
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	var badge = document.querySelector( '[data-section-badge]' );
+	var sections = Array.prototype.slice.call( document.querySelectorAll( '[data-section-name]' ) );
+
+	if ( ! badge || ! sections.length ) {
+		return;
+	}
+
+	// Só abaixo de 500px. O rótulo mostra o nome da sessão só enquanto o
+	// topo dela está cruzando o topo da viewport (dentro de TOP_ZONE px
+	// pra cima ou pra baixo) — soma ao continuar rolando pra dentro da
+	// sessão, e volta a aparecer quando a próxima sessão cruzar o topo.
+	var mq = window.matchMedia( '(max-width: 500px)' );
+	var TOP_ZONE = 60;
+	var ticking = false;
+
+	function render() {
+		ticking = false;
+
+		if ( ! mq.matches ) {
+			badge.classList.remove( 'is-visible' );
+			return;
+		}
+
+		var active = null;
+
+		sections.forEach( function ( section ) {
+			var top = section.getBoundingClientRect().top;
+			if ( top >= -TOP_ZONE && top <= TOP_ZONE ) {
+				active = section;
+			}
+		} );
+
+		if ( active ) {
+			badge.textContent = active.dataset.sectionName;
+			badge.classList.add( 'is-visible' );
+		} else {
+			badge.classList.remove( 'is-visible' );
+		}
+	}
+
+	function requestRender() {
+		if ( ! ticking ) {
+			ticking = true;
+			window.requestAnimationFrame( render );
+		}
+	}
+
+	window.addEventListener( 'scroll', requestRender, { passive: true } );
+	window.addEventListener( 'resize', requestRender );
+	render();
+} );

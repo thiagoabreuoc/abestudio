@@ -1607,6 +1607,12 @@ h1, h2, h3 {
 	display: none;
 }
 
+/* Rótulo vertical com o nome da sessão atual — só no mobile (ver
+   @media max-width:500px abaixo, que troca pra display:block). */
+.section-badge {
+	display: none;
+}
+
 @media (max-width: 500px) {
 	body {
 		padding-bottom: 145px;
@@ -1669,6 +1675,37 @@ h1, h2, h3 {
 	.mobile-tabbar-icon[fill="none"] {
 		fill: none;
 		stroke: var(--abe-ink);
+	}
+
+	/* Rótulo vertical da sessão atual — some fora da área de conteúdo,
+	   colado na borda esquerda do navegador. Visibilidade controlada via
+	   .is-visible (ver main.js): aparece só enquanto o topo da sessão
+	   está cruzando o topo da viewport, some ao sair dessa faixa. */
+	.section-badge {
+		display: block;
+		position: fixed;
+		top: 50%;
+		left: 4px;
+		transform: translateY(-50%);
+		writing-mode: vertical-rl;
+		text-orientation: sideways;
+		background: #e8e8e6;
+		color: var(--abe-ink);
+		font-family: var(--abe-font-heading);
+		font-weight: 600;
+		font-size: 0.8rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		padding: 2px 4px;
+		border-radius: 3px;
+		z-index: 60;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.25s ease;
+	}
+
+	.section-badge.is-visible {
+		opacity: 1;
 	}
 }
 
