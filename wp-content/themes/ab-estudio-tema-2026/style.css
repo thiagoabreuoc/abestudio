@@ -67,6 +67,42 @@ h1, h2, h3 {
 	z-index: 500;
 }
 
+/* Sticky (não fixed): mantém o header no fluxo normal do documento —
+   fixed removeria o espaço que ele ocupa, e a .hero-banner (que usa
+   margin-top negativo pra deslizar por baixo do header) desalinharia
+   tudo. Sticky preserva o espaço e ainda assim gruda no topo ao rolar. */
+@media (min-width: 501px) {
+	.site-header {
+		position: sticky;
+		top: 0;
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.site-header.is-scrolled {
+		background-color: #fff;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+	}
+
+	/* Hover/ativo do menu era branco (pensado pro header transparente
+	   sobre o banner colorido) — em cima do fundo branco do header
+	   "grudado", ficaria invisível. Troca pro verde da marca só nesse
+	   estado. */
+	.site-header.is-scrolled .header-nav-menu a:hover,
+	.site-header.is-scrolled .header-nav-menu a:focus,
+	.site-header.is-scrolled .header-nav-menu .current-menu-item > a {
+		color: var(--abe-green);
+	}
+
+	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a {
+		color: var(--abe-ink);
+	}
+
+	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:hover,
+	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
+		color: var(--abe-green);
+	}
+}
+
 .site-header .container {
 	display: flex;
 	align-items: center;
