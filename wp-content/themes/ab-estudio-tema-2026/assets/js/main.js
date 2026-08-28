@@ -101,3 +101,29 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 	showPhrase();
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	var wrap = document.querySelector( '.whatsapp-wrap' );
+
+	if ( ! wrap ) {
+		return;
+	}
+
+	// Acima de 768px o botão nasce no rodapé da tela; assim que a página
+	// começa a rolar, sobe e se fixa no meio da tela (classe .is-scrolled,
+	// ver CSS). Abaixo de 769px a classe não tem efeito (a media query
+	// que a usa só existe para min-width:769px).
+	var mq = window.matchMedia( '(min-width: 769px)' );
+
+	function update() {
+		if ( mq.matches && window.scrollY > 0 ) {
+			wrap.classList.add( 'is-scrolled' );
+		} else {
+			wrap.classList.remove( 'is-scrolled' );
+		}
+	}
+
+	window.addEventListener( 'scroll', update, { passive: true } );
+	window.addEventListener( 'resize', update );
+	update();
+} );
