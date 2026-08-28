@@ -1525,14 +1525,18 @@ h1, h2, h3 {
 		position: fixed;
 		left: 8px;
 		right: 8px;
-		bottom: 8px;
+		bottom: 0;
 		z-index: 50;
 		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
-		   página, aquele tom quase não se distinguia. Borda sutil marca
-		   bem o contorno sem depender só da sombra (reduzida um pouco). */
+		   página, aquele tom quase não se distinguia. Borda mais sutil que
+		   antes, mas mantida mesmo encostada no rodapé (bottom:0) — sem
+		   ela, a aresta de baixo se perderia contra a borda da tela. */
 		background: #e8e8e6;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		border-radius: 4px;
+		border: 1px solid rgba(0, 0, 0, 0.06);
+		/* Valor bem acima da altura real da barra — o navegador trava
+		   automaticamente no máximo que cabe (metade da altura), dando o
+		   arredondado mais generoso possível (efeito "pill"). */
+		border-radius: 999px;
 		box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.13);
 		padding: 16px 8px;
 	}
