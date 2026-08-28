@@ -1096,6 +1096,8 @@ h1, h2, h3 {
 		grid-row: 2;
 		text-align: left;
 		padding-left: 20px;
+		position: relative;
+		top: -4px;
 	}
 }
 
@@ -1526,10 +1528,12 @@ h1, h2, h3 {
 		bottom: 8px;
 		z-index: 50;
 		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
-		   página, aquele tom quase não se distinguia. */
+		   página, aquele tom quase não se distinguia. Borda sutil marca
+		   bem o contorno sem depender só da sombra (reduzida um pouco). */
 		background: #e8e8e6;
+		border: 1px solid rgba(0, 0, 0, 0.1);
 		border-radius: 4px;
-		box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.18);
+		box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.13);
 		padding: 16px 8px;
 	}
 
@@ -1772,7 +1776,13 @@ h1, h2, h3 {
 
 @media (min-width: 769px) {
 	.whatsapp-wrap {
-		top: 684px;
+		/* min() trava o valor em no máximo 100vh-92px (60px do botão +
+		   32px de folga): em monitores mais baixos (ex: 1366×768, onde a
+		   altura útil do viewport do navegador é bem menor que 768px),
+		   top:684px fixo empurrava o botão pra fora da área visível —
+		   sumia sem precisar rolar a página, já que position:fixed não
+		   "aparece" ao rolar se o valor ultrapassa o viewport. */
+		top: min(684px, calc(100vh - 92px));
 		bottom: auto;
 	}
 }
