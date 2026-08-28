@@ -109,13 +109,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Acima de 500px o botão nasce fixo 30px abaixo do hero-banner e sobe
-	// até parar fixo no meio da tela conforme a página rola, acompanhando
-	// o scroll em tempo real (sem "salto" animado por CSS) — mesma lógica
-	// nas duas faixas (501-768px e 769px+) agora.
+	// Acima de 500px o botão nasce fixo 30px abaixo do hero-banner e
+	// acompanha o scroll 1:1 (mesma taxa da página, sem lag/adiantamento
+	// — por isso não "descola" do banner), até no máximo parar fixo no
+	// meio vertical da tela. Mesma lógica nas duas faixas (501-768px e
+	// 769px+).
 	var mq = window.matchMedia( '(min-width: 501px)' );
 	var BANNER_GAP = 30;
-	var TRANSITION_DISTANCE = 300; // px de scroll até chegar no meio da tela
 	var banner = document.querySelector( '.hero-banner' );
 	var ticking = false;
 
@@ -123,7 +123,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// da posição do banner em coordenadas do DOCUMENTO, fixa, indepen-
 	// dente do scroll atual — getBoundingClientRect muda a cada scroll,
 	// o que faria o "ponto de partida" se mover junto com o progresso,
-	// bagunçando a interpolação.
+	// bagunçando o cálculo.
 	function bannerBottomInDocument() {
 		return banner.offsetTop + banner.offsetHeight;
 	}
@@ -140,11 +140,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var height = wrap.offsetHeight;
 		var viewportHeight = window.innerHeight;
 		var startTop = bannerBottomInDocument() + BANNER_GAP;
-		var endTop = ( viewportHeight - height ) / 2;
-		var progress = Math.min( window.scrollY / TRANSITION_DISTANCE, 1 );
+		var centerTop = ( viewportHeight - height ) / 2;
 
 		wrap.style.bottom = 'auto';
-		wrap.style.top = ( startTop + ( endTop - startTop ) * progress ) + 'px';
+		wrap.style.top = Math.max( centerTop, startTop - window.scrollY ) + 'px';
 	}
 
 	function requestRender() {
