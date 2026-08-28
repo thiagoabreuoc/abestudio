@@ -1825,21 +1825,12 @@ h1, h2, h3 {
 	}
 }
 
-/* Acima de 768px o botão nasce no rodapé da tela (bottom:32px, herdado
-   da regra base) — só quando a página começa a ser rolada (JS adiciona
-   .is-scrolled, ver main.js) ele sobe e se fixa no meio da tela
-   (50vh), com uma transição suave entre os dois estados. */
-@media (min-width: 769px) {
-	.whatsapp-wrap {
-		transition: top 0.4s ease, bottom 0.4s ease;
-	}
-
-	.whatsapp-wrap.is-scrolled {
-		top: 50%;
-		bottom: auto;
-		transform: translateY(-50%);
-	}
-}
+/* Acima de 768px o posicionamento vertical (nasce no rodapé, sobe até
+   parar no meio da tela conforme rola) é todo calculado via JS
+   (main.js), acompanhando o scroll em tempo real via
+   requestAnimationFrame — não dá pra fazer só com CSS porque a posição
+   muda continuamente com o quanto a página já rolou, não em dois
+   estados fixos. */
 
 /* Some com o fundo branco atrás do botão só acima de 768px — continua
    ativo em 501-768px. */

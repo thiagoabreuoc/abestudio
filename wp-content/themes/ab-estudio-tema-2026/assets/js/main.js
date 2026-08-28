@@ -109,21 +109,44 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Acima de 768px o botão nasce no rodapé da tela; assim que a página
-	// começa a rolar, sobe e se fixa no meio da tela (classe .is-scrolled,
-	// ver CSS). Abaixo de 769px a classe não tem efeito (a media query
-	// que a usa só existe para min-width:769px).
+	// Acima de 768px o botão nasce grudado no rodapé da tela e sobe até
+	// parar fixo no meio dela — mas em vez de um "salto" animado por
+	// CSS (transition com duração fixa, destacada do gesto de scroll),
+	// a posição é calculada a cada evento de scroll, proporcional ao
+	// quanto já rolou: acompanha o dedo/mouse em tempo real, sem pulos,
+	// e sem depender de quão rápido o usuário rola.
 	var mq = window.matchMedia( '(min-width: 769px)' );
+	var BOTTOM_OFFSET = 32;
+	var TRANSITION_DISTANCE = 300; // px de scroll até chegar no meio da tela
+	var ticking = false;
 
-	function update() {
-		if ( mq.matches && window.scrollY > 0 ) {
-			wrap.classList.add( 'is-scrolled' );
-		} else {
-			wrap.classList.remove( 'is-scrolled' );
+	function render() {
+		ticking = false;
+
+		if ( ! mq.matches ) {
+			wrap.style.top = '';
+			wrap.style.bottom = '';
+			return;
+		}
+
+		var height = wrap.offsetHeight;
+		var viewportHeight = window.innerHeight;
+		var startTop = viewportHeight - BOTTOM_OFFSET - height;
+		var endTop = ( viewportHeight - height ) / 2;
+		var progress = Math.min( window.scrollY / TRANSITION_DISTANCE, 1 );
+
+		wrap.style.bottom = 'auto';
+		wrap.style.top = ( startTop + ( endTop - startTop ) * progress ) + 'px';
+	}
+
+	function requestRender() {
+		if ( ! ticking ) {
+			ticking = true;
+			window.requestAnimationFrame( render );
 		}
 	}
 
-	window.addEventListener( 'scroll', update, { passive: true } );
-	window.addEventListener( 'resize', update );
-	update();
+	window.addEventListener( 'scroll', requestRender, { passive: true } );
+	window.addEventListener( 'resize', requestRender );
+	render();
 } );
