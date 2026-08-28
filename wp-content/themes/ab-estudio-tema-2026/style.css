@@ -1819,14 +1819,22 @@ h1, h2, h3 {
 	}
 }
 
-@media (min-width: 769px) {
+/* Exatos 50px abaixo do fim do hero-banner — medido de verdade
+   (getBoundingClientRect), não chutado. O banner tem duas alturas
+   diferentes aqui: 644.19px até 1024px, 649.56px a partir de 1025px
+   (a mudança bate exatamente no breakpoint que já usamos pro "Olá."),
+   por isso duas regras em vez de uma só. min() protege contra sumir
+   em viewports baixos. */
+@media (min-width: 769px) and (max-width: 1024px) {
 	.whatsapp-wrap {
-		/* 484px (igual à faixa 501-768px) fica DENTRO do banner aqui —
-		   nessa faixa o hero-banner é bem mais alto (~650px, não 450px),
-		   então 484px sobrepunha o botão no banner. 684px garante uma
-		   folga real abaixo do banner; o min() mantém a proteção contra
-		   sumir em viewports baixos. */
-		top: min(684px, calc(100vh - 92px));
+		top: min(694px, calc(100vh - 92px));
+		bottom: auto;
+	}
+}
+
+@media (min-width: 1025px) {
+	.whatsapp-wrap {
+		top: min(700px, calc(100vh - 92px));
 		bottom: auto;
 	}
 }
