@@ -1768,12 +1768,18 @@ h1, h2, h3 {
 		pointer-events: none;
 	}
 
+	/* letter/word-spacing reduzidos de propósito: com os valores
+	   anteriores (0.12em/0.3em) o texto renderizado (128.5px, medido via
+	   getComputedTextLength) ficava mais LARGO que o próprio arco
+	   (122.5px, getTotalLength) — o excesso cortava a pontinha do "•"
+	   no final da frase, já que texto além do comprimento do path
+	   simplesmente não é desenhado. */
 	.whatsapp-orbit text {
 		font-family: var(--abe-font-heading);
 		font-weight: 600;
 		font-size: 8.5px;
-		letter-spacing: 0.12em;
-		word-spacing: 0.3em;
+		letter-spacing: 0.08em;
+		word-spacing: 0.15em;
 		fill: var(--abe-ink);
 	}
 
