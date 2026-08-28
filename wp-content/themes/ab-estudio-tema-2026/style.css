@@ -102,13 +102,6 @@ h1, h2, h3 {
 		color: var(--abe-green);
 	}
 
-	/* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
-	   — na barra flutuante troca pro mesmo verde do hover das categorias. */
-	.site-header.is-scrolled .apps-badge-desktop:hover {
-		background: var(--abe-green);
-		color: var(--abe-ink);
-	}
-
 	/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
 	   degradê usado no logo do menu aberto (.nav-drawer-header). */
 	.site-header.is-scrolled .site-logo-mark {
@@ -1708,6 +1701,15 @@ h1, h2, h3 {
 	.apps-badge-text-nossos {
 		display: none;
 	}
+
+	/* Barra flutuante: só nessa faixa (501-768px) o hover do "Nossos Apps"
+	   troca pro verde da marca (mesmo verde do hover das categorias), com
+	   texto branco. Acima de 768px o hover do botão continua branco
+	   (regra base .apps-badge-desktop:hover). */
+	.site-header.is-scrolled .apps-badge-desktop:hover {
+		background: var(--abe-green);
+		color: #fff;
+	}
 }
 
 @media (min-width: 769px) {
@@ -1881,12 +1883,4 @@ h1, h2, h3 {
    acompanhando o scroll em tempo real via requestAnimationFrame — não
    dá pra fazer só com CSS porque a posição muda continuamente com o
    quanto a página já rolou, não em dois estados fixos. */
-
-/* Some com o fundo branco atrás do botão só acima de 768px — continua
-   ativo em 501-768px. */
-@media (min-width: 769px) {
-	.whatsapp-wrap::before {
-		display: none;
-	}
-}
 
