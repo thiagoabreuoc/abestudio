@@ -1128,7 +1128,7 @@ h1, h2, h3 {
 		grid-column: 1;
 		grid-row: 2;
 		text-align: right;
-		padding-right: 20px;
+		padding-right: 15px;
 		line-height: 1.55;
 	}
 
@@ -1136,7 +1136,7 @@ h1, h2, h3 {
 		grid-column: 2;
 		grid-row: 2;
 		text-align: left;
-		padding-left: 20px;
+		padding-left: 15px;
 		position: relative;
 		top: -4px;
 	}
@@ -1566,7 +1566,7 @@ h1, h2, h3 {
 		position: fixed;
 		left: 8px;
 		right: 8px;
-		bottom: 2px;
+		bottom: 4px;
 		z-index: 50;
 		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
 		   página, aquele tom quase não se distinguia. Borda mais sutil que
