@@ -1698,8 +1698,8 @@ h1, h2, h3 {
 		font-size: 0.8rem;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
-		padding: 4px 2px;
-		border-radius: 3px;
+		padding: 4px 8px;
+		border-radius: 999px;
 		z-index: 60;
 		opacity: 0;
 		pointer-events: none;

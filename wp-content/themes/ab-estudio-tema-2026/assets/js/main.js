@@ -204,42 +204,37 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var mq = window.matchMedia( '(max-width: 500px)' );
 	var TOP_ZONE = 60;
 	var ticking = false;
-	var docTops = [];
-	var prevScrollY = window.scrollY;
-
-	// Posição de cada sessão em coordenadas do DOCUMENTO (fixa,
-	// independente do scroll atual) — recalculada no resize, já que
-	// reflow pode mudar as alturas.
-	function computeDocTops() {
-		docTops = sections.map( function ( section ) {
-			return section.getBoundingClientRect().top + window.scrollY;
-		} );
-	}
+	// top (relativo à viewport, via getBoundingClientRect) de cada
+	// sessão no frame anterior — medido de novo a cada frame (não
+	// guardado em coordenadas de documento) pra não ficar desatualizado
+	// se a página re-fluir depois do load (fonte/imagem carregando).
+	var prevTops = sections.map( function ( section ) {
+		return section.getBoundingClientRect().top;
+	} );
 
 	function render() {
 		ticking = false;
 
 		if ( ! mq.matches ) {
 			badge.classList.remove( 'is-visible' );
-			prevScrollY = window.scrollY;
 			return;
 		}
 
-		var currentScrollY = window.scrollY;
-		// Compara a FAIXA percorrida desde o último frame (não só a
-		// posição atual): um scroll rápido (flick/roda do mouse) pode
-		// pular a zona de 120px inteira entre dois frames — sem isso, a
-		// sessão nunca seria detectada como "cruzada".
-		var lo = Math.min( prevScrollY, currentScrollY );
-		var hi = Math.max( prevScrollY, currentScrollY );
 		var active = null;
 
 		sections.forEach( function ( section, index ) {
-			var zoneLo = docTops[ index ] - TOP_ZONE;
-			var zoneHi = docTops[ index ] + TOP_ZONE;
-			if ( hi >= zoneLo && lo <= zoneHi ) {
+			var prevTop = prevTops[ index ];
+			var currentTop = section.getBoundingClientRect().top;
+			// Compara a FAIXA percorrida desde o último frame (não só a
+			// posição atual): um scroll rápido (flick/roda do mouse) pode
+			// pular a zona de 120px inteira entre dois frames — sem isso,
+			// a sessão nunca seria detectada como "cruzada".
+			var lo = Math.min( prevTop, currentTop );
+			var hi = Math.max( prevTop, currentTop );
+			if ( hi >= -TOP_ZONE && lo <= TOP_ZONE ) {
 				active = section;
 			}
+			prevTops[ index ] = currentTop;
 		} );
 
 		if ( active ) {
@@ -248,8 +243,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} else {
 			badge.classList.remove( 'is-visible' );
 		}
-
-		prevScrollY = currentScrollY;
 	}
 
 	function requestRender() {
@@ -259,13 +252,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 	}
 
-	function handleResize() {
-		computeDocTops();
-		requestRender();
-	}
-
-	computeDocTops();
 	window.addEventListener( 'scroll', requestRender, { passive: true } );
-	window.addEventListener( 'resize', handleResize );
+	window.addEventListener( 'resize', requestRender );
 	render();
 } );
