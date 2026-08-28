@@ -101,6 +101,12 @@ h1, h2, h3 {
 	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
 		color: var(--abe-green);
 	}
+
+	/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
+	   degradê usado no logo do menu aberto (.nav-drawer-header). */
+	.site-header.is-scrolled .site-logo-mark {
+		background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	}
 }
 
 .site-header .container {
