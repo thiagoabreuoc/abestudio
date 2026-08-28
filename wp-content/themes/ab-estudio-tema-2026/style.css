@@ -1814,24 +1814,18 @@ h1, h2, h3 {
 	}
 }
 
-/* Mesma regra do desktop (50px abaixo do fim do hero-banner, fixo no
-   scroll) — o valor de "top" muda porque a altura do banner muda entre
-   as faixas: 450px de 501 a 768px, 650px dali pra cima. */
 @media (min-width: 501px) and (max-width: 768px) {
 	.whatsapp-wrap {
-		/* top/bottom não entram mais aqui — controlados via JS (main.js),
-		   mesma lógica de "nasce no rodapé, sobe até o meio da tela
-		   acompanhando o scroll" usada acima de 768px. */
 		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 50px);
 	}
 }
 
-/* Acima de 768px o posicionamento vertical (nasce no rodapé, sobe até
-   parar no meio da tela conforme rola) é todo calculado via JS
-   (main.js), acompanhando o scroll em tempo real via
-   requestAnimationFrame — não dá pra fazer só com CSS porque a posição
-   muda continuamente com o quanto a página já rolou, não em dois
-   estados fixos. */
+/* Acima de 500px, top/bottom não entram mais aqui — o posicionamento
+   vertical (nasce 30px abaixo do hero-banner, sobe até parar no meio
+   da tela conforme rola) é todo calculado via JS (main.js),
+   acompanhando o scroll em tempo real via requestAnimationFrame — não
+   dá pra fazer só com CSS porque a posição muda continuamente com o
+   quanto a página já rolou, não em dois estados fixos. */
 
 /* Some com o fundo branco atrás do botão só acima de 768px — continua
    ativo em 501-768px. */

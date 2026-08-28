@@ -109,16 +109,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Acima de 500px o botão sobe e para fixo no meio da tela conforme a
-	// página rola, acompanhando o scroll em tempo real (sem "salto"
-	// animado por CSS) — igual às duas faixas, só o PONTO DE PARTIDA
-	// muda: em 501-768px começa 30px abaixo do hero-banner (medido de
-	// verdade via getBoundingClientRect, não chutado — a altura do
-	// banner varia um pouco dentro dessa faixa por outros motivos de
-	// layout); acima de 769px começa no rodapé da tela.
-	var mqNarrow = window.matchMedia( '(min-width: 501px) and (max-width: 768px)' );
-	var mqWide = window.matchMedia( '(min-width: 769px)' );
-	var BOTTOM_OFFSET = 32;
+	// Acima de 500px o botão nasce fixo 30px abaixo do hero-banner e sobe
+	// até parar fixo no meio da tela conforme a página rola, acompanhando
+	// o scroll em tempo real (sem "salto" animado por CSS) — mesma lógica
+	// nas duas faixas (501-768px e 769px+) agora.
+	var mq = window.matchMedia( '(min-width: 501px)' );
 	var BANNER_GAP = 30;
 	var TRANSITION_DISTANCE = 300; // px de scroll até chegar no meio da tela
 	var banner = document.querySelector( '.hero-banner' );
@@ -136,7 +131,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	function render() {
 		ticking = false;
 
-		if ( ! mqNarrow.matches && ! mqWide.matches ) {
+		if ( ! mq.matches || ! banner ) {
 			wrap.style.top = '';
 			wrap.style.bottom = '';
 			return;
@@ -144,14 +139,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		var height = wrap.offsetHeight;
 		var viewportHeight = window.innerHeight;
-		var startTop;
-
-		if ( mqNarrow.matches && banner ) {
-			startTop = bannerBottomInDocument() + BANNER_GAP;
-		} else {
-			startTop = viewportHeight - BOTTOM_OFFSET - height;
-		}
-
+		var startTop = bannerBottomInDocument() + BANNER_GAP;
 		var endTop = ( viewportHeight - height ) / 2;
 		var progress = Math.min( window.scrollY / TRANSITION_DISTANCE, 1 );
 
