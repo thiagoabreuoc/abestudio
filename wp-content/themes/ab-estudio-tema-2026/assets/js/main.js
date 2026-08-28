@@ -141,7 +141,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var viewportHeight = window.innerHeight;
 		var startTop = bannerBottomInDocument() + BANNER_GAP;
 		var endTop = ( viewportHeight - height ) / 2;
-		var progress = Math.min( window.scrollY / TRANSITION_DISTANCE, 1 );
+		// Clamp dos dois lados: alguns navegadores/touchpads reportam
+		// scrollY temporariamente negativo (ou acima do máximo) durante o
+		// "elástico" nativo de rebote no topo/fim da página. Sem o
+		// Math.max(0, ...), esse valor negativo mandava o cálculo pra
+		// fora do intervalo [startTop, endTop], fazendo o botão
+		// acompanhar visualmente esse rebote do navegador.
+		var progress = Math.max( 0, Math.min( window.scrollY / TRANSITION_DISTANCE, 1 ) );
 
 		wrap.style.bottom = 'auto';
 		wrap.style.top = ( startTop + ( endTop - startTop ) * progress ) + 'px';
