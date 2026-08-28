@@ -204,20 +204,40 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var mq = window.matchMedia( '(max-width: 500px)' );
 	var TOP_ZONE = 60;
 	var ticking = false;
+	var docTops = [];
+	var prevScrollY = window.scrollY;
+
+	// Posição de cada sessão em coordenadas do DOCUMENTO (fixa,
+	// independente do scroll atual) — recalculada no resize, já que
+	// reflow pode mudar as alturas.
+	function computeDocTops() {
+		docTops = sections.map( function ( section ) {
+			return section.getBoundingClientRect().top + window.scrollY;
+		} );
+	}
 
 	function render() {
 		ticking = false;
 
 		if ( ! mq.matches ) {
 			badge.classList.remove( 'is-visible' );
+			prevScrollY = window.scrollY;
 			return;
 		}
 
+		var currentScrollY = window.scrollY;
+		// Compara a FAIXA percorrida desde o último frame (não só a
+		// posição atual): um scroll rápido (flick/roda do mouse) pode
+		// pular a zona de 120px inteira entre dois frames — sem isso, a
+		// sessão nunca seria detectada como "cruzada".
+		var lo = Math.min( prevScrollY, currentScrollY );
+		var hi = Math.max( prevScrollY, currentScrollY );
 		var active = null;
 
-		sections.forEach( function ( section ) {
-			var top = section.getBoundingClientRect().top;
-			if ( top >= -TOP_ZONE && top <= TOP_ZONE ) {
+		sections.forEach( function ( section, index ) {
+			var zoneLo = docTops[ index ] - TOP_ZONE;
+			var zoneHi = docTops[ index ] + TOP_ZONE;
+			if ( hi >= zoneLo && lo <= zoneHi ) {
 				active = section;
 			}
 		} );
@@ -228,6 +248,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} else {
 			badge.classList.remove( 'is-visible' );
 		}
+
+		prevScrollY = currentScrollY;
 	}
 
 	function requestRender() {
@@ -237,7 +259,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 	}
 
+	function handleResize() {
+		computeDocTops();
+		requestRender();
+	}
+
+	computeDocTops();
 	window.addEventListener( 'scroll', requestRender, { passive: true } );
-	window.addEventListener( 'resize', requestRender );
+	window.addEventListener( 'resize', handleResize );
 	render();
 } );

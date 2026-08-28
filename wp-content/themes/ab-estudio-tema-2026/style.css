@@ -1686,7 +1686,9 @@ h1, h2, h3 {
 		position: fixed;
 		top: 50%;
 		left: 4px;
-		transform: translateY(-50%);
+		/* rotate(180deg) inverte o sentido de leitura de vertical-rl (que
+		   por padrão lê de cima pra baixo) pra baixo-pra-cima. */
+		transform: translateY(-50%) rotate(180deg);
 		writing-mode: vertical-rl;
 		text-orientation: sideways;
 		background: #e8e8e6;
@@ -1696,7 +1698,7 @@ h1, h2, h3 {
 		font-size: 0.8rem;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
-		padding: 2px 4px;
+		padding: 4px 2px;
 		border-radius: 3px;
 		z-index: 60;
 		opacity: 0;
