@@ -1819,8 +1819,9 @@ h1, h2, h3 {
    as faixas: 450px de 501 a 768px, 650px dali pra cima. */
 @media (min-width: 501px) and (max-width: 768px) {
 	.whatsapp-wrap {
-		top: 484px;
-		bottom: auto;
+		/* top/bottom não entram mais aqui — controlados via JS (main.js),
+		   mesma lógica de "nasce no rodapé, sobe até o meio da tela
+		   acompanhando o scroll" usada acima de 768px. */
 		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 50px);
 	}
 }

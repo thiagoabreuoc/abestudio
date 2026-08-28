@@ -109,13 +109,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Acima de 768px o botão nasce grudado no rodapé da tela e sobe até
+	// Acima de 500px (768px pra baixo e 769px pra cima, mesma lógica nas
+	// duas faixas) o botão nasce grudado no rodapé da tela e sobe até
 	// parar fixo no meio dela — mas em vez de um "salto" animado por
 	// CSS (transition com duração fixa, destacada do gesto de scroll),
 	// a posição é calculada a cada evento de scroll, proporcional ao
 	// quanto já rolou: acompanha o dedo/mouse em tempo real, sem pulos,
 	// e sem depender de quão rápido o usuário rola.
-	var mq = window.matchMedia( '(min-width: 769px)' );
+	var mq = window.matchMedia( '(min-width: 501px)' );
 	var BOTTOM_OFFSET = 32;
 	var TRANSITION_DISTANCE = 300; // px de scroll até chegar no meio da tela
 	var ticking = false;
