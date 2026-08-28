@@ -102,6 +102,13 @@ h1, h2, h3 {
 		color: var(--abe-green);
 	}
 
+	/* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
+	   — na barra flutuante troca pro mesmo verde do hover das categorias. */
+	.site-header.is-scrolled .apps-badge-desktop:hover {
+		background: var(--abe-green);
+		color: var(--abe-ink);
+	}
+
 	/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
 	   degradê usado no logo do menu aberto (.nav-drawer-header). */
 	.site-header.is-scrolled .site-logo-mark {

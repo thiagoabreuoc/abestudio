@@ -141,9 +141,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var viewportHeight = window.innerHeight;
 		var startTop = bannerBottomInDocument() + BANNER_GAP;
 		var centerTop = ( viewportHeight - height ) / 2;
+		// Math.max(0, ...): alguns navegadores/touchpads reportam scrollY
+		// momentaneamente negativo durante o "elástico" nativo de rebote
+		// ao passar do topo da página. Sem o clamp, esse valor negativo
+		// empurrava o botão pra baixo da posição de descanso por um
+		// instante, até o rebote assentar e ele voltar ao lugar.
+		var scrollY = Math.max( 0, window.scrollY );
 
 		wrap.style.bottom = 'auto';
-		wrap.style.top = Math.max( centerTop, startTop - window.scrollY ) + 'px';
+		wrap.style.top = Math.max( centerTop, startTop - scrollY ) + 'px';
 	}
 
 	function requestRender() {
