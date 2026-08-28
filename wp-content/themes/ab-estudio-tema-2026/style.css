@@ -1566,7 +1566,7 @@ h1, h2, h3 {
 		position: fixed;
 		left: 8px;
 		right: 8px;
-		bottom: 0;
+		bottom: 2px;
 		z-index: 50;
 		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
 		   página, aquele tom quase não se distinguia. Borda mais sutil que
@@ -1611,7 +1611,12 @@ h1, h2, h3 {
 
 	/* Só o ícone de "Entrar" (porta+seta) é stroke-based (fill="none" no
 	   SVG); os outros dois preenchem via fill. */
+	/* fill:none aqui de novo (não só no atributo do SVG): a regra
+	   .mobile-tabbar-icon acima seta fill:var(--abe-ink) na tag <svg>, e
+	   como fill é herdado, o circle/path (sem fill próprio) herdavam
+	   ink e apareciam preenchidos, não como contorno puro. */
 	.mobile-tabbar-icon[fill="none"] {
+		fill: none;
 		stroke: var(--abe-ink);
 	}
 }
@@ -1836,6 +1841,14 @@ h1, h2, h3 {
 	.whatsapp-wrap {
 		top: min(700px, calc(100vh - 92px));
 		bottom: auto;
+	}
+}
+
+/* Some com o fundo branco atrás do botão só acima de 768px — continua
+   ativo em 501-768px. */
+@media (min-width: 769px) {
+	.whatsapp-wrap::before {
+		display: none;
 	}
 }
 
