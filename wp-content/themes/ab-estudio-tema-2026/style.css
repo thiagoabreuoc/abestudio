@@ -1825,22 +1825,25 @@ h1, h2, h3 {
 	}
 }
 
-/* Exatos 50px abaixo do fim do hero-banner — medido de verdade
-   (getBoundingClientRect), não chutado. O banner tem duas alturas
-   diferentes aqui: 644.19px até 1024px, 649.56px a partir de 1025px
-   (a mudança bate exatamente no breakpoint que já usamos pro "Olá."),
-   por isso duas regras em vez de uma só. min() protege contra sumir
-   em viewports baixos. */
+/* 50px abaixo do fim do hero-banner (644.19px até 1024px, 649.56px a
+   partir de 1025px — medido de verdade via getBoundingClientRect, não
+   chutado), MAS travado em no máximo 50vh: em viewports mais curtos, ou
+   conforme a página cresce, 694/700px fixo podia cair sobre o próprio
+   banner ou ficar baixo demais. 50vh garante que ele nunca passe do
+   meio da tela, sempre position:fixed (sem trocar pra absolute nem
+   depender da altura total da página — tentativa anterior com JS
+   calculando "metade da página" prendia o botão dentro do banner em
+   páginas curtas). */
 @media (min-width: 769px) and (max-width: 1024px) {
 	.whatsapp-wrap {
-		top: min(694px, calc(100vh - 92px));
+		top: min(694px, 50vh);
 		bottom: auto;
 	}
 }
 
 @media (min-width: 1025px) {
 	.whatsapp-wrap {
-		top: min(700px, calc(100vh - 92px));
+		top: min(700px, 50vh);
 		bottom: auto;
 	}
 }
