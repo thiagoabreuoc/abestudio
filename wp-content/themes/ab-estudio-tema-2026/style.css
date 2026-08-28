@@ -102,6 +102,14 @@ h1, h2, h3 {
 		color: var(--abe-green);
 	}
 
+	/* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
+	   — na barra flutuante troca pro mesmo verde do hover das categorias,
+	   com texto branco. Mesmo padrão em toda a faixa 501px+. */
+	.site-header.is-scrolled .apps-badge-desktop:hover {
+		background: var(--abe-green);
+		color: #fff;
+	}
+
 	/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
 	   degradê usado no logo do menu aberto (.nav-drawer-header). */
 	.site-header.is-scrolled .site-logo-mark {
@@ -1700,15 +1708,6 @@ h1, h2, h3 {
 	/* Botão vira só "APPS" nessa faixa — sem a palavra "Nossos". */
 	.apps-badge-text-nossos {
 		display: none;
-	}
-
-	/* Barra flutuante: só nessa faixa (501-768px) o hover do "Nossos Apps"
-	   troca pro verde da marca (mesmo verde do hover das categorias), com
-	   texto branco. Acima de 768px o hover do botão continua branco
-	   (regra base .apps-badge-desktop:hover). */
-	.site-header.is-scrolled .apps-badge-desktop:hover {
-		background: var(--abe-green);
-		color: #fff;
 	}
 }
 
