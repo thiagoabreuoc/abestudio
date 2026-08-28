@@ -109,22 +109,34 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Acima de 500px (768px pra baixo e 769px pra cima, mesma lógica nas
-	// duas faixas) o botão nasce grudado no rodapé da tela e sobe até
-	// parar fixo no meio dela — mas em vez de um "salto" animado por
-	// CSS (transition com duração fixa, destacada do gesto de scroll),
-	// a posição é calculada a cada evento de scroll, proporcional ao
-	// quanto já rolou: acompanha o dedo/mouse em tempo real, sem pulos,
-	// e sem depender de quão rápido o usuário rola.
-	var mq = window.matchMedia( '(min-width: 501px)' );
+	// Acima de 500px o botão sobe e para fixo no meio da tela conforme a
+	// página rola, acompanhando o scroll em tempo real (sem "salto"
+	// animado por CSS) — igual às duas faixas, só o PONTO DE PARTIDA
+	// muda: em 501-768px começa 30px abaixo do hero-banner (medido de
+	// verdade via getBoundingClientRect, não chutado — a altura do
+	// banner varia um pouco dentro dessa faixa por outros motivos de
+	// layout); acima de 769px começa no rodapé da tela.
+	var mqNarrow = window.matchMedia( '(min-width: 501px) and (max-width: 768px)' );
+	var mqWide = window.matchMedia( '(min-width: 769px)' );
 	var BOTTOM_OFFSET = 32;
+	var BANNER_GAP = 30;
 	var TRANSITION_DISTANCE = 300; // px de scroll até chegar no meio da tela
+	var banner = document.querySelector( '.hero-banner' );
 	var ticking = false;
+
+	// offsetTop/offsetHeight (não getBoundingClientRect) porque precisa
+	// da posição do banner em coordenadas do DOCUMENTO, fixa, indepen-
+	// dente do scroll atual — getBoundingClientRect muda a cada scroll,
+	// o que faria o "ponto de partida" se mover junto com o progresso,
+	// bagunçando a interpolação.
+	function bannerBottomInDocument() {
+		return banner.offsetTop + banner.offsetHeight;
+	}
 
 	function render() {
 		ticking = false;
 
-		if ( ! mq.matches ) {
+		if ( ! mqNarrow.matches && ! mqWide.matches ) {
 			wrap.style.top = '';
 			wrap.style.bottom = '';
 			return;
@@ -132,7 +144,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		var height = wrap.offsetHeight;
 		var viewportHeight = window.innerHeight;
-		var startTop = viewportHeight - BOTTOM_OFFSET - height;
+		var startTop;
+
+		if ( mqNarrow.matches && banner ) {
+			startTop = bannerBottomInDocument() + BANNER_GAP;
+		} else {
+			startTop = viewportHeight - BOTTOM_OFFSET - height;
+		}
+
 		var endTop = ( viewportHeight - height ) / 2;
 		var progress = Math.min( window.scrollY / TRANSITION_DISTANCE, 1 );
 
