@@ -1821,10 +1821,12 @@ h1, h2, h3 {
 
 @media (min-width: 769px) {
 	.whatsapp-wrap {
-		/* Mesmo posicionamento vertical da faixa 501-768px (484px) — e o
-		   min() mantém a proteção contra sumir em viewports baixos (ver
-		   histórico: 1366×768 com pouca altura útil já causou isso). */
-		top: min(484px, calc(100vh - 92px));
+		/* 484px (igual à faixa 501-768px) fica DENTRO do banner aqui —
+		   nessa faixa o hero-banner é bem mais alto (~650px, não 450px),
+		   então 484px sobrepunha o botão no banner. 684px garante uma
+		   folga real abaixo do banner; o min() mantém a proteção contra
+		   sumir em viewports baixos. */
+		top: min(684px, calc(100vh - 92px));
 		bottom: auto;
 	}
 }
