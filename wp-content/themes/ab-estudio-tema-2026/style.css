@@ -1674,12 +1674,16 @@ h1, h2, h3 {
 		fill: none;
 		stroke: var(--abe-ink);
 	}
+}
 
-	/* Cluster flutuante da sessão atual — rótulo + botões de navegação
-	   (sessão anterior/próxima) — some fora da área de conteúdo, colado
-	   na borda esquerda do navegador. Visibilidade controlada via
-	   .is-visible (ver main.js): aparece só enquanto o topo da sessão
-	   está cruzando o topo da viewport, some ao sair dessa faixa. */
+/* Cluster flutuante da sessão atual — rótulo + botões de navegação
+   (sessão anterior/próxima) — some fora da área de conteúdo, colado na
+   borda direita do navegador. Visibilidade controlada via .is-visible
+   (ver main.js): aparece só enquanto o topo da sessão está cruzando o
+   topo da viewport, some ao sair dessa faixa. Faixa própria (768px, não
+   500px): também vale pra tablet (501-768px), que perdeu o hambúrguer/
+   drawer e usa isso como navegação entre sessões. */
+@media (max-width: 768px) {
 	.section-nav {
 		display: flex;
 		flex-direction: column;
@@ -1763,22 +1767,34 @@ h1, h2, h3 {
 	}
 }
 
-/* De 501 a 768px o menu inline não coube bem nem com hambúrguer junto
-   (categorias + badge + hambúrguer), então essa faixa volta a usar o
-   drawer — hambúrguer visível, categorias só lá dentro. Acima de
-   768px continua o menu embutido no header, sem hambúrguer. */
+/* De 501 a 768px o menu inline não coube bem, e não tem mais
+   hambúrguer/drawer nessa faixa (ver abaixo) — navegação entre sessões
+   passa a ser só o cluster flutuante (.section-nav, mesma
+   funcionalidade do mobile). Acima de 768px continua o menu embutido
+   no header. */
 @media (min-width: 501px) and (max-width: 768px) {
 	.header-nav {
 		display: none;
 	}
 
+	/* Sem hambúrguer nessa faixa — o drawer perde o único gatilho
+	   visível aqui (fica só acessível em min-width:769px pra baixo do
+	   hambúrguer, ou não é mais alcançável nessa faixa; navegação vira
+	   o .section-nav flutuante). */
 	.hamburger {
-		display: flex;
+		display: none;
 	}
 
 	/* Botão vira só "APPS" nessa faixa — sem a palavra "Nossos". */
 	.apps-badge-text-nossos {
 		display: none;
+	}
+
+	/* WhatsApp volta a aparecer aqui (a versão flutuante com texto
+	   giratório não existe mais nessa faixa — ver .whatsapp-wrap
+	   abaixo), reaproveitando o mesmo botão+label usado no mobile. */
+	.header-whatsapp {
+		display: inline-flex;
 	}
 }
 
@@ -1941,9 +1957,11 @@ h1, h2, h3 {
 	}
 }
 
+/* Removido nessa faixa (substituído pelo botão+label inline no header
+   — ver .header-whatsapp — e pela navegação por sessão flutuante). */
 @media (min-width: 501px) and (max-width: 768px) {
 	.whatsapp-wrap {
-		right: calc(max(0px, calc((100vw - 1280px) / 2)) + 50px);
+		display: none;
 	}
 }
 

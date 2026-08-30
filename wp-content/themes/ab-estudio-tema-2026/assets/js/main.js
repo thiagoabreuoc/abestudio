@@ -222,14 +222,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 	} );
 
-	// Só abaixo de 500px. Cada rótulo aparece só enquanto a SUA sessão
+	// Só abaixo de 769px (mobile + tablet). Cada rótulo aparece só enquanto a SUA sessão
 	// está "no topo" no momento — topo já passado (rect.top <= 0) mas
 	// fundo ainda não (rect.bottom > 0), ou seja, a sessão que você está
 	// atravessando agora. Checagem de contenção simples a cada frame:
 	// como não depende de "pegar" o instante exato do cruzamento (só de
 	// saber, a cada frame, onde você está), não tem como uma rolagem
 	// rápida pular a detecção.
-	var mq = window.matchMedia( '(max-width: 500px)' );
+	var mq = window.matchMedia( '(max-width: 768px)' );
 	var ticking = false;
 	var lastItem = items[ items.length - 1 ];
 
