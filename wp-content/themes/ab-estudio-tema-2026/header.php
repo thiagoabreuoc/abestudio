@@ -92,8 +92,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</a>
 	</div>
 
-	<span class="section-badge" data-section-badge aria-hidden="true"></span>
-
 	<div class="nav-drawer" id="nav-drawer" data-nav-drawer>
 		<div class="nav-drawer-header">
 			<a class="site-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">

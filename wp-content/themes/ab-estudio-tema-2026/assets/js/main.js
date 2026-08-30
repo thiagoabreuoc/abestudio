@@ -190,49 +190,44 @@ document.addEventListener( 'DOMContentLoaded', function () {
 } );
 
 document.addEventListener( 'DOMContentLoaded', function () {
-	var badge = document.querySelector( '[data-section-badge]' );
-	var sections = Array.prototype.slice.call( document.querySelectorAll( '[data-section-name]' ) );
+	// Cada [data-section-badge] é um rótulo independente, ligado à
+	// sessão referenciada por data-section-target (o id dela) — sem
+	// estado compartilhado entre rótulos, então um nunca pode "vazar"
+	// pro estado do outro.
+	var items = Array.prototype.slice.call( document.querySelectorAll( '[data-section-badge]' ) )
+		.map( function ( badge ) {
+			var section = document.getElementById( badge.dataset.sectionTarget );
+			if ( section ) {
+				badge.textContent = section.dataset.sectionName || '';
+			}
+			return { badge: badge, section: section };
+		} )
+		.filter( function ( item ) {
+			return !! item.section;
+		} );
 
-	if ( ! badge || ! sections.length ) {
+	if ( ! items.length ) {
 		return;
 	}
 
-	// Só abaixo de 500px. Mostra o nome da sessão que está "no topo"
-	// no momento — aquela cujo topo já passou (rect.top <= 0) mas cujo
-	// fundo ainda não (rect.bottom > 0) — ou seja, a sessão que você
-	// está atravessando agora. Simples checagem de contenção a cada
-	// frame: como não depende de "pegar" o instante exato do cruzamento
-	// (só de saber, a cada frame, ONDE você está), não tem como uma
-	// rolagem rápida pular a detecção — ao contrário das duas versões
-	// anteriores (comparação de posição por frame, depois
-	// IntersectionObserver com faixa fina), que perdiam esse cruzamento
-	// em cenários diferentes.
+	// Só abaixo de 500px. Cada rótulo aparece só enquanto a SUA sessão
+	// está "no topo" no momento — topo já passado (rect.top <= 0) mas
+	// fundo ainda não (rect.bottom > 0), ou seja, a sessão que você está
+	// atravessando agora. Checagem de contenção simples a cada frame:
+	// como não depende de "pegar" o instante exato do cruzamento (só de
+	// saber, a cada frame, onde você está), não tem como uma rolagem
+	// rápida pular a detecção.
 	var mq = window.matchMedia( '(max-width: 500px)' );
 	var ticking = false;
 
 	function render() {
 		ticking = false;
 
-		if ( ! mq.matches ) {
-			badge.classList.remove( 'is-visible' );
-			return;
-		}
-
-		var active = null;
-
-		sections.forEach( function ( section ) {
-			var rect = section.getBoundingClientRect();
-			if ( rect.top <= 0 && rect.bottom > 0 ) {
-				active = section;
-			}
+		items.forEach( function ( item ) {
+			var rect = item.section.getBoundingClientRect();
+			var isActive = mq.matches && rect.top <= 0 && rect.bottom > 0;
+			item.badge.classList.toggle( 'is-visible', isActive );
 		} );
-
-		if ( active ) {
-			badge.textContent = active.dataset.sectionName;
-			badge.classList.add( 'is-visible' );
-		} else {
-			badge.classList.remove( 'is-visible' );
-		}
 	}
 
 	function requestRender() {

@@ -18,7 +18,7 @@ get_header();
 ?>
 
 <div class="hero-wrap">
-	<section class="hero-banner" data-section-name="<?php esc_attr_e( 'Início', 'abestudio2026' ); ?>">
+	<section class="hero-banner" id="section-inicio" data-section-name="<?php esc_attr_e( 'Início', 'abestudio2026' ); ?>">
 		<span class="hero-glow-0" aria-hidden="true"></span>
 		<span class="hero-glow-1" aria-hidden="true"></span>
 
@@ -60,9 +60,11 @@ get_header();
 			<path d="M6 9l6 6 6-6" stroke="#232323" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
 	</button>
+
+	<span class="section-badge" data-section-badge data-section-target="section-inicio" aria-hidden="true"></span>
 </div>
 
-<section class="about-hello" data-section-name="<?php esc_attr_e( 'Sobre', 'abestudio2026' ); ?>">
+<section class="about-hello" id="section-sobre" data-section-name="<?php esc_attr_e( 'Sobre', 'abestudio2026' ); ?>">
 	<div class="container">
 		<div class="about-hello-row">
 			<div class="about-hello-word"><?php esc_html_e( 'Olá.', 'abestudio2026' ); ?></div>
@@ -74,6 +76,8 @@ get_header();
 		</div>
 	</div>
 </section>
+
+<span class="section-badge" data-section-badge data-section-target="section-sobre" aria-hidden="true"></span>
 
 <?php
 get_footer();
