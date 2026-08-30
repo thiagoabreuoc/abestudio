@@ -163,6 +163,17 @@ h1, h2, h3 {
 	padding-bottom: 28px;
 }
 
+/* display:flex (não o bloco padrão) pra altura da div encolher pro
+   tamanho real do logo — em bloco normal, um filho inline-flex herda
+   line-height do body e cria uma "caixa de linha" fantasma mais alta
+   que a imagem, o que descentralizava o logo em relação aos botões do
+   header (ambos ficam centralizados por .site-header .container, mas
+   contra a altura dessa caixa, não a do logo visível). */
+.site-branding {
+	display: flex;
+	align-items: center;
+}
+
 .site-logo {
 	display: inline-flex;
 	flex-shrink: 0;
@@ -270,6 +281,23 @@ h1, h2, h3 {
 .header-whatsapp-icon {
 	width: 100%;
 	height: 100%;
+}
+
+/* Texto diferente por faixa: "Whatsapp" abaixo de 500px, "Fale
+   conosco" em 501-768px (único lugar onde .header-whatsapp aparece —
+   ver display:none/inline-flex mais abaixo no arquivo). */
+.header-whatsapp-text-tablet {
+	display: none;
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+	.header-whatsapp-text-mobile {
+		display: none;
+	}
+
+	.header-whatsapp-text-tablet {
+		display: inline;
+	}
 }
 
 .hamburger {
