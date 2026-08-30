@@ -197,20 +197,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	// Só abaixo de 500px. O rótulo mostra o nome da sessão só enquanto o
-	// topo dela está cruzando o topo da viewport (dentro de TOP_ZONE px
-	// pra cima ou pra baixo) — soma ao continuar rolando pra dentro da
-	// sessão, e volta a aparecer quando a próxima sessão cruzar o topo.
+	// Só abaixo de 500px. Mostra o nome da sessão que está "no topo"
+	// no momento — aquela cujo topo já passou (rect.top <= 0) mas cujo
+	// fundo ainda não (rect.bottom > 0) — ou seja, a sessão que você
+	// está atravessando agora. Simples checagem de contenção a cada
+	// frame: como não depende de "pegar" o instante exato do cruzamento
+	// (só de saber, a cada frame, ONDE você está), não tem como uma
+	// rolagem rápida pular a detecção — ao contrário das duas versões
+	// anteriores (comparação de posição por frame, depois
+	// IntersectionObserver com faixa fina), que perdiam esse cruzamento
+	// em cenários diferentes.
 	var mq = window.matchMedia( '(max-width: 500px)' );
-	var TOP_ZONE = 60;
 	var ticking = false;
-	// top (relativo à viewport, via getBoundingClientRect) de cada
-	// sessão no frame anterior — medido de novo a cada frame (não
-	// guardado em coordenadas de documento) pra não ficar desatualizado
-	// se a página re-fluir depois do load (fonte/imagem carregando).
-	var prevTops = sections.map( function ( section ) {
-		return section.getBoundingClientRect().top;
-	} );
 
 	function render() {
 		ticking = false;
@@ -222,19 +220,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		var active = null;
 
-		sections.forEach( function ( section, index ) {
-			var prevTop = prevTops[ index ];
-			var currentTop = section.getBoundingClientRect().top;
-			// Compara a FAIXA percorrida desde o último frame (não só a
-			// posição atual): um scroll rápido (flick/roda do mouse) pode
-			// pular a zona de 120px inteira entre dois frames — sem isso,
-			// a sessão nunca seria detectada como "cruzada".
-			var lo = Math.min( prevTop, currentTop );
-			var hi = Math.max( prevTop, currentTop );
-			if ( hi >= -TOP_ZONE && lo <= TOP_ZONE ) {
+		sections.forEach( function ( section ) {
+			var rect = section.getBoundingClientRect();
+			if ( rect.top <= 0 && rect.bottom > 0 ) {
 				active = section;
 			}
-			prevTops[ index ] = currentTop;
 		} );
 
 		if ( active ) {
