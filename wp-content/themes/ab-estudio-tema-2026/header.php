@@ -18,6 +18,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<div class="orientation-lock" aria-hidden="true">
+	<svg class="orientation-lock-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+		<path d="M20 9v6M20 9l-2.5-2.5M20 15l-2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
+	<p><?php esc_html_e( 'Gire seu aparelho para o modo retrato para continuar navegando.', 'abestudio2026' ); ?></p>
+</div>
 <header id="masthead" class="site-header">
 	<div class="container">
 		<div class="site-branding">

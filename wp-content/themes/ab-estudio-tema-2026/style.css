@@ -36,6 +36,45 @@ body {
 	line-height: 1.7;
 }
 
+/* Bloqueia paisagem em telas pequenas/médias: não dá pra travar a
+   orientação de verdade num site comum (screen.orientation.lock só
+   funciona em tela cheia/PWA instalado, e nem existe no Safari/iOS) —
+   em vez disso, cobre o site com um aviso pedindo retrato de volta. */
+.orientation-lock {
+	display: none;
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+	.orientation-lock {
+		display: flex;
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 20px;
+		padding: 40px;
+		background: var(--abe-bg);
+		text-align: center;
+	}
+
+	.orientation-lock-icon {
+		width: 56px;
+		height: 56px;
+		color: var(--abe-ink);
+	}
+
+	.orientation-lock p {
+		max-width: 320px;
+		margin: 0;
+		font-family: var(--abe-font-heading);
+		font-weight: 500;
+		font-size: 1.1rem;
+		color: var(--abe-ink);
+	}
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
