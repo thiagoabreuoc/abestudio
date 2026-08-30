@@ -61,7 +61,14 @@ get_header();
 		</svg>
 	</button>
 
-	<span class="section-badge" data-section-badge data-section-target="section-inicio" aria-hidden="true"></span>
+	<div class="section-nav" data-section-nav data-section-target="section-inicio">
+		<span class="section-badge" aria-hidden="true"></span>
+		<button type="button" class="section-nav-btn" data-scroll-to="section-sobre" aria-label="<?php esc_attr_e( 'Ir para a próxima sessão', 'abestudio2026' ); ?>">
+			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</button>
+	</div>
 </div>
 
 <section class="about-hello" id="section-sobre" data-section-name="<?php esc_attr_e( 'Sobre', 'abestudio2026' ); ?>">
@@ -77,7 +84,14 @@ get_header();
 	</div>
 </section>
 
-<span class="section-badge" data-section-badge data-section-target="section-sobre" aria-hidden="true"></span>
+<div class="section-nav" data-section-nav data-section-target="section-sobre">
+	<button type="button" class="section-nav-btn" data-scroll-to="section-inicio" aria-label="<?php esc_attr_e( 'Ir para a sessão anterior', 'abestudio2026' ); ?>">
+		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+	</button>
+	<span class="section-badge" aria-hidden="true"></span>
+</div>
 
 <?php
 get_footer();

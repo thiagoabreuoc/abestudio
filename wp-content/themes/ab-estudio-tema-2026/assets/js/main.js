@@ -190,17 +190,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 } );
 
 document.addEventListener( 'DOMContentLoaded', function () {
-	// Cada [data-section-badge] é um rótulo independente, ligado à
-	// sessão referenciada por data-section-target (o id dela) — sem
-	// estado compartilhado entre rótulos, então um nunca pode "vazar"
-	// pro estado do outro.
-	var items = Array.prototype.slice.call( document.querySelectorAll( '[data-section-badge]' ) )
-		.map( function ( badge ) {
-			var section = document.getElementById( badge.dataset.sectionTarget );
-			if ( section ) {
+	// Cada [data-section-nav] é um cluster independente (rótulo +
+	// botões de navegação), ligado à sessão referenciada por
+	// data-section-target (o id dela) — sem estado compartilhado entre
+	// clusters, então um nunca pode "vazar" pro estado do outro.
+	var items = Array.prototype.slice.call( document.querySelectorAll( '[data-section-nav]' ) )
+		.map( function ( nav ) {
+			var section = document.getElementById( nav.dataset.sectionTarget );
+			var badge = nav.querySelector( '.section-badge' );
+			if ( section && badge ) {
 				badge.textContent = section.dataset.sectionName || '';
 			}
-			return { badge: badge, section: section };
+			return { nav: nav, section: section };
 		} )
 		.filter( function ( item ) {
 			return !! item.section;
@@ -209,6 +210,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	if ( ! items.length ) {
 		return;
 	}
+
+	// Botões de navegação: rolam suavemente até a sessão anterior/
+	// próxima (referenciada pelo id em data-scroll-to).
+	Array.prototype.forEach.call( document.querySelectorAll( '[data-scroll-to]' ), function ( btn ) {
+		btn.addEventListener( 'click', function () {
+			var target = document.getElementById( btn.dataset.scrollTo );
+			if ( target ) {
+				target.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+			}
+		} );
+	} );
 
 	// Só abaixo de 500px. Cada rótulo aparece só enquanto a SUA sessão
 	// está "no topo" no momento — topo já passado (rect.top <= 0) mas
@@ -247,7 +259,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 
 		items.forEach( function ( item ) {
-			item.badge.classList.toggle( 'is-visible', item === activeItem );
+			item.nav.classList.toggle( 'is-visible', item === activeItem );
 		} );
 	}
 

@@ -1607,9 +1607,10 @@ h1, h2, h3 {
 	display: none;
 }
 
-/* Rótulo vertical com o nome da sessão atual — só no mobile (ver
-   @media max-width:500px abaixo, que troca pra display:block). */
-.section-badge {
+/* Cluster flutuante (rótulo + navegação) da sessão atual — só no
+   mobile (ver @media max-width:500px abaixo, que troca pra
+   display:flex). */
+.section-nav {
 	display: none;
 }
 
@@ -1631,10 +1632,7 @@ h1, h2, h3 {
 		   ela, a aresta de baixo se perderia contra a borda da tela. */
 		background: #e8e8e6;
 		border: 1px solid rgba(0, 0, 0, 0.06);
-		/* Valor bem acima da altura real da barra — o navegador trava
-		   automaticamente no máximo que cabe (metade da altura), dando o
-		   arredondado mais generoso possível (efeito "pill"). */
-		border-radius: 999px;
+		border-radius: 16px;
 		box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.13);
 		padding: 16px 8px;
 	}
@@ -1677,18 +1675,35 @@ h1, h2, h3 {
 		stroke: var(--abe-ink);
 	}
 
-	/* Rótulo vertical da sessão atual — some fora da área de conteúdo,
-	   colado na borda esquerda do navegador. Visibilidade controlada via
+	/* Cluster flutuante da sessão atual — rótulo + botões de navegação
+	   (sessão anterior/próxima) — some fora da área de conteúdo, colado
+	   na borda esquerda do navegador. Visibilidade controlada via
 	   .is-visible (ver main.js): aparece só enquanto o topo da sessão
 	   está cruzando o topo da viewport, some ao sair dessa faixa. */
-	.section-badge {
-		display: block;
+	.section-nav {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
 		position: fixed;
 		top: 50%;
 		left: 4px;
+		transform: translateY(-50%);
+		z-index: 60;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.25s ease;
+	}
+
+	.section-nav.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.section-badge {
 		/* rotate(180deg) inverte o sentido de leitura de vertical-rl (que
 		   por padrão lê de cima pra baixo) pra baixo-pra-cima. */
-		transform: translateY(-50%) rotate(180deg);
+		transform: rotate(180deg);
 		writing-mode: vertical-rl;
 		text-orientation: sideways;
 		background: #e8e8e6;
@@ -1699,15 +1714,26 @@ h1, h2, h3 {
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		padding: 16px 2px;
-		border-radius: 999px;
-		z-index: 60;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 0.25s ease;
+		border-radius: 4px;
 	}
 
-	.section-badge.is-visible {
-		opacity: 1;
+	.section-nav-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		padding: 0;
+		border: none;
+		border-radius: 4px;
+		background: #e8e8e6;
+		color: var(--abe-ink);
+		cursor: pointer;
+	}
+
+	.section-nav-btn svg {
+		width: 14px;
+		height: 14px;
 	}
 }
 
