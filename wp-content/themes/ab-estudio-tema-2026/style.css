@@ -1738,6 +1738,15 @@ h1, h2, h3 {
 	}
 }
 
+/* Só em 501-768px (abaixo de 500px o JS assume o posicionamento via
+   top/px — ver main.js): cluster da Sobre desce 30px em relação ao
+   centro vertical padrão. */
+@media (min-width: 501px) and (max-width: 768px) {
+	.section-nav[data-section-target="section-sobre"] {
+		transform: translateY(calc(-50% + 30px));
+	}
+}
+
 /* Overrides do header — no fim do arquivo de propósito, pra garantir
    que vençam as regras-base de .hamburger, .header-whatsapp e
    .apps-badge-desktop (mesma especificidade, ordem de código decide).
