@@ -192,19 +192,23 @@ h1, h2, h3 {
 	color: #fff;
 }
 
-/* Verde oficial do WhatsApp (mesmo tom de .whatsapp-float), com hover
-   num verde mais escuro da mesma família — igual ao botão flutuante. */
+/* Mesma "caixa" do .apps-badge-desktop (padding/radius/tipografia em
+   maiúsculas) — só a cor muda pro verde oficial do WhatsApp (mesmo tom
+   de .whatsapp-float), com hover num verde mais escuro da mesma
+   família, igual ao botão flutuante. */
 .header-whatsapp {
 	display: inline-flex;
 	align-items: center;
-	gap: 12px;
+	gap: 8px;
 	background: #25d366;
 	color: #fff;
-	padding: 10px 22px;
-	border-radius: 999px;
-	font-family: var(--abe-font-body);
-	font-weight: 500;
-	font-size: 1.05rem;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 0.62rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	padding: 8px 12px;
+	border-radius: 8px;
 	flex-shrink: 0;
 	transition: background 0.2s ease;
 }
@@ -218,8 +222,8 @@ h1, h2, h3 {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 22px;
-	height: 22px;
+	width: 18px;
+	height: 18px;
 	box-sizing: border-box;
 	color: #fff;
 	flex: none;
@@ -1299,15 +1303,6 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
-	.header-whatsapp {
-		font-size: 0.92rem;
-	}
-
-	.header-whatsapp-icon-wrap {
-		width: 20px;
-		height: 20px;
-	}
-
 	.nav-drawer-header .site-logo-mark {
 		width: 76px;
 		height: 27px;
