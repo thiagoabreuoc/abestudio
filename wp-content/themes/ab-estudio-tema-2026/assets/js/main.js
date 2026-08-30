@@ -219,14 +219,35 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// rápida pular a detecção.
 	var mq = window.matchMedia( '(max-width: 500px)' );
 	var ticking = false;
+	var lastItem = items[ items.length - 1 ];
 
 	function render() {
 		ticking = false;
 
+		// Exceção pra ÚLTIMA sessão da página: se ela for curta (menor
+		// que a viewport) e não sobrar conteúdo depois dela, o topo dela
+		// nunca chega a cruzar rect.top<=0 — o scroll trava no fim do
+		// documento antes disso (ex.: viewport 700px, mas o topo da
+		// sessão só sobe até 142px). Sem essa exceção, o rótulo dela
+		// nunca apareceria. No fim da página, ela conta como "no topo"
+		// mesmo com rect.top positivo.
+		var atBottom = ( window.scrollY + window.innerHeight ) >= ( document.documentElement.scrollHeight - 1 );
+
+		// Duas sessões podem ficar "ativas" ao mesmo tempo perto da
+		// transição (ou pela exceção do fim de página acima) — só a
+		// última em ordem de documento fica visível, as outras somem.
+		var activeItem = null;
+
 		items.forEach( function ( item ) {
 			var rect = item.section.getBoundingClientRect();
-			var isActive = mq.matches && rect.top <= 0 && rect.bottom > 0;
-			item.badge.classList.toggle( 'is-visible', isActive );
+			var reachedTop = rect.top <= 0 || ( atBottom && item === lastItem );
+			if ( mq.matches && reachedTop && rect.bottom > 0 ) {
+				activeItem = item;
+			}
+		} );
+
+		items.forEach( function ( item ) {
+			item.badge.classList.toggle( 'is-visible', item === activeItem );
 		} );
 	}
 
