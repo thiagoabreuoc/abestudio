@@ -172,12 +172,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	}
 
 	// Header vira sólido (branco, ver CSS .is-scrolled) assim que a
-	// página começa a rolar, acima de 500px.
-	var mq = window.matchMedia( '(min-width: 501px)' );
+	// página começa a rolar, em qualquer largura.
 	var SCROLL_THRESHOLD = 10;
 
 	function update() {
-		if ( mq.matches && window.scrollY > SCROLL_THRESHOLD ) {
+		if ( window.scrollY > SCROLL_THRESHOLD ) {
 			header.classList.add( 'is-scrolled' );
 		} else {
 			header.classList.remove( 'is-scrolled' );

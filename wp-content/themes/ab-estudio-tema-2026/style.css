@@ -70,51 +70,50 @@ h1, h2, h3 {
 /* Sticky (não fixed): mantém o header no fluxo normal do documento —
    fixed removeria o espaço que ele ocupa, e a .hero-banner (que usa
    margin-top negativo pra deslizar por baixo do header) desalinharia
-   tudo. Sticky preserva o espaço e ainda assim gruda no topo ao rolar. */
-@media (min-width: 501px) {
-	.site-header {
-		position: sticky;
-		top: 0;
-		transition: background-color 0.3s ease, box-shadow 0.3s ease;
-	}
+   tudo. Sticky preserva o espaço e ainda assim gruda no topo ao rolar.
+   Sem media query: vale em todas as larguras, mobile incluído. */
+.site-header {
+	position: sticky;
+	top: 0;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-	.site-header.is-scrolled {
-		background-color: rgba(255, 255, 255, 0.95);
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-	}
+.site-header.is-scrolled {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
 
-	/* Hover/ativo do menu era branco (pensado pro header transparente
-	   sobre o banner colorido) — em cima do fundo branco do header
-	   "grudado", ficaria invisível. Troca pro verde da marca só nesse
-	   estado. */
-	.site-header.is-scrolled .header-nav-menu a:hover,
-	.site-header.is-scrolled .header-nav-menu a:focus,
-	.site-header.is-scrolled .header-nav-menu .current-menu-item > a {
-		color: var(--abe-green);
-	}
+/* Hover/ativo do menu era branco (pensado pro header transparente
+   sobre o banner colorido) — em cima do fundo branco do header
+   "grudado", ficaria invisível. Troca pro verde da marca só nesse
+   estado. */
+.site-header.is-scrolled .header-nav-menu a:hover,
+.site-header.is-scrolled .header-nav-menu a:focus,
+.site-header.is-scrolled .header-nav-menu .current-menu-item > a {
+	color: var(--abe-green);
+}
 
-	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a {
-		color: var(--abe-ink);
-	}
+.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a {
+	color: var(--abe-ink);
+}
 
-	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:hover,
-	.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
-		color: var(--abe-green);
-	}
+.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:hover,
+.site-header.is-scrolled .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
+	color: var(--abe-green);
+}
 
-	/* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
-	   — na barra flutuante troca pro mesmo verde do hover das categorias,
-	   com texto branco. Mesmo padrão em toda a faixa 501px+. */
-	.site-header.is-scrolled .apps-badge-desktop:hover {
-		background: var(--abe-green);
-		color: #fff;
-	}
+/* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
+   — na barra flutuante troca pro mesmo verde do hover das categorias,
+   com texto branco. Mesmo padrão em todas as larguras. */
+.site-header.is-scrolled .apps-badge-desktop:hover {
+	background: var(--abe-green);
+	color: #fff;
+}
 
-	/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
-	   degradê usado no logo do menu aberto (.nav-drawer-header). */
-	.site-header.is-scrolled .site-logo-mark {
-		background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
-	}
+/* Barra flutuante: logo troca da cor sólida (--abe-ink) pro mesmo
+   degradê usado no logo do menu aberto (.nav-drawer-header). */
+.site-header.is-scrolled .site-logo-mark {
+	background: linear-gradient(91deg, var(--abe-teal) 0%, var(--abe-green) 45%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
 }
 
 .site-header .container {
@@ -948,24 +947,9 @@ h1, h2, h3 {
 	color: var(--abe-ink);
 }
 
-@media (max-width: 500px) {
-	.apps-badge-desktop {
-		display: none;
-	}
-
-	.apps-badge-mobile {
-		display: flex;
-		margin-right: 40px;
-		padding: 10px 14px;
-		border-radius: 4px;
-	}
-}
-
-@media (max-width: 500px) {
-	.apps-badge-mobile {
-		display: none;
-	}
-}
+/* .apps-badge-desktop agora fica visível também abaixo de 500px — mesmo
+   tratamento inline no header usado em 501-768px (ver regra sem media
+   query mais abaixo). .apps-badge-mobile (acima) nunca é usado. */
 
 /* Página Sobre — linha de destaques + seção "hello." */
 .about-hello {
@@ -1446,10 +1430,6 @@ h1, h2, h3 {
 		max-height: 282px;
 	}
 
-	.header-whatsapp {
-		display: none;
-	}
-
 	.container {
 		padding: 0 40px;
 	}
@@ -1614,68 +1594,6 @@ h1, h2, h3 {
 	display: none;
 }
 
-@media (max-width: 500px) {
-	body {
-		padding-bottom: 145px;
-	}
-
-	.mobile-tabbar {
-		display: flex;
-		position: fixed;
-		left: 8px;
-		right: 8px;
-		bottom: 4px;
-		z-index: 50;
-		/* Mais escuro que o #f6f6f4 original — contra o fundo branco da
-		   página, aquele tom quase não se distinguia. Borda mais sutil que
-		   antes, mas mantida mesmo encostada no rodapé (bottom:0) — sem
-		   ela, a aresta de baixo se perderia contra a borda da tela. */
-		background: #e8e8e6;
-		border: 1px solid rgba(0, 0, 0, 0.06);
-		border-radius: 8px;
-		box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.13);
-		padding: 16px 8px;
-	}
-
-	.mobile-tabbar-item {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 8px;
-		color: var(--abe-ink);
-		font-family: var(--abe-font-heading);
-		font-weight: 600;
-		font-size: 0.65rem;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;
-		text-align: center;
-	}
-
-	/* Mesmo degradê teal→verde→amarelo→laranja do "ab" mascarado do
-	   logo/banner (ver #abe-tabbar-icon-gradient em footer.php). fill
-	   cobre os ícones de APPs/Contato (fill="currentColor"); stroke,
-	   separado, cobre só o ícone "Em breve" (contorno, sem fill). */
-	/* Mesma cor do texto "Estamos..." (.about-hello-heading). */
-	.mobile-tabbar-icon {
-		width: 24px;
-		height: 24px;
-		fill: var(--abe-ink);
-	}
-
-	/* Só o ícone de "Entrar" (porta+seta) é stroke-based (fill="none" no
-	   SVG); os outros dois preenchem via fill. */
-	/* fill:none aqui de novo (não só no atributo do SVG): a regra
-	   .mobile-tabbar-icon acima seta fill:var(--abe-ink) na tag <svg>, e
-	   como fill é herdado, o circle/path (sem fill próprio) herdavam
-	   ink e apareciam preenchidos, não como contorno puro. */
-	.mobile-tabbar-icon[fill="none"] {
-		fill: none;
-		stroke: var(--abe-ink);
-	}
-}
-
 /* Cluster flutuante da sessão atual — rótulo + botões de navegação
    (sessão anterior/próxima) — some fora da área de conteúdo, colado na
    borda direita do navegador. Visibilidade controlada via .is-visible
@@ -1747,23 +1665,25 @@ h1, h2, h3 {
 	}
 }
 
-/* Overrides do header para desktop/tablet (501px+) — no fim do arquivo
-   de propósito, pra garantir que vençam as regras-base de .hamburger,
-   .header-whatsapp e .apps-badge-desktop (mesma especificidade, ordem
-   de código decide). */
+/* Overrides do header — no fim do arquivo de propósito, pra garantir
+   que vençam as regras-base de .hamburger, .header-whatsapp e
+   .apps-badge-desktop (mesma especificidade, ordem de código decide).
+   Sem media query: .apps-badge-desktop vira inline no header em
+   qualquer largura (era só 501px+; ver .header-whatsapp{display:none}
+   logo abaixo, que ainda restringe 769px+ à versão flutuante). */
+.apps-badge-desktop {
+	position: relative;
+	top: auto;
+	right: auto;
+	box-shadow: none;
+	padding: 12px 18px;
+	font-size: 0.72rem;
+	border-radius: 8px;
+}
+
 @media (min-width: 501px) {
 	.header-whatsapp {
 		display: none;
-	}
-
-	.apps-badge-desktop {
-		position: relative;
-		top: auto;
-		right: auto;
-		box-shadow: none;
-		padding: 12px 18px;
-		font-size: 0.72rem;
-		border-radius: 8px;
 	}
 }
 
@@ -1813,7 +1733,7 @@ h1, h2, h3 {
    contra a largura real, não é um chute). Força row aqui porque uma
    regra mais antiga (426–640px) ainda empilha o header em coluna, o
    que não faz sentido pro menu inline novo. */
-@media (min-width: 501px) and (max-width: 1024px) {
+@media (max-width: 1024px) {
 	.site-header .container {
 		flex-direction: row;
 	}
@@ -1957,16 +1877,18 @@ h1, h2, h3 {
 	}
 }
 
-/* Removido nessa faixa (substituído pelo botão+label inline no header
-   — ver .header-whatsapp — e pela navegação por sessão flutuante). */
-@media (min-width: 501px) and (max-width: 768px) {
+/* Removido em toda essa faixa (substituído pelo botão+label inline no
+   header — ver .header-whatsapp — e pela navegação por sessão
+   flutuante). display:none já é o padrão abaixo de 500px, então isso
+   só tem efeito prático em 501-768px — mantido pra ficar explícito. */
+@media (max-width: 768px) {
 	.whatsapp-wrap {
 		display: none;
 	}
 
 	/* Vence o gap:40px da regra 501-1024px acima (vem depois no
-	   arquivo) — só nessa faixa mais estreita, onde header-actions tem
-	   só o WhatsApp + Nossos Apps (sem menu inline pra caber junto). */
+	   arquivo) — nessa faixa mais estreita, header-actions tem só o
+	   WhatsApp + Nossos Apps (sem menu inline pra caber junto). */
 	.header-actions {
 		gap: 16px;
 	}
