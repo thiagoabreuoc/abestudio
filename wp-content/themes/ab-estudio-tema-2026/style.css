@@ -1750,32 +1750,23 @@ h1, h2, h3 {
 /* Overrides do header — no fim do arquivo de propósito, pra garantir
    que vençam as regras-base de .hamburger, .header-whatsapp e
    .apps-badge-desktop (mesma especificidade, ordem de código decide).
-   Sem media query: .apps-badge-desktop vira inline no header em
-   qualquer largura (era só 501px+; ver .header-whatsapp{display:none}
-   logo abaixo, que ainda restringe 769px+ à versão flutuante). */
+   Sem media query: .apps-badge-desktop vira inline no header, e o
+   .header-whatsapp fica visível, em qualquer largura — mesmo
+   tratamento em todo o site agora, sem versão flutuante separada pro
+   desktop. */
 .apps-badge-desktop {
 	position: relative;
 	top: auto;
 	right: auto;
 	box-shadow: none;
-	padding: 12px 18px;
-	font-size: 0.72rem;
+	padding: 8px 12px;
+	font-size: 0.62rem;
 	border-radius: 8px;
 }
 
-@media (min-width: 501px) {
-	.header-whatsapp {
-		display: none;
-	}
-}
-
-/* Botão vira só "APPS" em toda essa faixa (768px pra baixo, mobile
-   incluído) — sem a palavra "Nossos". Acima de 768px continua "NOSSOS
-   APPS" por extenso. */
-@media (max-width: 768px) {
-	.apps-badge-text-nossos {
-		display: none;
-	}
+/* Botão vira só "APPS" em qualquer largura — sem a palavra "Nossos". */
+.apps-badge-text-nossos {
+	display: none;
 }
 
 /* De 501 a 768px o menu inline não coube bem, e não tem mais
@@ -1834,11 +1825,6 @@ h1, h2, h3 {
 
 	.header-nav-menu a {
 		font-size: 0.92rem;
-	}
-
-	.apps-badge-desktop {
-		padding: 8px 12px;
-		font-size: 0.62rem;
 	}
 }
 
@@ -1963,15 +1949,16 @@ h1, h2, h3 {
 	}
 }
 
-/* Removido em toda essa faixa (substituído pelo botão+label inline no
-   header — ver .header-whatsapp — e pela navegação por sessão
-   flutuante). display:none já é o padrão abaixo de 500px, então isso
-   só tem efeito prático em 501-768px — mantido pra ficar explícito. */
-@media (max-width: 768px) {
-	.whatsapp-wrap {
-		display: none;
-	}
+/* Removido em qualquer largura (substituído pelo botão+label inline no
+   header — ver .header-whatsapp — e, abaixo de 769px, pela navegação
+   por sessão flutuante). Sem media query de propósito: precisa vencer
+   as regras de .whatsapp-wrap acima (inclusive as de 769px+), que
+   vêm antes no arquivo. */
+.whatsapp-wrap {
+	display: none;
+}
 
+@media (max-width: 768px) {
 	/* Vence o gap:40px da regra 501-1024px acima (vem depois no
 	   arquivo) — nessa faixa mais estreita, header-actions tem só o
 	   WhatsApp + Nossos Apps (sem menu inline pra caber junto). */
