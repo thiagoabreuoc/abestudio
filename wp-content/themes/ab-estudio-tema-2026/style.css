@@ -1968,7 +1968,7 @@ h1, h2, h3 {
 	   arquivo) — só nessa faixa mais estreita, onde header-actions tem
 	   só o WhatsApp + Nossos Apps (sem menu inline pra caber junto). */
 	.header-actions {
-		gap: 48px;
+		gap: 16px;
 	}
 }
 
