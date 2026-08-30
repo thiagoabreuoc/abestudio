@@ -1974,3 +1974,12 @@ h1, h2, h3 {
    dá pra fazer só com CSS porque a posição muda continuamente com o
    quanto a página já rolou, não em dois estados fixos. */
 
+/* Só 769px+: sessão Sobre sobe 80px (145px -> 65px de padding-top) —
+   vence tanto a regra de 601-1024px quanto a de 1025px+ (ambas 145px),
+   por vir depois das duas no arquivo. */
+@media (min-width: 769px) {
+	.about-hello {
+		padding-top: 65px;
+	}
+}
+
