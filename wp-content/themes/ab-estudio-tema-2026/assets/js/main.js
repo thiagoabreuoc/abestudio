@@ -244,7 +244,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// sugeria.
 	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
 	var HERO_GAP = -72;
-	var SECTION_GAP = 72;
+	var SECTION_GAP = 112;
 	var heroItem = items.filter( function ( item ) {
 		return item.nav.dataset.sectionTarget === 'section-inicio';
 	} )[ 0 ];
