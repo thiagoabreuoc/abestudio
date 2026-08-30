@@ -1691,7 +1691,7 @@ h1, h2, h3 {
 		gap: 8px;
 		position: fixed;
 		top: 50%;
-		right: 4px;
+		right: 12px;
 		transform: translateY(-50%);
 		z-index: 60;
 		opacity: 0;
