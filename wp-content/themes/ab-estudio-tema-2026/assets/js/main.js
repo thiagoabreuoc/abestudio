@@ -233,17 +233,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var lastItem = items[ items.length - 1 ];
 
 	// Só abaixo de 500px: cada cluster troca do centro da VIEWPORT
-	// (padrão, ver CSS — usado em 501-768px) pra ficar ancorado ao
-	// centro da PRÓPRIA SESSÃO, acompanhando o scroll em tempo real —
-	// não é a mesma coisa quando a sessão é mais curta ou mais alta que
-	// a tela. Exceção: a Início não usa o centro da sessão, e sim fica
-	// HERO_GAP px acima do fim do banner (mesma ideia do antigo botão
-	// flutuante do WhatsApp, só que pra cima em vez de abaixo). O centro
-	// é medido pelo CENTRO do cluster (não o topo) — como o cluster
-	// (badge+seta) tem ~108px de altura, ancorar pelo topo deixava a
-	// seta bem mais longe do que a distância sugeria.
+	// (padrão, ver CSS — usado em 501-768px) pra ficar ancorado à
+	// PRÓPRIA SESSÃO, acompanhando o scroll em tempo real. Exceção pra
+	// Início: fica HERO_GAP px acima do fim do banner (mesma ideia do
+	// antigo botão flutuante do WhatsApp, só que pra cima em vez de
+	// abaixo) — as demais sessões ficam SECTION_GAP px abaixo do
+	// próprio topo. O centro é medido pelo CENTRO do cluster (não o
+	// topo) — como o cluster (badge+seta) tem ~108px de altura, ancorar
+	// pelo topo deixava a seta bem mais longe do que a distância
+	// sugeria.
 	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
 	var HERO_GAP = -72;
+	var SECTION_GAP = 72;
 	var heroItem = items.filter( function ( item ) {
 		return item.nav.dataset.sectionTarget === 'section-inicio';
 	} )[ 0 ];
@@ -256,7 +257,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				var rect = item.section.getBoundingClientRect();
 				var centerY = ( item === heroItem ) ?
 					( rect.bottom + HERO_GAP ) :
-					( rect.top + rect.height / 2 );
+					( rect.top + SECTION_GAP );
 				item.nav.style.top = ( centerY - item.nav.offsetHeight / 2 ) + 'px';
 				item.nav.style.transform = 'none';
 			} );
