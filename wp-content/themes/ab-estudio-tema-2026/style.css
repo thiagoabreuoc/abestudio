@@ -1177,6 +1177,11 @@ h1, h2, h3 {
    colunas do desktop) — nessa faixa o texto é centralizado, então aquele
    respiro só de um lado empurrava o bloco pra fora do centro. */
 @media (max-width: 500px) {
+	.about-hello .container {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+
 	.about-hello-row {
 		row-gap: 18px;
 	}
