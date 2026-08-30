@@ -236,6 +236,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// padrão (ver CSS) pra ficar sempre 15px abaixo do fim do banner,
 	// acompanhando o scroll em tempo real — mesma ideia do antigo botão
 	// flutuante do WhatsApp. Acima de 500px continua centralizado (CSS).
+	// Os 15px são medidos até o CENTRO do cluster (não o topo) — como o
+	// cluster (badge+seta) tem ~108px de altura, ancorar pelo topo
+	// deixava a seta bem mais longe do banner do que os 15px sugeriam.
 	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
 	var HERO_GAP = 15;
 	var heroItem = items.filter( function ( item ) {
@@ -248,7 +251,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		if ( heroItem ) {
 			if ( mqMobileOnly.matches ) {
 				var heroRect = heroItem.section.getBoundingClientRect();
-				heroItem.nav.style.top = ( heroRect.bottom + HERO_GAP ) + 'px';
+				var centerY = heroRect.bottom + HERO_GAP;
+				heroItem.nav.style.top = ( centerY - heroItem.nav.offsetHeight / 2 ) + 'px';
 				heroItem.nav.style.transform = 'none';
 			} else {
 				heroItem.nav.style.top = '';
