@@ -1707,7 +1707,7 @@ h1, h2, h3 {
 	/* Só na sessão Início: cluster sobe 50px em relação ao centro
 	   vertical padrão das outras sessões. */
 	.section-nav[data-section-target="section-inicio"] {
-		transform: translateY(calc(-50% - 50px));
+		transform: translateY(calc(-50% - 22px));
 	}
 
 	.section-badge {
