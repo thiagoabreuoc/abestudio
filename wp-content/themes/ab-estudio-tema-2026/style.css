@@ -1687,6 +1687,15 @@ h1, h2, h3 {
 	}
 }
 
+/* Botão vira só "APPS" em toda essa faixa (768px pra baixo, mobile
+   incluído) — sem a palavra "Nossos". Acima de 768px continua "NOSSOS
+   APPS" por extenso. */
+@media (max-width: 768px) {
+	.apps-badge-text-nossos {
+		display: none;
+	}
+}
+
 /* De 501 a 768px o menu inline não coube bem, e não tem mais
    hambúrguer/drawer nessa faixa (ver abaixo) — navegação entre sessões
    passa a ser só o cluster flutuante (.section-nav, mesma
@@ -1702,11 +1711,6 @@ h1, h2, h3 {
 	   hambúrguer, ou não é mais alcançável nessa faixa; navegação vira
 	   o .section-nav flutuante). */
 	.hamburger {
-		display: none;
-	}
-
-	/* Botão vira só "APPS" nessa faixa — sem a palavra "Nossos". */
-	.apps-badge-text-nossos {
 		display: none;
 	}
 

@@ -244,6 +244,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		// mesmo com rect.top positivo.
 		var atBottom = ( window.scrollY + window.innerHeight ) >= ( document.documentElement.scrollHeight - 1 );
 
+		// Tolerância pequena em vez de exigir rect.top<=0 exato: o
+		// negative-margin do hero-banner é calibrado pra terminar bem
+		// perto de 0 debaixo do header sticky, mas qualquer diferença de
+		// altura do header (linha de botões quebrando, fonte carregando)
+		// desloca isso alguns pixels — sem essa margem, um section-nav
+		// podia nunca "ativar" por ficar sempre 5-10px positivo.
+		var TOP_TOLERANCE = 20;
+
 		// Duas sessões podem ficar "ativas" ao mesmo tempo perto da
 		// transição (ou pela exceção do fim de página acima) — só a
 		// última em ordem de documento fica visível, as outras somem.
@@ -251,7 +259,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		items.forEach( function ( item ) {
 			var rect = item.section.getBoundingClientRect();
-			var reachedTop = rect.top <= 0 || ( atBottom && item === lastItem );
+			var reachedTop = rect.top <= TOP_TOLERANCE || ( atBottom && item === lastItem );
 			if ( mq.matches && reachedTop && rect.bottom > 0 ) {
 				activeItem = item;
 			}
