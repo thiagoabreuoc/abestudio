@@ -236,14 +236,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	// (padrão, ver CSS — usado em 501-768px) pra ficar ancorado ao
 	// centro da PRÓPRIA SESSÃO, acompanhando o scroll em tempo real —
 	// não é a mesma coisa quando a sessão é mais curta ou mais alta que
-	// a tela. Exceção: a Início não usa o centro da sessão, e sim 15px
-	// abaixo do fim do banner (mesma ideia do antigo botão flutuante do
-	// WhatsApp). Os 15px/centro são medidos até o CENTRO do cluster (não
-	// o topo) — como o cluster (badge+seta) tem ~108px de altura,
+	// a tela. Exceção: a Início não usa o centro da sessão, e sim fica
+	// nivelada com o fim do banner (mesma ideia do antigo botão
+	// flutuante do WhatsApp). O centro é medido pelo CENTRO do cluster
+	// (não o topo) — como o cluster (badge+seta) tem ~108px de altura,
 	// ancorar pelo topo deixava a seta bem mais longe do que a distância
 	// sugeria.
 	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
-	var HERO_GAP = 15;
+	var HERO_GAP = 0;
 	var heroItem = items.filter( function ( item ) {
 		return item.nav.dataset.sectionTarget === 'section-inicio';
 	} )[ 0 ];
