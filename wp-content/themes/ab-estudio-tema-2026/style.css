@@ -843,8 +843,8 @@ h1, h2, h3 {
 	left: 50%;
 	bottom: 0;
 	transform: translate(-50%, 50%);
-	width: 64px;
-	height: 64px;
+	width: 48px;
+	height: 48px;
 	border-radius: 50%;
 	background: #fff;
 	border: none;
