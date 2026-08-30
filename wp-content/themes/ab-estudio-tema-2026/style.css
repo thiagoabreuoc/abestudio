@@ -1698,7 +1698,7 @@ h1, h2, h3 {
 		font-size: 0.8rem;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
-		padding: 2px 8px;
+		padding: 16px 2px;
 		border-radius: 999px;
 		z-index: 60;
 		opacity: 0;
