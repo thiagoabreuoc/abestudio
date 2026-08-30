@@ -232,8 +232,29 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var ticking = false;
 	var lastItem = items[ items.length - 1 ];
 
+	// Só abaixo de 500px: o cluster da Início troca do centro vertical
+	// padrão (ver CSS) pra ficar sempre 15px abaixo do fim do banner,
+	// acompanhando o scroll em tempo real — mesma ideia do antigo botão
+	// flutuante do WhatsApp. Acima de 500px continua centralizado (CSS).
+	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
+	var HERO_GAP = 15;
+	var heroItem = items.filter( function ( item ) {
+		return item.nav.dataset.sectionTarget === 'section-inicio';
+	} )[ 0 ];
+
 	function render() {
 		ticking = false;
+
+		if ( heroItem ) {
+			if ( mqMobileOnly.matches ) {
+				var heroRect = heroItem.section.getBoundingClientRect();
+				heroItem.nav.style.top = ( heroRect.bottom + HERO_GAP ) + 'px';
+				heroItem.nav.style.transform = 'none';
+			} else {
+				heroItem.nav.style.top = '';
+				heroItem.nav.style.transform = '';
+			}
+		}
 
 		// Exceção pra ÚLTIMA sessão da página: se ela for curta (menor
 		// que a viewport) e não sobrar conteúdo depois dela, o topo dela
