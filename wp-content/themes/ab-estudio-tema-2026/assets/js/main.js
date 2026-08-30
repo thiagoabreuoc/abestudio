@@ -232,13 +232,16 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	var ticking = false;
 	var lastItem = items[ items.length - 1 ];
 
-	// Só abaixo de 500px: o cluster da Início troca do centro vertical
-	// padrão (ver CSS) pra ficar sempre 15px abaixo do fim do banner,
-	// acompanhando o scroll em tempo real — mesma ideia do antigo botão
-	// flutuante do WhatsApp. Acima de 500px continua centralizado (CSS).
-	// Os 15px são medidos até o CENTRO do cluster (não o topo) — como o
-	// cluster (badge+seta) tem ~108px de altura, ancorar pelo topo
-	// deixava a seta bem mais longe do banner do que os 15px sugeriam.
+	// Só abaixo de 500px: cada cluster troca do centro da VIEWPORT
+	// (padrão, ver CSS — usado em 501-768px) pra ficar ancorado ao
+	// centro da PRÓPRIA SESSÃO, acompanhando o scroll em tempo real —
+	// não é a mesma coisa quando a sessão é mais curta ou mais alta que
+	// a tela. Exceção: a Início não usa o centro da sessão, e sim 15px
+	// abaixo do fim do banner (mesma ideia do antigo botão flutuante do
+	// WhatsApp). Os 15px/centro são medidos até o CENTRO do cluster (não
+	// o topo) — como o cluster (badge+seta) tem ~108px de altura,
+	// ancorar pelo topo deixava a seta bem mais longe do que a distância
+	// sugeria.
 	var mqMobileOnly = window.matchMedia( '(max-width: 500px)' );
 	var HERO_GAP = 15;
 	var heroItem = items.filter( function ( item ) {
@@ -248,16 +251,20 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	function render() {
 		ticking = false;
 
-		if ( heroItem ) {
-			if ( mqMobileOnly.matches ) {
-				var heroRect = heroItem.section.getBoundingClientRect();
-				var centerY = heroRect.bottom + HERO_GAP;
-				heroItem.nav.style.top = ( centerY - heroItem.nav.offsetHeight / 2 ) + 'px';
-				heroItem.nav.style.transform = 'none';
-			} else {
-				heroItem.nav.style.top = '';
-				heroItem.nav.style.transform = '';
-			}
+		if ( mqMobileOnly.matches ) {
+			items.forEach( function ( item ) {
+				var rect = item.section.getBoundingClientRect();
+				var centerY = ( item === heroItem ) ?
+					( rect.bottom + HERO_GAP ) :
+					( rect.top + rect.height / 2 );
+				item.nav.style.top = ( centerY - item.nav.offsetHeight / 2 ) + 'px';
+				item.nav.style.transform = 'none';
+			} );
+		} else {
+			items.forEach( function ( item ) {
+				item.nav.style.top = '';
+				item.nav.style.transform = '';
+			} );
 		}
 
 		// Exceção pra ÚLTIMA sessão da página: se ela for curta (menor
