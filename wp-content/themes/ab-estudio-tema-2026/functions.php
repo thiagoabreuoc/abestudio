@@ -127,3 +127,53 @@ function abe2026_login_logo_title() {
 	return get_bloginfo( 'name' );
 }
 add_filter( 'login_headertext', 'abe2026_login_logo_title' );
+
+/**
+ * Traduz os textos padrão da tela de login pra português — o site não
+ * tem pacote de idioma pt_BR instalado (arquivos .mo do core), então
+ * essas strings vêm em inglês por padrão. Troca só as conhecidas, só
+ * nessa tela (domain 'default' = strings do WordPress core). Mapa
+ * compartilhado entre gettext e gettext_with_context porque o core
+ * registra algumas dessas strings (botão "Log In", "Lost your
+ * password?") com contexto de tradutor — só o filtro 'gettext' não
+ * pega essas.
+ */
+function abe2026_login_strings_map() {
+	return array(
+		'Username or Email Address'                                    => 'Usuário ou E-mail',
+		'Username'                                                     => 'Usuário',
+		'Email Address'                                                => 'E-mail',
+		'Password'                                                     => 'Senha',
+		'Confirm Password'                                             => 'Confirmar senha',
+		'Confirm new password'                                         => 'Confirme a nova senha',
+		'New password'                                                 => 'Nova senha',
+		'Remember Me'                                                  => 'Lembrar-me',
+		'Log In'                                                       => 'Entrar',
+		'Register'                                                     => 'Cadastrar',
+		'Lost your password?'                                          => 'Esqueceu a senha?',
+		'Reset Password'                                               => 'Redefinir senha',
+		'Get New Password'                                             => 'Obter nova senha',
+		'Registration confirmation will be emailed to you.'            => 'A confirmação do cadastro será enviada por e-mail.',
+		'Please enter your username or email address. You will receive an email message with instructions on how to reset your password.' => 'Digite seu usuário ou e-mail. Você vai receber uma mensagem com instruções para redefinir sua senha.',
+		'&larr; Go to %s'                                               => '&larr; Ir para %s',
+		'Back to login'                                                => 'Voltar ao login',
+		'Show password'                                                => 'Mostrar senha',
+		'Hide password'                                                => 'Ocultar senha',
+	);
+}
+
+function abe2026_translate_login_strings( $translated_text, $text, $domain ) {
+	if ( 'default' !== $domain || 'wp-login.php' !== ( $GLOBALS['pagenow'] ?? '' ) ) {
+		return $translated_text;
+	}
+
+	$strings = abe2026_login_strings_map();
+
+	return $strings[ $text ] ?? $translated_text;
+}
+add_filter( 'gettext', 'abe2026_translate_login_strings', 20, 3 );
+
+function abe2026_translate_login_strings_with_context( $translated_text, $text, $context, $domain ) {
+	return abe2026_translate_login_strings( $translated_text, $text, $domain );
+}
+add_filter( 'gettext_with_context', 'abe2026_translate_login_strings_with_context', 20, 4 );

@@ -9,10 +9,15 @@
 body.login {
 	background: linear-gradient( 135deg, #548249 0%, #6ab350 45%, #aacd40 88%, #ffc644 100% );
 	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
 }
 
 body.login #login {
-	padding-top: 8vh;
+	margin: 40px 0;
 }
 
 body.login #login h1 a {
