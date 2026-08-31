@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="header-actions">
 			<?php
 			$abe2026_wa_message = 'Olá! 😊 Vi o site da AB Estúdio e adorei o que vocês fazem. Gostaria de solicitar um orçamento!';
-			$abe2026_wa_url     = 'https://wa.me/5521985845997?text=' . rawurlencode( $abe2026_wa_message );
+			$abe2026_wa_url     = 'https://wa.me/5521975745997?text=' . rawurlencode( $abe2026_wa_message );
 			?>
 			<nav class="header-nav" aria-label="<?php esc_attr_e( 'Menu Principal', 'abestudio2026' ); ?>">
 				<?php
