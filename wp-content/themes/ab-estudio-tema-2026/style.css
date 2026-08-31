@@ -2244,11 +2244,14 @@ h1, h2, h3 {
 	border-color: rgba(0, 0, 0, 0.16);
 }
 
+/* Verde-esmeralda da paleta do app abfinancas (referência enviada pelo
+   cliente) — diferente do degradê de marca do AB Estúdio, usado só
+   nessa thumbnail específica. */
 .apps-card-thumb {
 	width: 72px;
 	height: 72px;
 	border-radius: 12px;
-	background: linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 50%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	background: linear-gradient(180deg, #1d9c7c 0%, #4e9765 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
