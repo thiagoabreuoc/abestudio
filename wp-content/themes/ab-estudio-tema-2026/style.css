@@ -1981,5 +1981,11 @@ h1, h2, h3 {
 	.about-hello {
 		padding-top: 85px;
 	}
+
+	/* Vence o gap:40px (601-1024px) e o gap:66px base (1025px+) — mesmo
+	   espaçamento do menu/WhatsApp/Apps usado abaixo de 769px. */
+	.header-actions {
+		gap: 16px;
+	}
 }
 
