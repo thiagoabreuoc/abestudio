@@ -2097,7 +2097,7 @@ h1, h2, h3 {
    por vir depois das duas no arquivo. */
 @media (min-width: 769px) {
 	.about-hello {
-		padding-top: 85px;
+		padding-top: 105px;
 	}
 
 	/* Vence o gap:40px (601-1024px) e o gap:66px base (1025px+) — mesmo
