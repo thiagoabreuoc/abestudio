@@ -66,10 +66,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</span>
 				</span>
 			</a>
-			<a class="apps-badge apps-badge-mobile" href="#">
+			<a class="apps-badge apps-badge-mobile" href="#" data-apps-modal-toggle>
 				<span>APPs</span>
 			</a>
-			<a class="apps-badge apps-badge-desktop" href="#">
+			<a class="apps-badge apps-badge-desktop" href="#" data-apps-modal-toggle>
 				<svg class="apps-badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 					<circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/>
 					<circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
@@ -131,3 +131,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="nav-overlay" data-nav-overlay></div>
 </header>
+
+<div class="apps-modal-overlay" data-apps-modal-overlay></div>
+<div class="apps-modal" id="apps-modal" data-apps-modal role="dialog" aria-modal="true" aria-labelledby="apps-modal-title">
+	<button type="button" class="apps-modal-close" data-apps-modal-close aria-label="<?php esc_attr_e( 'Fechar', 'abestudio2026' ); ?>"></button>
+	<h2 class="apps-modal-title" id="apps-modal-title"><?php esc_html_e( 'Confira nossos APPs recentes:', 'abestudio2026' ); ?></h2>
+	<div class="apps-modal-body">
+		<p><?php esc_html_e( 'Em breve, novidades por aqui.', 'abestudio2026' ); ?></p>
+	</div>
+</div>

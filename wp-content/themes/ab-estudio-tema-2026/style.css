@@ -2115,3 +2115,126 @@ h1, h2, h3 {
 	}
 }
 
+/* Modal "Confira nossos APPs recentes", aberto pelo botão Apps do
+   header (ver data-apps-modal-toggle em main.js). */
+.apps-modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+	/* Precisa vencer .site-header (z-index:500) — maior z-index do resto
+	   do site, ainda abaixo de .orientation-lock (9999), que deve
+	   sempre vencer tudo. */
+	z-index: 900;
+}
+
+.apps-modal-overlay.is-open {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.3s ease;
+}
+
+.apps-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.96);
+	width: 500px;
+	height: 600px;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+	z-index: 901;
+}
+
+.apps-modal.is-open {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: translate(-50%, -50%) scale(1);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.apps-modal-close {
+	position: absolute;
+	top: 22px;
+	right: 22px;
+	width: 22px;
+	height: 22px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--abe-ink);
+	z-index: 2;
+}
+
+.apps-modal-close::before,
+.apps-modal-close::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--abe-ink);
+}
+
+.apps-modal-close::before {
+	transform: rotate(45deg);
+}
+
+.apps-modal-close::after {
+	transform: rotate(-45deg);
+}
+
+.apps-modal-title {
+	margin: 0;
+	padding: 32px 56px 20px 32px;
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 1.3rem;
+	color: var(--abe-ink);
+}
+
+.apps-modal-body {
+	flex: 1;
+	overflow-y: auto;
+	padding: 0 32px 32px;
+	color: var(--abe-ink);
+	font-family: var(--abe-font-body);
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+	.apps-modal {
+		width: 420px;
+		height: 500px;
+	}
+}
+
+@media (max-width: 500px) {
+	.apps-modal {
+		top: 15px;
+		left: 15px;
+		right: 15px;
+		bottom: 15px;
+		width: auto;
+		height: auto;
+		transform: none;
+		transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+	}
+
+	.apps-modal.is-open {
+		transform: none;
+		transition: opacity 0.3s ease;
+	}
+}
+

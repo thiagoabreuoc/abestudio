@@ -439,3 +439,47 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 	} );
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	// Modal "Confira nossos APPs recentes", aberto pelos botões Apps do
+	// header (mobile e desktop).
+	var modal = document.querySelector( '[data-apps-modal]' );
+	var overlay = document.querySelector( '[data-apps-modal-overlay]' );
+	var closeBtn = document.querySelector( '[data-apps-modal-close]' );
+	var toggles = document.querySelectorAll( '[data-apps-modal-toggle]' );
+
+	if ( ! modal || ! overlay || ! toggles.length ) {
+		return;
+	}
+
+	function openModal() {
+		modal.classList.add( 'is-open' );
+		overlay.classList.add( 'is-open' );
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal() {
+		modal.classList.remove( 'is-open' );
+		overlay.classList.remove( 'is-open' );
+		document.body.style.overflow = '';
+	}
+
+	Array.prototype.forEach.call( toggles, function ( toggle ) {
+		toggle.addEventListener( 'click', function ( event ) {
+			event.preventDefault();
+			openModal();
+		} );
+	} );
+
+	if ( closeBtn ) {
+		closeBtn.addEventListener( 'click', closeModal );
+	}
+
+	overlay.addEventListener( 'click', closeModal );
+
+	document.addEventListener( 'keydown', function ( event ) {
+		if ( 'Escape' === event.key ) {
+			closeModal();
+		}
+	} );
+} );
