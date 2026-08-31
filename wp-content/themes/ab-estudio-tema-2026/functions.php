@@ -104,29 +104,29 @@ function abe2026_remove_gallery_apps_item( $items ) {
 add_filter( 'wp_nav_menu_objects', 'abe2026_remove_gallery_apps_item' );
 
 /**
- * Customiza a tela de login (wp-login.php) com o padrão visual do site.
+ * DIAGNÓSTICO TEMPORÁRIO: as três funções de customização do login
+ * abaixo (estilos, URL do logo, título do logo) estão desativadas
+ * pra isolar a causa da tela de login quebrando em produção (render
+ * corta logo após "Lembrar-me", sem botão nem link de senha) — já
+ * confirmado que NÃO é o filtro de tradução gettext (removido antes
+ * e o bug persistiu). Reativar uma de cada vez depois de identificar
+ * qual está causando o problema.
  */
-function abe2026_login_styles() {
-	wp_enqueue_style( 'abestudio2026-login-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null );
-	wp_enqueue_style( 'abestudio2026-login', get_template_directory_uri() . '/assets/css/login.css', array(), filemtime( get_template_directory() . '/assets/css/login.css' ) );
-}
-add_action( 'login_enqueue_scripts', 'abe2026_login_styles' );
+// function abe2026_login_styles() {
+// wp_enqueue_style( 'abestudio2026-login-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null );
+// wp_enqueue_style( 'abestudio2026-login', get_template_directory_uri() . '/assets/css/login.css', array(), filemtime( get_template_directory() . '/assets/css/login.css' ) );
+// }
+// add_action( 'login_enqueue_scripts', 'abe2026_login_styles' );
 
-/**
- * Logo do login leva pra home do site, não pro wordpress.org.
- */
-function abe2026_login_logo_url() {
-	return home_url( '/' );
-}
-add_filter( 'login_headerurl', 'abe2026_login_logo_url' );
+// function abe2026_login_logo_url() {
+// return home_url( '/' );
+// }
+// add_filter( 'login_headerurl', 'abe2026_login_logo_url' );
 
-/**
- * Título/alt do logo do login vira o nome do site.
- */
-function abe2026_login_logo_title() {
-	return get_bloginfo( 'name' );
-}
-add_filter( 'login_headertext', 'abe2026_login_logo_title' );
+// function abe2026_login_logo_title() {
+// return get_bloginfo( 'name' );
+// }
+// add_filter( 'login_headertext', 'abe2026_login_logo_title' );
 
 /**
  * TEMPORARIAMENTE DESATIVADO: o filtro de tradução via gettext/
