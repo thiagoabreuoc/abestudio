@@ -209,3 +209,122 @@ function abe2026_translate_login_strings_with_context( $translated_text, $text, 
 	return abe2026_translate_login_strings( $translated_text, $text, $domain );
 }
 add_filter( 'gettext_with_context', 'abe2026_translate_login_strings_with_context', 20, 4 );
+
+/**
+ * Campos editáveis da página inicial (front-page.php), expostos como
+ * meta box na tela de edição da página marcada em Ajustes → Leitura
+ * como página inicial estática — o template em si é fixo (hero +
+ * seção Sobre), só o conteúdo textual é editável por aqui.
+ */
+function abe2026_front_page_field_defs() {
+	return array(
+		'abe_hero_quote_phrases' => array(
+			'label'   => __( 'Frases do banner (uma por linha, alternam automaticamente)', 'abestudio2026' ),
+			'type'    => 'textarea',
+			'default' => "Excelentes experiências digitais\nNegócios digitais",
+		),
+		'abe_about_intro'        => array(
+			'label'   => __( 'Sobre — texto antes do destaque', 'abestudio2026' ),
+			'type'    => 'text',
+			'default' => 'Estamos há mais de',
+		),
+		'abe_about_years'        => array(
+			'label'   => __( 'Sobre — texto em destaque', 'abestudio2026' ),
+			'type'    => 'text',
+			'default' => '15 anos',
+		),
+		'abe_about_suffix'       => array(
+			'label'   => __( 'Sobre — texto depois do destaque', 'abestudio2026' ),
+			'type'    => 'text',
+			'default' => 'criando design digital',
+		),
+		'abe_about_paragraph'    => array(
+			'label'   => __( 'Sobre — parágrafo', 'abestudio2026' ),
+			'type'    => 'textarea',
+			'default' => 'Cada projeto é idealizado, focando na melhor experiência para nossos parceiros e clientes.',
+		),
+		'abe_about_link_text'    => array(
+			'label'   => __( 'Sobre — texto do link', 'abestudio2026' ),
+			'type'    => 'text',
+			'default' => 'Mais',
+		),
+		'abe_about_link_url'     => array(
+			'label'   => __( 'Sobre — URL do link', 'abestudio2026' ),
+			'type'    => 'text',
+			'default' => '#',
+		),
+	);
+}
+
+function abe2026_front_page_field( $post_id, $key ) {
+	$defs  = abe2026_front_page_field_defs();
+	$value = get_post_meta( $post_id, $key, true );
+
+	if ( '' === $value || false === $value ) {
+		return $defs[ $key ]['default'];
+	}
+
+	return $value;
+}
+
+function abe2026_register_front_page_meta_box() {
+	$front_page_id = (int) get_option( 'page_on_front' );
+
+	if ( ! $front_page_id || get_the_ID() !== $front_page_id ) {
+		return;
+	}
+
+	add_meta_box(
+		'abe2026_front_page_content',
+		__( 'Conteúdo da página inicial', 'abestudio2026' ),
+		'abe2026_render_front_page_meta_box',
+		'page',
+		'normal',
+		'high'
+	);
+}
+add_action( 'add_meta_boxes_page', 'abe2026_register_front_page_meta_box' );
+
+function abe2026_render_front_page_meta_box( $post ) {
+	wp_nonce_field( 'abe2026_save_front_page_meta', 'abe2026_front_page_meta_nonce' );
+
+	foreach ( abe2026_front_page_field_defs() as $key => $def ) {
+		$value = abe2026_front_page_field( $post->ID, $key );
+		echo '<p style="margin-bottom:16px;">';
+		echo '<label for="' . esc_attr( $key ) . '" style="display:block;font-weight:600;margin-bottom:4px;">' . esc_html( $def['label'] ) . '</label>';
+
+		if ( 'textarea' === $def['type'] ) {
+			echo '<textarea id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" rows="3" style="width:100%;">' . esc_textarea( $value ) . '</textarea>';
+		} else {
+			echo '<input type="text" id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" value="' . esc_attr( $value ) . '" style="width:100%;">';
+		}
+
+		echo '</p>';
+	}
+}
+
+function abe2026_save_front_page_meta( $post_id ) {
+	if ( ! isset( $_POST['abe2026_front_page_meta_nonce'] ) || ! wp_verify_nonce( $_POST['abe2026_front_page_meta_nonce'], 'abe2026_save_front_page_meta' ) ) {
+		return;
+	}
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+
+	if ( ! current_user_can( 'edit_page', $post_id ) ) {
+		return;
+	}
+
+	foreach ( abe2026_front_page_field_defs() as $key => $def ) {
+		if ( ! isset( $_POST[ $key ] ) ) {
+			continue;
+		}
+
+		$raw = wp_unslash( $_POST[ $key ] );
+		$clean = 'textarea' === $def['type'] ? sanitize_textarea_field( $raw ) : sanitize_text_field( $raw );
+
+		update_post_meta( $post_id, $key, $clean );
+	}
+}
+add_action( 'save_post_page', 'abe2026_save_front_page_meta' );
