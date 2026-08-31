@@ -2143,7 +2143,13 @@ h1, h2, h3 {
 	transform: translate(-50%, -50%) scale(0.96);
 	width: 500px;
 	height: 600px;
-	background: #fff;
+	/* Borda degradê de 1px, mesma cor/ângulo do "Olá." — duas camadas de
+	   background: a de cima (branco) preenche o miolo (padding-box), a
+	   de baixo (degradê) só aparece na faixa de 1px do border-box. */
+	border: 1px solid transparent;
+	background-image: linear-gradient(#fff, #fff), linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 50%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	background-origin: border-box;
+	background-clip: padding-box, border-box;
 	border-radius: 16px;
 	box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4);
 	display: flex;
@@ -2173,7 +2179,7 @@ h1, h2, h3 {
 	background: none;
 	border: none;
 	cursor: pointer;
-	color: var(--abe-ink);
+	color: var(--abe-green);
 	z-index: 2;
 }
 
@@ -2185,7 +2191,7 @@ h1, h2, h3 {
 	left: 0;
 	width: 100%;
 	height: 2px;
-	background: var(--abe-ink);
+	background: var(--abe-green);
 }
 
 .apps-modal-close::before {
@@ -2196,9 +2202,12 @@ h1, h2, h3 {
 	transform: rotate(-45deg);
 }
 
+/* padding-top folgado o bastante pra sobrar uma linha inteira de
+   respiro abaixo do X (que fica em top:22px, 22px de altura). */
 .apps-modal-title {
 	margin: 0;
-	padding: 32px 56px 20px 32px;
+	padding: 64px 32px 20px;
+	text-align: center;
 	font-family: var(--abe-font-heading);
 	font-weight: 600;
 	font-size: 1.3rem;
