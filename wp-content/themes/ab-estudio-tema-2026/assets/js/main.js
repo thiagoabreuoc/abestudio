@@ -412,7 +412,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			remaining -= 1;
 
 			if ( remaining <= 0 ) {
-				window.open( waLink.href, '_blank', 'noopener' );
+				// window.open aqui era bloqueado por bloqueador de pop-up —
+				// navegador não considera um setInterval assíncrono como
+				// gesto direto do usuário. Navegação normal (mesma aba) não
+				// tem essa restrição.
+				window.location.href = waLink.href;
 				reset();
 				return;
 			}
