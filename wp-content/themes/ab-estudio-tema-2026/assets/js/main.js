@@ -249,6 +249,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return item.nav.dataset.sectionTarget === 'section-inicio';
 	} )[ 0 ];
 
+	// Só em 501-768px: cluster da Sobre sobe até a altura do "Olá."
+	// (.about-hello-word), acompanhando o scroll em tempo real — troca
+	// o transform:translateY(...) fixo do CSS por essa referência viva.
+	// Não mexe no Início (que já tem sua própria regra CSS nessa faixa)
+	// nem em outras sessões futuras (sem "Olá." próprio, ficam no
+	// centro padrão da viewport via CSS).
+	var mqTabletOnly = window.matchMedia( '(min-width: 501px) and (max-width: 768px)' );
+	var olaEl = document.querySelector( '.about-hello-word' );
+	var sobreItem = items.filter( function ( item ) {
+		return item.nav.dataset.sectionTarget === 'section-sobre';
+	} )[ 0 ];
+
 	function render() {
 		ticking = false;
 
@@ -260,6 +272,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 					( rect.top + SECTION_GAP );
 				item.nav.style.top = ( centerY - item.nav.offsetHeight / 2 ) + 'px';
 				item.nav.style.transform = 'none';
+			} );
+		} else if ( mqTabletOnly.matches && sobreItem && olaEl ) {
+			items.forEach( function ( item ) {
+				if ( item === sobreItem ) {
+					var olaRect = olaEl.getBoundingClientRect();
+					var olaCenterY = olaRect.top + olaRect.height / 2;
+					item.nav.style.top = ( olaCenterY - item.nav.offsetHeight / 2 ) + 'px';
+					item.nav.style.transform = 'none';
+				} else {
+					item.nav.style.top = '';
+					item.nav.style.transform = '';
+				}
 			} );
 		} else {
 			items.forEach( function ( item ) {
