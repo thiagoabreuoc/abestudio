@@ -1987,5 +1987,13 @@ h1, h2, h3 {
 	.header-actions {
 		gap: 16px;
 	}
+
+	/* +16px só entre o menu e o WhatsApp (32px no total) — o gap acima
+	   é uniforme entre todos os itens de .header-actions, então pra
+	   afastar só esse par específico (sem mexer no WhatsApp-Apps) usa-se
+	   margin no próprio WhatsApp. */
+	.header-whatsapp {
+		margin-left: 16px;
+	}
 }
 
