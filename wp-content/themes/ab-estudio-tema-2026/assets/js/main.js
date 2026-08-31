@@ -314,3 +314,44 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	window.addEventListener( 'resize', requestRender );
 	render();
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	// Categorias do menu (header inline + drawer) rolam suavemente até a
+	// sessão correspondente na própria página, em vez de navegar pra uma
+	// URL separada — os links do menu ainda vêm com URLs "de verdade"
+	// (configuradas no WP Admin, algumas pra outras páginas, outras
+	// âncora), mas aqui a gente casa pelo TEXTO do link com o id da
+	// sessão. Só entra em ação quando a sessão já existe na página atual
+	// (nem todas foram construídas ainda) — sem isso, o link segue
+	// funcionando normalmente (navegação de página de verdade), pra não
+	// quebrar categorias que ainda não têm sessão própria.
+	var SECTION_BY_LABEL = {
+		'Início': 'section-inicio',
+		'Serviços': 'section-servicos',
+		'Sobre': 'section-sobre',
+		'Contato': 'section-contato',
+		'Portfólio': 'section-portfolio',
+	};
+
+	var menuLinks = document.querySelectorAll( '.header-nav-menu a, .nav-drawer .primary-menu a' );
+
+	Array.prototype.forEach.call( menuLinks, function ( link ) {
+		var targetId = SECTION_BY_LABEL[ link.textContent.trim() ];
+		var target = targetId && document.getElementById( targetId );
+
+		if ( ! target ) {
+			return;
+		}
+
+		link.addEventListener( 'click', function ( event ) {
+			event.preventDefault();
+
+			var closeBtn = document.querySelector( '[data-nav-close]' );
+			if ( closeBtn && document.querySelector( '[data-nav-drawer]' ).classList.contains( 'is-open' ) ) {
+				closeBtn.click();
+			}
+
+			target.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+		} );
+	} );
+} );
