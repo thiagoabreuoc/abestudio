@@ -21,11 +21,12 @@ body.login #login {
 }
 
 body.login #login h1 a {
-	background-image: url( '../images/logo-ab-white.png' );
+	background-image: url( '../images/logo-ab.png' );
 	background-size: contain;
 	background-position: center;
+	background-repeat: no-repeat;
 	width: 100%;
-	height: 60px;
+	height: 36px;
 }
 
 body.login form {
@@ -62,6 +63,11 @@ body.login .button-primary:focus {
 	background: #6ab350;
 	border-color: #6ab350;
 	box-shadow: none;
+}
+
+body.login #nav,
+body.login #backtoblog {
+	text-align: center;
 }
 
 body.login #nav a,
