@@ -137,7 +137,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<button type="button" class="apps-modal-close" data-apps-modal-close aria-label="<?php esc_attr_e( 'Fechar', 'abestudio2026' ); ?>"></button>
 	<h2 class="apps-modal-title" id="apps-modal-title"><?php esc_html_e( 'Confira nossos APPs recentes:', 'abestudio2026' ); ?></h2>
 	<div class="apps-modal-body">
-		<a class="apps-card" href="#" aria-label="<?php esc_attr_e( 'Acessar o app AB Finanças', 'abestudio2026' ); ?>">
+		<a class="apps-card" href="https://financas.abfinancas.online/" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Acessar o app AB Finanças', 'abestudio2026' ); ?>">
 			<span class="apps-card-thumb" aria-hidden="true">
 				<img class="apps-card-thumb-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-ab-white.png' ); ?>" alt="">
 			</span>
