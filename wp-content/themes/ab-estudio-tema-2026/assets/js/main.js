@@ -412,8 +412,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			remaining -= 1;
 
 			if ( remaining <= 0 ) {
-				window.location.href = waLink.href;
+				// reset() antes do redirect: fecha o balão e tira o botão
+				// do estado "ativo" já nesse instante, não só depois que a
+				// navegação terminar (importante em mobile, onde o link do
+				// WhatsApp costuma abrir o app nativo e deixar essa aba do
+				// navegador em segundo plano, ainda visível, exatamente
+				// como ficou nesse momento).
 				reset();
+				window.location.href = waLink.href;
 				return;
 			}
 
