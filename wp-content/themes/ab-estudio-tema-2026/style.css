@@ -309,8 +309,8 @@ h1, h2, h3 {
 	top: calc(100% + 10px);
 	left: 50%;
 	transform: translateX(-50%) translateY(-6px);
-	width: max-content;
-	max-width: 200px;
+	width: 100%;
+	box-sizing: border-box;
 	background: #fff;
 	color: var(--abe-ink);
 	padding: 10px 14px;
