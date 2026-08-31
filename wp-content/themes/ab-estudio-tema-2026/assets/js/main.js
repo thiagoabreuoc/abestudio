@@ -355,3 +355,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 	} );
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	// Botão redondo com seta no fim do banner: rola suavemente até a
+	// próxima sessão (Sobre).
+	var scrollDownBtn = document.querySelector( '[data-scroll-down]' );
+	var nextSection = document.getElementById( 'section-sobre' );
+
+	if ( ! scrollDownBtn || ! nextSection ) {
+		return;
+	}
+
+	scrollDownBtn.addEventListener( 'click', function () {
+		nextSection.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+	} );
+} );
