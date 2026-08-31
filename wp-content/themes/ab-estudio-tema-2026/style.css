@@ -367,8 +367,12 @@ h1, h2, h3 {
 	transform: translateX(-50%) translateY(0);
 }
 
+/* Escondido até .is-active (clique real, contagem em andamento) — em
+   769px+ o balão também abre só no hover (preview, sem contar nada);
+   sem isso, essa linha apareceria "parada" durante esse preview, antes
+   de qualquer clique. */
 .header-whatsapp-countdown {
-	display: block;
+	display: none;
 	margin-top: 8px;
 	padding-top: 8px;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -377,12 +381,8 @@ h1, h2, h3 {
 	color: #25d366;
 }
 
-/* Só existe abaixo de 769px — no hover puro do desktop não há clique
-   nem redirecionamento cronometrado, só o balão de horário. */
-@media (min-width: 769px) {
-	.header-whatsapp-countdown {
-		display: none;
-	}
+.header-whatsapp.is-active .header-whatsapp-countdown {
+	display: block;
 }
 
 .header-whatsapp-icon-wrap {

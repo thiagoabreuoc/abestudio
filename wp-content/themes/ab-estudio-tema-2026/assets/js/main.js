@@ -372,11 +372,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
 } );
 
 document.addEventListener( 'DOMContentLoaded', function () {
-	// Abaixo de 769px o botão do WhatsApp não navega direto no clique:
-	// abre o balão (que já existia no hover do desktop) com uma
-	// contagem regressiva de 3s, e só então redireciona. Em 769px+ o
-	// link segue normal (clique navega direto; o balão só é hover, ver
-	// CSS) — esse bloco não faz nada lá.
+	// O botão do WhatsApp nunca navega direto no clique, em nenhuma
+	// largura: abre o balão (que também aparece no hover, só em
+	// 769px+ — ver CSS) com uma contagem regressiva de 5s, e só então
+	// redireciona. .header-whatsapp-countdown fica escondido até
+	// .is-active (ver CSS), pra não mostrar uma contagem parada durante
+	// o hover-preview do desktop, antes de clicar.
 	var waLink = document.querySelector( '.header-whatsapp' );
 	var countdownEl = waLink && waLink.querySelector( '[data-countdown-value]' );
 
@@ -384,7 +385,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		return;
 	}
 
-	var mq = window.matchMedia( '(max-width: 768px)' );
 	var COUNTDOWN_SECONDS = 5;
 	var intervalId = null;
 
@@ -398,7 +398,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	}
 
 	waLink.addEventListener( 'click', function ( event ) {
-		if ( ! mq.matches || intervalId ) {
+		if ( intervalId ) {
 			return;
 		}
 
