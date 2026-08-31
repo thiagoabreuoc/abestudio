@@ -139,7 +139,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="apps-modal-body">
 		<a class="apps-card" href="#" aria-label="<?php esc_attr_e( 'Acessar o app AB Finanças', 'abestudio2026' ); ?>">
 			<span class="apps-card-thumb" aria-hidden="true">
-				<span class="apps-card-thumb-mark"><?php esc_html_e( 'AB', 'abestudio2026' ); ?></span>
+				<img class="apps-card-thumb-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-ab-white.png' ); ?>" alt="">
 			</span>
 			<span class="apps-card-info">
 				<strong class="apps-card-title"><?php esc_html_e( 'AB Finanças', 'abestudio2026' ); ?></strong>

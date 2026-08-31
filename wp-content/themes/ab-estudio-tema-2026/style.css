@@ -2255,11 +2255,9 @@ h1, h2, h3 {
 	flex-shrink: 0;
 }
 
-.apps-card-thumb-mark {
-	font-family: var(--abe-font-heading);
-	font-weight: 700;
-	font-size: 1.1rem;
-	color: #fff;
+.apps-card-thumb-logo {
+	width: 60%;
+	height: auto;
 }
 
 .apps-card-info {
