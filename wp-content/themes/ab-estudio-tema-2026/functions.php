@@ -103,37 +103,68 @@ function abe2026_remove_gallery_apps_item( $items ) {
 }
 add_filter( 'wp_nav_menu_objects', 'abe2026_remove_gallery_apps_item' );
 
-/**
- * DIAGNÓSTICO TEMPORÁRIO: as três funções de customização do login
- * abaixo (estilos, URL do logo, título do logo) estão desativadas
- * pra isolar a causa da tela de login quebrando em produção (render
- * corta logo após "Lembrar-me", sem botão nem link de senha) — já
- * confirmado que NÃO é o filtro de tradução gettext (removido antes
- * e o bug persistiu). Reativar uma de cada vez depois de identificar
- * qual está causando o problema.
- */
-// function abe2026_login_styles() {
-// wp_enqueue_style( 'abestudio2026-login-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null );
-// wp_enqueue_style( 'abestudio2026-login', get_template_directory_uri() . '/assets/css/login.css', array(), filemtime( get_template_directory() . '/assets/css/login.css' ) );
-// }
-// add_action( 'login_enqueue_scripts', 'abe2026_login_styles' );
+function abe2026_login_styles() {
+	wp_enqueue_style( 'abestudio2026-login-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', array(), null );
+	wp_enqueue_style( 'abestudio2026-login', get_template_directory_uri() . '/assets/css/login.css', array(), filemtime( get_template_directory() . '/assets/css/login.css' ) );
+}
+add_action( 'login_enqueue_scripts', 'abe2026_login_styles' );
 
-// function abe2026_login_logo_url() {
-// return home_url( '/' );
-// }
-// add_filter( 'login_headerurl', 'abe2026_login_logo_url' );
+function abe2026_login_logo_url() {
+	return home_url( '/' );
+}
+add_filter( 'login_headerurl', 'abe2026_login_logo_url' );
 
-// function abe2026_login_logo_title() {
-// return get_bloginfo( 'name' );
-// }
-// add_filter( 'login_headertext', 'abe2026_login_logo_title' );
+function abe2026_login_logo_title() {
+	return get_bloginfo( 'name' );
+}
+add_filter( 'login_headertext', 'abe2026_login_logo_title' );
 
 /**
- * TEMPORARIAMENTE DESATIVADO: o filtro de tradução via gettext/
- * gettext_with_context quebrava a tela de login em produção (render
- * cortava logo após "Lembrar-me", sem botão "Entrar" nem "Esqueceu a
- * senha?"). Produção roda WordPress 7.1, o ambiente local 7.0.3 — o
- * bug não reproduz localmente, provavelmente uma diferença de
- * comportamento do core entre as duas versões. Precisa investigar com
- * mais segurança (log de erro do servidor) antes de reativar.
+ * Traduz os textos padrão da tela de login pra português — o site não
+ * tem pacote de idioma pt_BR instalado (arquivos .mo do core), então
+ * essas strings vêm em inglês por padrão. Troca só as conhecidas, só
+ * nessa tela (domain 'default' = strings do WordPress core). Mapa
+ * compartilhado entre gettext e gettext_with_context porque o core
+ * registra algumas dessas strings (botão "Log In", "Lost your
+ * password?") com contexto de tradutor — só o filtro 'gettext' não
+ * pega essas.
  */
+function abe2026_login_strings_map() {
+	return array(
+		'Username or Email Address'                                    => 'Usuário ou E-mail',
+		'Username'                                                     => 'Usuário',
+		'Email Address'                                                => 'E-mail',
+		'Password'                                                     => 'Senha',
+		'Confirm Password'                                             => 'Confirmar senha',
+		'Confirm new password'                                         => 'Confirme a nova senha',
+		'New password'                                                 => 'Nova senha',
+		'Remember Me'                                                  => 'Lembrar-me',
+		'Log In'                                                       => 'Entrar',
+		'Register'                                                     => 'Cadastrar',
+		'Lost your password?'                                          => 'Esqueceu a senha?',
+		'Reset Password'                                               => 'Redefinir senha',
+		'Get New Password'                                             => 'Obter nova senha',
+		'Registration confirmation will be emailed to you.'            => 'A confirmação do cadastro será enviada por e-mail.',
+		'Please enter your username or email address. You will receive an email message with instructions on how to reset your password.' => 'Digite seu usuário ou e-mail. Você vai receber uma mensagem com instruções para redefinir sua senha.',
+		'&larr; Go to %s'                                               => '&larr; Ir para %s',
+		'Back to login'                                                => 'Voltar ao login',
+		'Show password'                                                => 'Mostrar senha',
+		'Hide password'                                                => 'Ocultar senha',
+	);
+}
+
+function abe2026_translate_login_strings( $translated_text, $text, $domain ) {
+	if ( 'default' !== $domain || 'wp-login.php' !== ( $GLOBALS['pagenow'] ?? '' ) ) {
+		return $translated_text;
+	}
+
+	$strings = abe2026_login_strings_map();
+
+	return $strings[ $text ] ?? $translated_text;
+}
+add_filter( 'gettext', 'abe2026_translate_login_strings', 20, 3 );
+
+function abe2026_translate_login_strings_with_context( $translated_text, $text, $context, $domain ) {
+	return abe2026_translate_login_strings( $translated_text, $text, $domain );
+}
+add_filter( 'gettext_with_context', 'abe2026_translate_login_strings_with_context', 20, 4 );
