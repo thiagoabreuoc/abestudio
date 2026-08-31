@@ -1,0 +1,81 @@
+/*
+ * Tela de login do WordPress (wp-login.php), com o padrão visual do
+ * tema: mesmo degradê do hero-banner no fundo, logo mascarado em
+ * branco, card do formulário arredondado com sombra suave, e botão/
+ * links na cor de marca. Valores hardcoded (não var(--...)) porque
+ * este stylesheet carrega isolado, fora da cascata do style.css.
+ */
+
+body.login {
+	background: linear-gradient( 135deg, #548249 0%, #6ab350 45%, #aacd40 88%, #ffc644 100% );
+	font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body.login #login {
+	padding-top: 8vh;
+}
+
+body.login #login h1 a {
+	background-image: url( '../images/logo-ab-white.png' );
+	background-size: contain;
+	background-position: center;
+	width: 100%;
+	height: 60px;
+}
+
+body.login form {
+	border-radius: 16px;
+	border: none;
+	box-shadow: 0 30px 60px -15px rgba( 0, 0, 0, 0.35 );
+}
+
+body.login form .input,
+body.login input[type="text"],
+body.login input[type="password"] {
+	border-radius: 8px;
+	border-color: rgba( 34, 48, 28, 0.2 );
+}
+
+body.login form .input:focus,
+body.login input[type="text"]:focus,
+body.login input[type="password"]:focus {
+	border-color: #6ab350;
+	box-shadow: 0 0 0 1px #6ab350;
+}
+
+body.login .button-primary {
+	background: #22301c;
+	border-color: #22301c;
+	border-radius: 8px;
+	text-shadow: none;
+	box-shadow: none;
+	transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+body.login .button-primary:hover,
+body.login .button-primary:focus {
+	background: #6ab350;
+	border-color: #6ab350;
+	box-shadow: none;
+}
+
+body.login #nav a,
+body.login #backtoblog a {
+	color: #22301c;
+	text-decoration: none;
+}
+
+body.login #nav a:hover,
+body.login #backtoblog a:hover {
+	color: #6ab350;
+}
+
+body.login .message,
+body.login #login_error {
+	border-radius: 8px;
+	border-left-color: #6ab350;
+}
+
+body.login #login_error {
+	border-left-color: #ffc644;
+}
