@@ -137,6 +137,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<button type="button" class="apps-modal-close" data-apps-modal-close aria-label="<?php esc_attr_e( 'Fechar', 'abestudio2026' ); ?>"></button>
 	<h2 class="apps-modal-title" id="apps-modal-title"><?php esc_html_e( 'Confira nossos APPs recentes:', 'abestudio2026' ); ?></h2>
 	<div class="apps-modal-body">
-		<p><?php esc_html_e( 'Em breve, novidades por aqui.', 'abestudio2026' ); ?></p>
+		<a class="apps-card" href="#" aria-label="<?php esc_attr_e( 'Acessar o app AB Finanças', 'abestudio2026' ); ?>">
+			<span class="apps-card-thumb" aria-hidden="true">
+				<span class="apps-card-thumb-mark"><?php esc_html_e( 'AB', 'abestudio2026' ); ?></span>
+			</span>
+			<span class="apps-card-info">
+				<strong class="apps-card-title"><?php esc_html_e( 'AB Finanças', 'abestudio2026' ); ?></strong>
+				<span class="apps-card-desc"><?php esc_html_e( 'Controle financeiro simples e direto, pensado para o seu dia a dia.', 'abestudio2026' ); ?></span>
+			</span>
+			<svg class="apps-card-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</a>
 	</div>
 </div>

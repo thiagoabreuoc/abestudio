@@ -2222,6 +2222,76 @@ h1, h2, h3 {
 	font-family: var(--abe-font-body);
 }
 
+/* Card de cada app — thumbnail | título+descrição | seta, cartão
+   inteiro clicável. */
+.apps-card {
+	display: grid;
+	grid-template-columns: 72px 1fr auto;
+	align-items: center;
+	gap: 16px;
+	padding: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 12px;
+	text-decoration: none;
+	transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.apps-card:hover {
+	background: #f6f6f4;
+	border-color: rgba(0, 0, 0, 0.16);
+}
+
+.apps-card-thumb {
+	width: 72px;
+	height: 72px;
+	border-radius: 12px;
+	background: linear-gradient(100deg, var(--abe-teal) 0%, var(--abe-green) 50%, var(--abe-yellow) 88%, var(--abe-orange) 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.apps-card-thumb-mark {
+	font-family: var(--abe-font-heading);
+	font-weight: 700;
+	font-size: 1.1rem;
+	color: #fff;
+}
+
+.apps-card-info {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.apps-card-title {
+	font-family: var(--abe-font-heading);
+	font-weight: 600;
+	font-size: 1rem;
+	color: var(--abe-ink);
+}
+
+.apps-card-desc {
+	font-family: var(--abe-font-body);
+	font-size: 0.85rem;
+	line-height: 1.4;
+	color: rgba(34, 48, 28, 0.7);
+}
+
+.apps-card-arrow {
+	width: 20px;
+	height: 20px;
+	color: var(--abe-green);
+	flex-shrink: 0;
+	transition: transform 0.2s ease;
+}
+
+.apps-card:hover .apps-card-arrow {
+	transform: translateX(3px);
+}
+
 @media (min-width: 501px) and (max-width: 768px) {
 	.apps-modal {
 		width: 420px;
