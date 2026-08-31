@@ -405,6 +405,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		event.preventDefault();
 		waLink.classList.add( 'is-active' );
 
+		// Abre a aba em branco JÁ (ainda dentro do clique, gesto direto do
+		// usuário — não é bloqueada) e só navega ela pro WhatsApp depois
+		// da contagem. Fazer o window.open só lá na frente (dentro do
+		// setInterval, assíncrono) é o que disparava o bloqueador de
+		// pop-up antes. SEM noopener aqui: precisamos manter a referência
+		// pra poder navegar essa aba depois — noopener quebra esse
+		// controle (a aba nova roda isolada, sem handle utilizável).
+		var newTab = window.open( '', '_blank' );
+
 		var remaining = COUNTDOWN_SECONDS;
 		countdownEl.textContent = String( remaining );
 
@@ -412,11 +421,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			remaining -= 1;
 
 			if ( remaining <= 0 ) {
-				// window.open aqui era bloqueado por bloqueador de pop-up —
-				// navegador não considera um setInterval assíncrono como
-				// gesto direto do usuário. Navegação normal (mesma aba) não
-				// tem essa restrição.
-				window.location.href = waLink.href;
+				if ( newTab ) {
+					newTab.location.href = waLink.href;
+				}
 				reset();
 				return;
 			}
