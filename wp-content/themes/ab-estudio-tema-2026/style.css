@@ -2227,7 +2227,10 @@ h1, h2, h3 {
 .apps-card {
 	display: grid;
 	grid-template-columns: 72px 1fr auto;
-	align-items: center;
+	/* start (não center): thumbnail e título alinhados pelo topo. A seta
+	   recebe align-self próprio pra continuar centralizada na altura do
+	   card, já que ela não tem essa exigência. */
+	align-items: start;
 	gap: 16px;
 	padding: 16px;
 	border: 1px solid rgba(0, 0, 0, 0.08);
@@ -2281,6 +2284,7 @@ h1, h2, h3 {
 }
 
 .apps-card-arrow {
+	align-self: center;
 	width: 20px;
 	height: 20px;
 	color: var(--abe-green);
