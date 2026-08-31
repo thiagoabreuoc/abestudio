@@ -58,6 +58,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</span>
 				<span class="header-whatsapp-text-mobile"><?php esc_html_e( 'Whatsapp', 'abestudio2026' ); ?></span>
 				<span class="header-whatsapp-text-tablet"><?php esc_html_e( 'Fale conosco', 'abestudio2026' ); ?></span>
+				<span class="header-whatsapp-tooltip" role="tooltip">
+					<strong><?php esc_html_e( 'Horário de atendimento', 'abestudio2026' ); ?></strong>
+					<?php esc_html_e( 'Seg. a sex., das 9h às 18h', 'abestudio2026' ); ?>
+				</span>
 			</a>
 			<a class="apps-badge apps-badge-mobile" href="#">
 				<span>APPs</span>
