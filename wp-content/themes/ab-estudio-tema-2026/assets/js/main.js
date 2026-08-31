@@ -385,7 +385,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	}
 
 	var mq = window.matchMedia( '(max-width: 768px)' );
-	var COUNTDOWN_SECONDS = 3;
+	var COUNTDOWN_SECONDS = 5;
 	var intervalId = null;
 
 	function reset() {

@@ -373,8 +373,8 @@ h1, h2, h3 {
 	padding-top: 8px;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 	font-size: 0.72rem;
-	color: var(--abe-ink);
-	opacity: 0.7;
+	font-weight: 600;
+	color: #25d366;
 }
 
 /* Só existe abaixo de 769px — no hover puro do desktop não há clique
