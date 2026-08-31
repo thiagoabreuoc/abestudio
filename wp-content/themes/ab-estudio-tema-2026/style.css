@@ -263,8 +263,9 @@ h1, h2, h3 {
 
 /* Mesma "caixa" do .apps-badge-desktop (padding/radius/tipografia em
    maiúsculas) — só a cor muda pro verde oficial do WhatsApp (mesmo tom
-   de .whatsapp-float), com hover num verde mais escuro da mesma
-   família, igual ao botão flutuante. */
+   de .whatsapp-float). Hover inverte: fundo branco, texto/ícone
+   voltam a ser verdes (a cor do ícone vem por herança — sem color
+   próprio em .header-whatsapp-icon-wrap). */
 .header-whatsapp {
 	display: inline-flex;
 	align-items: center;
@@ -279,11 +280,12 @@ h1, h2, h3 {
 	padding: 8px 12px;
 	border-radius: 8px;
 	flex-shrink: 0;
-	transition: background 0.2s ease;
+	transition: background 0.2s ease, color 0.2s ease;
 }
 
 .header-whatsapp:hover {
-	background: #1da851;
+	background: #fff;
+	color: #25d366;
 }
 
 .header-whatsapp-icon-wrap {
@@ -294,7 +296,6 @@ h1, h2, h3 {
 	width: 18px;
 	height: 18px;
 	box-sizing: border-box;
-	color: #fff;
 	flex: none;
 }
 
