@@ -1,3 +1,14 @@
+// Tentativa de travar a orientação de verdade (além do aviso em CSS —
+// ver .orientation-lock — que é o que realmente cobre a maioria dos
+// casos). screen.orientation.lock só é permitido em pouquíssimos
+// contextos (ex.: PWA instalado em tela cheia no Android/Chrome) e
+// rejeita a Promise em todo o resto (inclusive todo navegador comum e
+// o Safari/iOS inteiro, que nem implementa a API) — por isso o catch
+// silencioso, sem isso quebraria o carregamento normal da página.
+if ( screen.orientation && screen.orientation.lock ) {
+	screen.orientation.lock( 'portrait' ).catch( function () {} );
+}
+
 document.addEventListener( 'DOMContentLoaded', function () {
 	var toggle = document.querySelector( '[data-nav-toggle]' );
 	var drawer = document.querySelector( '[data-nav-drawer]' );
