@@ -349,10 +349,40 @@ h1, h2, h3 {
 	border-bottom-color: #fff;
 }
 
-.header-whatsapp:hover .header-whatsapp-tooltip {
+/* Abaixo de 769px não tem hover de verdade (touch) — o balão só abre
+   com clique (.is-active, ver main.js), que também dispara a contagem
+   regressiva antes de redirecionar. Em 769px+ continua no hover puro,
+   sem clique/contagem — o link navega direto como um link normal. */
+@media (min-width: 769px) {
+	.header-whatsapp:hover .header-whatsapp-tooltip {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
+}
+
+.header-whatsapp.is-active .header-whatsapp-tooltip {
 	opacity: 1;
 	visibility: visible;
 	transform: translateX(-50%) translateY(0);
+}
+
+.header-whatsapp-countdown {
+	display: block;
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	font-size: 0.72rem;
+	color: var(--abe-ink);
+	opacity: 0.7;
+}
+
+/* Só existe abaixo de 769px — no hover puro do desktop não há clique
+   nem redirecionamento cronometrado, só o balão de horário. */
+@media (min-width: 769px) {
+	.header-whatsapp-countdown {
+		display: none;
+	}
 }
 
 .header-whatsapp-icon-wrap {

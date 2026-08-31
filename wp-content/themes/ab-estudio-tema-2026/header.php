@@ -61,6 +61,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span class="header-whatsapp-tooltip" role="tooltip">
 					<strong><?php esc_html_e( 'Horário de atendimento', 'abestudio2026' ); ?></strong>
 					<?php esc_html_e( 'Seg. a sex., das 9h às 18h', 'abestudio2026' ); ?>
+					<span class="header-whatsapp-countdown" data-whatsapp-countdown aria-live="polite">
+						<?php esc_html_e( 'Redirecionando em', 'abestudio2026' ); ?> <span data-countdown-value>3</span>s…
+					</span>
 				</span>
 			</a>
 			<a class="apps-badge apps-badge-mobile" href="#">

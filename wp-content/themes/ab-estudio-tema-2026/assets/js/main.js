@@ -370,3 +370,61 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		nextSection.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 	} );
 } );
+
+document.addEventListener( 'DOMContentLoaded', function () {
+	// Abaixo de 769px o botão do WhatsApp não navega direto no clique:
+	// abre o balão (que já existia no hover do desktop) com uma
+	// contagem regressiva de 3s, e só então redireciona. Em 769px+ o
+	// link segue normal (clique navega direto; o balão só é hover, ver
+	// CSS) — esse bloco não faz nada lá.
+	var waLink = document.querySelector( '.header-whatsapp' );
+	var countdownEl = waLink && waLink.querySelector( '[data-countdown-value]' );
+
+	if ( ! waLink || ! countdownEl ) {
+		return;
+	}
+
+	var mq = window.matchMedia( '(max-width: 768px)' );
+	var COUNTDOWN_SECONDS = 3;
+	var intervalId = null;
+
+	function reset() {
+		waLink.classList.remove( 'is-active' );
+		countdownEl.textContent = String( COUNTDOWN_SECONDS );
+		if ( intervalId ) {
+			clearInterval( intervalId );
+			intervalId = null;
+		}
+	}
+
+	waLink.addEventListener( 'click', function ( event ) {
+		if ( ! mq.matches || intervalId ) {
+			return;
+		}
+
+		event.preventDefault();
+		waLink.classList.add( 'is-active' );
+
+		var remaining = COUNTDOWN_SECONDS;
+		countdownEl.textContent = String( remaining );
+
+		intervalId = setInterval( function () {
+			remaining -= 1;
+
+			if ( remaining <= 0 ) {
+				window.open( waLink.href, '_blank', 'noopener' );
+				reset();
+				return;
+			}
+
+			countdownEl.textContent = String( remaining );
+		}, 1000 );
+	} );
+
+	// Clique fora do botão (com a contagem em andamento) cancela.
+	document.addEventListener( 'click', function ( event ) {
+		if ( intervalId && ! waLink.contains( event.target ) ) {
+			reset();
+		}
+	} );
+} );
