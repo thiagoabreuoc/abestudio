@@ -161,6 +161,12 @@ h1, h2, h3 {
 	color: var(--abe-green);
 }
 
+/* Mesmo comportamento acima, mas disparado pelo hover no WhatsApp/Apps
+   (fora de .header-nav-menu, então o :has() acima não pega). */
+.site-header.is-scrolled .header-actions:has(.header-whatsapp:hover, .apps-badge-desktop:hover) .header-nav-menu .current-menu-item > a {
+	color: var(--abe-ink);
+}
+
 /* Botão "Nossos Apps": hover era branco (regra base .apps-badge-desktop:hover)
    — na barra flutuante troca pro mesmo verde do hover das categorias,
    com texto branco. Mesmo padrão em todas as larguras. */
@@ -259,6 +265,14 @@ h1, h2, h3 {
 .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:hover,
 .header-nav-menu:has(a:hover, a:focus) .current-menu-item > a:focus {
 	color: #fff;
+}
+
+/* Mesmo comportamento acima, mas disparado pelo hover no WhatsApp/Apps
+   (fora de .header-nav-menu, então o :has() acima não pega) — sem a
+   ressalva de "é o próprio item em hover" porque esses botões nunca
+   são o item ativo do menu. */
+.header-actions:has(.header-whatsapp:hover, .apps-badge-desktop:hover) .header-nav-menu .current-menu-item > a {
+	color: var(--abe-ink);
 }
 
 /* Mesma "caixa" do .apps-badge-desktop (padding/radius/tipografia em
