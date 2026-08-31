@@ -405,12 +405,31 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		event.preventDefault();
 		waLink.classList.add( 'is-active' );
 
-		// Nova aba nesse ponto exigiria abri-la em branco JÁ (só assim
-		// escapa do bloqueador de pop-up), o que deixava uma aba vazia
-		// visível durante os 5s — parecia "abriu direto" mesmo
-		// respeitando a contagem por trás. Navegação na mesma aba, só
-		// depois da contagem, não tem esse problema nem esbarra em
-		// bloqueador (não é pop-up).
+		// Abre a aba já (só assim escapa do bloqueador de pop-up — tem que
+		// ser síncrono com o clique) mas com uma tela de "conectando"
+		// própria em vez de about:blank, pra não parecer que abriu direto
+		// — a contagem visível nessa aba nova é o que garante que ela
+		// continua sendo a experiência principal. SEM noopener: precisa
+		// da referência pra escrever o HTML e navegar depois.
+		var newTab = window.open( '', '_blank' );
+		if ( newTab ) {
+			newTab.document.write(
+				'<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">' +
+				'<title>Conectando ao WhatsApp…</title><style>' +
+				'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;' +
+				'flex-direction:column;gap:16px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;' +
+				'background:#fff;color:#22301c;}' +
+				'.spinner{width:40px;height:40px;border:4px solid #e8e8e6;border-top-color:#25d366;' +
+				'border-radius:50%;animation:abe-wa-spin 0.9s linear infinite;}' +
+				'@keyframes abe-wa-spin{to{transform:rotate(360deg);}}' +
+				'</style></head><body>' +
+				'<div class="spinner" aria-hidden="true"></div>' +
+				'<p>Conectando ao WhatsApp…</p>' +
+				'</body></html>'
+			);
+			newTab.document.close();
+		}
+
 		var remaining = COUNTDOWN_SECONDS;
 		countdownEl.textContent = String( remaining );
 
@@ -418,7 +437,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			remaining -= 1;
 
 			if ( remaining <= 0 ) {
-				window.location.href = waLink.href;
+				if ( newTab ) {
+					newTab.location.href = waLink.href;
+				} else {
+					window.location.href = waLink.href;
+				}
 				reset();
 				return;
 			}
